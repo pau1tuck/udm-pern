@@ -50,7 +50,7 @@ const server = () => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
     });
     apolloServer.applyMiddleware({ app });
     app.use(express_1.default.static(path_1.default.join(__dirname + "/web/public")));
-    app.get("/*", (req, res) => {
+    app.get(["/", "/*"], (req, res) => {
         res.status(200);
         res.sendFile(path_1.default.join(__dirname, "/web/public/", "index.html"));
         res.end();

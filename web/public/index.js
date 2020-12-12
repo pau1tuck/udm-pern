@@ -45847,7 +45847,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   }
   var ariaCurrentType;
 
-  // src/components/_App.tsx
+  // src/components/_app.tsx
   var react16 = __toModule(require_react());
 
   // src/config/routes.tsx
@@ -47911,14 +47911,14 @@ attempted value: ${formattedValue}
     })));
   };
 
-  // src/components/_App.tsx
+  // src/components/_app.tsx
   function App() {
     return /* @__PURE__ */ react16.default.createElement("div", null, /* @__PURE__ */ react16.default.createElement(Routes, null));
   }
-  var App_default = App;
+  var app_default = App;
 
   // src/index.tsx
   react_dom.default.render(/* @__PURE__ */ react17.default.createElement(react17.default.StrictMode, null, /* @__PURE__ */ react17.default.createElement(ApolloProvider, {
     client: client3
-  }, /* @__PURE__ */ react17.default.createElement(ChakraProvider, null, /* @__PURE__ */ react17.default.createElement(BrowserRouter, null, /* @__PURE__ */ react17.default.createElement(App_default, null))))), document.getElementById("root"));
+  }, /* @__PURE__ */ react17.default.createElement(ChakraProvider, null, /* @__PURE__ */ react17.default.createElement(HashRouter, null, /* @__PURE__ */ react17.default.createElement(app_default, null))))), document.getElementById("root"));
 })();

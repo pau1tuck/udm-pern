@@ -2,6 +2,7 @@ import "reflect-metadata";
 import "dotenv/config.js";
 import path from "path";
 import express, { Express, Request, Response } from "express";
+import ReactDOMServer from "react-dom/server";
 
 import { RedisStore, redisClient } from "./server/config/redis";
 import session from "express-session";
@@ -73,7 +74,7 @@ const server = async () => {
         res.end();
     }); */
 
-    app.get("/*", (req, res) => {
+    app.get(["/", "/*"], (req, res) => {
         //this is required to support any client side routing written in react.
         res.status(200);
         res.sendFile(path.join(__dirname, "/web/public/", "index.html"));
