@@ -48,7 +48,7 @@ let UserResolver = class UserResolver {
                 throw new Error("Incorrect password");
             }
             ctx.req.session.userId = user.id;
-            return user.id;
+            return user;
         });
     }
 };
@@ -78,7 +78,7 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:returntype", Promise)
 ], UserResolver.prototype, "Register", null);
 tslib_1.__decorate([
-    type_graphql_1.Mutation(() => String, { nullable: true }),
+    type_graphql_1.Mutation(() => User_1.User, { nullable: true }),
     tslib_1.__param(0, type_graphql_1.Arg("email")),
     tslib_1.__param(1, type_graphql_1.Arg("password")),
     tslib_1.__param(2, type_graphql_1.Ctx()),

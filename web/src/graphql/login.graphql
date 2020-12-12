@@ -1,3 +1,9 @@
 mutation login($email: String!, $password: String!) {
-    Login(email: $email, password: $password)
+    Login(email: $email, password: $password) {
+        id
+        firstName
+        lastName
+        isAdmin
+        isMember
+    }
 }

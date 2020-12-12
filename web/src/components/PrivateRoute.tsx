@@ -1,12 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useApolloClient } from "@apollo/client";
-import { useUserQuery } from "~src/config/graphql";
+import { useUserQuery } from "../config/graphql";
 
 export const Home = () => {
-    const client = useApolloClient();
     const { data, loading, error } = useUserQuery({
-        fetchPolicy: "network-only",
+        fetchPolicy: "cache-first",
     });
 
     if (loading) {

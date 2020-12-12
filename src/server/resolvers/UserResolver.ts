@@ -56,12 +56,12 @@ export class UserResolver {
     }
 
     // LOGIN
-    @Mutation(() => String, { nullable: true })
+    @Mutation(() => User, { nullable: true })
     async Login(
         @Arg("email") email: string,
         @Arg("password") password: string,
         @Ctx() ctx: IContext
-    ): Promise<string | null> {
+    ): Promise<User | null> {
         const user = await User.findOne({ where: { email } });
 
         if (!user) {
@@ -76,6 +76,6 @@ export class UserResolver {
 
         ctx.req.session!.userId = user.id;
 
-        return user.id;
+        return user;
     }
 }
