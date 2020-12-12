@@ -62,7 +62,8 @@ const server = async () => {
 
     apolloServer.applyMiddleware({ app });
 
-    app.use("/static", express.static(path.join(__dirname, "/public")));
+    //app.use("/static", express.static(path.join(__dirname, "/public")));
+    app.use(express.static("public"));
 
     app.get("/", (req: Request, res: Response) => {
         res.sendFile(path.join(__dirname + "/web/build/index.html"));
