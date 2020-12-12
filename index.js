@@ -19,9 +19,9 @@ const server = () => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
     const app = express_1.default();
     app.disable("x-powered-by");
     app.use(cors_1.default({
-        origin: process.env.CORS_ORIGIN,
+        origin: "*",
         optionsSuccessStatus: 200,
-        credentials: true,
+        credentials: false,
     }));
     app.use(express_session_1.default({
         name: "sid",
@@ -48,9 +48,9 @@ const server = () => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
         context: ({ req, res }) => ({ req, res }),
     });
     apolloServer.applyMiddleware({ app });
-    app.use("/static", express_1.default.static(path_1.default.join(__dirname, "/public")));
+    app.use(express_1.default.static(path_1.default.join(__dirname + "/web/public")));
     app.get("/", (req, res) => {
-        res.sendFile(path_1.default.join(__dirname + "/web/build/index.html"));
+        res.sendFile(path_1.default.join(__dirname + "/web/public/index.html"));
     });
     app.listen(process.env.PORT, () => {
         console.log(`Server running on http://localhost:${process.env.PORT}.`);

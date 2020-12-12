@@ -26,9 +26,9 @@ const server = async () => {
 
     app.use(
         cors({
-            origin: process.env.CORS_ORIGIN,
+            origin: "*",
             optionsSuccessStatus: 200,
-            credentials: true,
+            credentials: false,
         })
     );
 
@@ -63,10 +63,10 @@ const server = async () => {
     apolloServer.applyMiddleware({ app });
 
     //app.use("/static", express.static(path.join(__dirname, "/public")));
-    app.use(express.static("public"));
+    app.use(express.static(path.join(__dirname + "/web/public")));
 
     app.get("/", (req: Request, res: Response) => {
-        res.sendFile(path.join(__dirname + "/web/build/index.html"));
+        res.sendFile(path.join(__dirname + "/web/public/index.html"));
     });
 
     app.listen(process.env.PORT, () => {
