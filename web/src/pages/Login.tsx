@@ -14,7 +14,7 @@ const validationSchema = yup.object().shape({
         .min(6)
         .max(30)
         .required()
-        .label("This field"),
+        .label("Email address"),
     ["password"]: yup.string().min(8).max(30).required().label("Password"),
 });
 

@@ -7,6 +7,7 @@ export const checkAuth = () => {
     });
 
     if (data?.CurrentUser) {
+        console.log(data.CurrentUser);
         return true;
     }
     return false;
