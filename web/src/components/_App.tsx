@@ -1,7 +1,12 @@
 import React from "react";
+import { Routes } from "../config/routes";
 
 function App() {
-    return <div>Hello, Cock.</div>;
+    return (
+        <div>
+            <Routes />
+        </div>
+    );
 }
 
 export default App;

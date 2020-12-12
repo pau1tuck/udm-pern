@@ -40,17 +40,20 @@ const server = () => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
         resave: false,
         saveUninitialized: false,
     }));
+    const graphQLSchema = yield type_graphql_1.buildSchema({
+        resolvers: [UserResolver_1.UserResolver],
+        validate: false,
+    });
     const apolloServer = new apollo_server_express_1.ApolloServer({
-        schema: yield type_graphql_1.buildSchema({
-            resolvers: [UserResolver_1.UserResolver],
-            validate: false,
-        }),
+        schema: graphQLSchema,
         context: ({ req, res }) => ({ req, res }),
     });
     apolloServer.applyMiddleware({ app });
     app.use(express_1.default.static(path_1.default.join(__dirname + "/web/public")));
-    app.get("/", (req, res) => {
-        res.sendFile(path_1.default.join(__dirname + "/web/public/index.html"));
+    app.get("/*", (req, res) => {
+        res.status(200);
+        res.sendFile(path_1.default.join(__dirname, "/web/public/", "index.html"));
+        res.end();
     });
     app.listen(process.env.PORT, () => {
         console.log(`Server running on http://localhost:${process.env.PORT}.`);

@@ -52,22 +52,37 @@ const server = async () => {
         })
     );
 
+    const graphQLSchema = await buildSchema({
+        resolvers: [UserResolver],
+        validate: false,
+    });
+
     const apolloServer = new ApolloServer({
-        schema: await buildSchema({
-            resolvers: [UserResolver],
-            validate: false,
-        }),
+        schema: graphQLSchema,
         context: ({ req, res }: any) => ({ req, res }),
     });
 
     apolloServer.applyMiddleware({ app });
 
-    //app.use("/static", express.static(path.join(__dirname, "/public")));
-    app.use(express.static(path.join(__dirname + "/web/public")));
+    app.use(express.static(path.join(__dirname + "/web/public"))); //optionally one can add some route handler to protect this resource
 
-    app.get("/", (req: Request, res: Response) => {
+    /*
+    app.use("*", (req: Request, res: Response) => {
+        res.status(200);
         res.sendFile(path.join(__dirname + "/web/public/index.html"));
+        res.end();
+    }); */
+
+    app.get("/*", (req, res) => {
+        //this is required to support any client side routing written in react.
+        res.status(200);
+        res.sendFile(path.join(__dirname, "/web/public/", "index.html"));
+        res.end();
     });
+
+    /*app.get("*", (req: Request, res: Response) => {
+        res.sendFile(path.join(__dirname + "/web/public/index.html"));
+    });*/
 
     app.listen(process.env.PORT, () => {
         console.log(`Server running on http://localhost:${process.env.PORT}.`);
