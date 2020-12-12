@@ -1,4 +1,6 @@
 .vscode/
 node_modules/
+web/node_modules/
 
 .env
+web/.env
