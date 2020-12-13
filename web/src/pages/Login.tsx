@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useHistory, Redirect } from "react-router-dom";
-import { checkAuth } from "../utils/checkAuth";
+import { checkAuth } from "../utils/checkPermissions";
 import { useApolloClient } from "@apollo/client";
 import { useLoginMutation } from "../config/graphql";
 import { useForm, Controller } from "react-hook-form";

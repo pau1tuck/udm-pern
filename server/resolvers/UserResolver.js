@@ -18,7 +18,7 @@ let UserResolver = class UserResolver {
         }
         return User_1.User.findOne(req.session.userId);
     }
-    Register(firstName, lastName, country, email, password) {
+    Register(firstName, lastName, country, email, password, isAdmin) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
             const encryptedPassword = yield argon2_1.default.hash(password);
             try {
@@ -28,6 +28,7 @@ let UserResolver = class UserResolver {
                     country,
                     email,
                     password: encryptedPassword,
+                    isAdmin,
                 });
             }
             catch (err) {
@@ -73,8 +74,9 @@ tslib_1.__decorate([
     tslib_1.__param(2, type_graphql_1.Arg("country")),
     tslib_1.__param(3, type_graphql_1.Arg("email")),
     tslib_1.__param(4, type_graphql_1.Arg("password")),
+    tslib_1.__param(5, type_graphql_1.Arg("isAdmin")),
     tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String, String, String, String, String]),
+    tslib_1.__metadata("design:paramtypes", [String, String, String, String, String, Boolean]),
     tslib_1.__metadata("design:returntype", Promise)
 ], UserResolver.prototype, "Register", null);
 tslib_1.__decorate([
