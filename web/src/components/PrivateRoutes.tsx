@@ -1,33 +1,24 @@
-import React, { useEffect, useState } from "react";
-import { Route, Redirect, useHistory } from "react-router-dom";
-import { useUserQuery } from "~config/graphql";
-import { checkAuth, checkAdmin } from "../utils/checkPermissions";
+import React, { useEffect } from "react";
+import { Redirect, Route } from "react-router-dom";
+import { isLoggedInVar } from "~config/cache";
 
-/*
-export const DogRoute = ({ path, component: Component }: any) => {
-    const history = useHistory();
-    const isLoggedIn = checkAuth();
+interface IRoute {
+    path: string;
+    component: any;
+}
 
-    useEffect(() => {
-        if (!isLoggedIn) {
-            console.log("Nice try, bastard.");
-            <Route render={(props) => <Redirect to="/" />} />;
-        }
-    }, []);
+export const PrivateRoute: React.FC<IRoute> = (route: IRoute) => {
+    const isLoggedIn = isLoggedInVar();
 
-    return <Route path={path} render={(props) => <Component {...props} />} />;
-}; */
-
-export const PrivateRoute = ({
-    component: Component,
-    isLoggedIn,
-    ...rest
-}: any) => {
     return (
         <Route
-            {...rest}
+            path={route.path}
             render={(props) =>
-                isLoggedIn ? <Component {...props} /> : <Redirect to="/" />
+                isLoggedIn ? (
+                    <route.component {...props} />
+                ) : (
+                    <Redirect to="/" />
+                )
             }
         />
     );
