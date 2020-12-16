@@ -4,7 +4,7 @@ const options = {
     entryPoints: ["./src/index.tsx"],
     minify: false,
     bundle: true,
-    outfile: "./build/index.js",
+    outfile: "./public/index.js",
 };
 
 build(options).catch((err) => {

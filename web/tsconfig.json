@@ -6,7 +6,7 @@
         "outDir": "./build",
         "baseUrl": ".",
         "paths": {
-            "~*": ["./*"]
+            "~*": ["./src/*"]
         },
         "jsx": "react",
         "moduleResolution": "node",

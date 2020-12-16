@@ -2,7 +2,6 @@ import "reflect-metadata";
 import "dotenv/config.js";
 import path from "path";
 import express, { Express, Request, Response } from "express";
-import ReactDOMServer from "react-dom/server";
 
 import { RedisStore, redisClient } from "./server/config/redis";
 import session from "express-session";
