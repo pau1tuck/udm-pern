@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useHistory, Redirect } from "react-router-dom";
-import { checkAuth } from "../utils/checkPermissions";
 import { useApolloClient } from "@apollo/client";
 import { useLoginMutation } from "../config/graphql";
 import { useForm, Controller } from "react-hook-form";
@@ -20,7 +19,6 @@ const validationSchema = yup.object().shape({
 
 export const Login = () => {
     const client = useApolloClient();
-    const isLoggedIn = checkAuth();
     const [Login] = useLoginMutation();
     const history = useHistory();
     const { register, handleSubmit, errors, control } = useForm({
@@ -42,13 +40,6 @@ export const Login = () => {
             history.push("/");
         } else console.log(errors);
     };
-
-    useEffect(() => {
-        if (isLoggedIn) {
-            console.log("Logged in:" + isLoggedIn);
-            history.push("/");
-        }
-    }, []);
 
     return (
         <div>

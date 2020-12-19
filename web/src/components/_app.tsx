@@ -3,7 +3,7 @@ import { isLoggedInVar } from "~config/cache";
 import { useUserQuery } from "~config/graphql";
 import { Routes } from "../config/routes";
 
-function App() {
+const App = () => {
     const { data, loading } = useUserQuery({
         fetchPolicy: "network-only",
     });
@@ -18,6 +18,6 @@ function App() {
             <Routes />
         </div>
     );
-}
+};
 
 export default App;

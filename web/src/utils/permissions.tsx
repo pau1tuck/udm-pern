@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { useUserQuery } from "../config/graphql";
 
 export const checkAuth = () => {
-    const { data, loading } = useUserQuery({
+    const { loading, data } = useUserQuery({
         fetchPolicy: "cache-first",
     });
-    if (loading) {
-    }
-    if (data?.CurrentUser) {
-        console.log(data.CurrentUser);
-        return true;
-    }
-    return false;
+    const history = useHistory();
+
+    useEffect(() => {
+        if (!loading && !data?.CurrentUser) {
+            history.push("/login");
+        }
+    }, [loading, data]);
 };
 
 export const checkAdmin = () => {
