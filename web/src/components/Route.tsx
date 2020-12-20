@@ -4,17 +4,19 @@ import { checkAuth } from "~/utils/permissions";
 import { isLoggedInVar } from "~config/cache";
 
 interface IRoute {
-    restricted?: boolean;
     exact?: boolean;
     path: string;
     component: any;
+    restricted?: boolean;
+    admin?: boolean;
 }
 
 export const Route: React.FC<IRoute> = ({
-    restricted,
     exact,
     path,
     component: Component,
+    restricted,
+    admin,
 }: IRoute) => {
     restricted && checkAuth();
     return (

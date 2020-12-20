@@ -1066,7 +1066,7 @@
           }
           return dispatcher.useContext(Context, unstable_observedBits);
         }
-        function useState5(initialState) {
+        function useState4(initialState) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useState(initialState);
         }
@@ -1654,7 +1654,7 @@
         exports.useMemo = useMemo;
         exports.useReducer = useReducer2;
         exports.useRef = useRef7;
-        exports.useState = useState5;
+        exports.useState = useState4;
         exports.version = ReactVersion;
       })();
     }
@@ -2641,11 +2641,11 @@
     if (true) {
       (function() {
         "use strict";
-        var React24 = require_react();
+        var React25 = require_react();
         var _assign = require_object_assign();
         var Scheduler = require_scheduler();
         var tracing = require_tracing();
-        var ReactSharedInternals = React24.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+        var ReactSharedInternals = React25.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
         function warn2(format) {
           {
             for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -2677,7 +2677,7 @@
             Function.prototype.apply.call(console[level], console, argsWithFormat);
           }
         }
-        if (!React24) {
+        if (!React25) {
           {
             throw Error("ReactDOM was loaded before React. Make sure you load the React package before loading ReactDOM.");
           }
@@ -3893,7 +3893,7 @@
         var didWarnInvalidChild = false;
         function flattenChildren(children) {
           var content = "";
-          React24.Children.forEach(children, function(child) {
+          React25.Children.forEach(children, function(child) {
             if (child == null) {
               return;
             }
@@ -3904,7 +3904,7 @@
         function validateProps(element, props) {
           {
             if (typeof props.children === "object" && props.children !== null) {
-              React24.Children.forEach(props.children, function(child) {
+              React25.Children.forEach(props.children, function(child) {
                 if (child == null) {
                   return;
                 }
@@ -11110,7 +11110,7 @@
         }
         var fakeInternalInstance = {};
         var isArray2 = Array.isArray;
-        var emptyRefsObject = new React24.Component().refs;
+        var emptyRefsObject = new React25.Component().refs;
         var didWarnAboutStateAssignmentForComponent;
         var didWarnAboutUninitializedState;
         var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -24992,7 +24992,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var require_index_cjs_development = __commonJS((exports) => {
     "use strict";
     Object.defineProperty(exports, "__esModule", {value: true});
-    var React24 = require_react();
+    var React25 = require_react();
     var isHTMLElement = (value) => value instanceof HTMLElement;
     var EVENTS = {
       BLUR: "blur",
@@ -25256,7 +25256,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       if (isPrimitive(object1) || isPrimitive(object22) || object1 instanceof Date || object22 instanceof Date) {
         return object1 === object22;
       }
-      if (!React24.isValidElement(object1)) {
+      if (!React25.isValidElement(object1)) {
         const keys1 = Object.keys(object1);
         const keys2 = Object.keys(object22);
         if (keys1.length !== keys2.length) {
@@ -25285,7 +25285,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       message: ""
     };
     var isFunction2 = (value) => typeof value === "function";
-    var isMessage = (value) => isString2(value) || React24.isValidElement(value);
+    var isMessage = (value) => isString2(value) || React25.isValidElement(value);
     function getValidateError(result, ref, type = "validate") {
       if (isMessage(result) || isBoolean(result) && !result) {
         return {
@@ -25507,28 +25507,28 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     var isWindowUndefined = typeof window === UNDEFINED;
     var isProxyEnabled = isWeb ? "Proxy" in window : typeof Proxy !== UNDEFINED;
     function useForm2({mode: mode2 = VALIDATION_MODE.onSubmit, reValidateMode = VALIDATION_MODE.onChange, resolver, context: context8, defaultValues = {}, shouldFocusError = true, shouldUnregister = true, criteriaMode} = {}) {
-      const fieldsRef = React24.useRef({});
-      const fieldArrayDefaultValuesRef = React24.useRef({});
-      const fieldArrayValuesRef = React24.useRef({});
-      const watchFieldsRef = React24.useRef(new Set());
-      const useWatchFieldsRef = React24.useRef({});
-      const useWatchRenderFunctionsRef = React24.useRef({});
-      const fieldsWithValidationRef = React24.useRef({});
-      const validFieldsRef = React24.useRef({});
-      const defaultValuesRef = React24.useRef(defaultValues);
-      const defaultValuesAtRenderRef = React24.useRef({});
-      const isUnMount = React24.useRef(false);
-      const isWatchAllRef = React24.useRef(false);
-      const handleChangeRef = React24.useRef();
-      const shallowFieldsStateRef = React24.useRef({});
-      const resetFieldArrayFunctionRef = React24.useRef({});
-      const contextRef = React24.useRef(context8);
-      const resolverRef = React24.useRef(resolver);
-      const fieldArrayNamesRef = React24.useRef(new Set());
-      const modeRef = React24.useRef(modeChecker(mode2));
+      const fieldsRef = React25.useRef({});
+      const fieldArrayDefaultValuesRef = React25.useRef({});
+      const fieldArrayValuesRef = React25.useRef({});
+      const watchFieldsRef = React25.useRef(new Set());
+      const useWatchFieldsRef = React25.useRef({});
+      const useWatchRenderFunctionsRef = React25.useRef({});
+      const fieldsWithValidationRef = React25.useRef({});
+      const validFieldsRef = React25.useRef({});
+      const defaultValuesRef = React25.useRef(defaultValues);
+      const defaultValuesAtRenderRef = React25.useRef({});
+      const isUnMount = React25.useRef(false);
+      const isWatchAllRef = React25.useRef(false);
+      const handleChangeRef = React25.useRef();
+      const shallowFieldsStateRef = React25.useRef({});
+      const resetFieldArrayFunctionRef = React25.useRef({});
+      const contextRef = React25.useRef(context8);
+      const resolverRef = React25.useRef(resolver);
+      const fieldArrayNamesRef = React25.useRef(new Set());
+      const modeRef = React25.useRef(modeChecker(mode2));
       const {isOnSubmit, isOnTouch} = modeRef.current;
       const isValidateAllFieldCriteria = criteriaMode === VALIDATION_MODE.all;
-      const [formState, setFormState] = React24.useState({
+      const [formState, setFormState] = React25.useState({
         isDirty: false,
         dirtyFields: {},
         isSubmitted: false,
@@ -25539,27 +25539,27 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         isValid: !isOnSubmit,
         errors: {}
       });
-      const readFormStateRef = React24.useRef({
+      const readFormStateRef = React25.useRef({
         isDirty: !isProxyEnabled,
         dirtyFields: !isProxyEnabled,
         touched: !isProxyEnabled || isOnTouch,
         isSubmitting: !isProxyEnabled,
         isValid: !isProxyEnabled
       });
-      const formStateRef = React24.useRef(formState);
-      const observerRef = React24.useRef();
-      const {isOnBlur: isReValidateOnBlur, isOnChange: isReValidateOnChange} = React24.useRef(modeChecker(reValidateMode)).current;
+      const formStateRef = React25.useRef(formState);
+      const observerRef = React25.useRef();
+      const {isOnBlur: isReValidateOnBlur, isOnChange: isReValidateOnChange} = React25.useRef(modeChecker(reValidateMode)).current;
       contextRef.current = context8;
       resolverRef.current = resolver;
       formStateRef.current = formState;
       shallowFieldsStateRef.current = shouldUnregister ? {} : isEmptyObject2(shallowFieldsStateRef.current) ? cloneObject(defaultValues) : shallowFieldsStateRef.current;
-      const updateFormState = React24.useCallback((state = {}) => {
+      const updateFormState = React25.useCallback((state = {}) => {
         if (!isUnMount.current) {
           formStateRef.current = Object.assign(Object.assign({}, formStateRef.current), state);
           setFormState(formStateRef.current);
         }
       }, []);
-      const shouldRenderBaseOnError = React24.useCallback((name, error2, shouldRender = false, state = {}, isValid) => {
+      const shouldRenderBaseOnError = React25.useCallback((name, error2, shouldRender = false, state = {}, isValid) => {
         let shouldReRender = shouldRender || isErrorStateChanged({
           errors: formStateRef.current.errors,
           error: error2,
@@ -25583,7 +25583,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           updateFormState(Object.assign(Object.assign({}, state), resolverRef.current ? {isValid: !!isValid} : {}));
         }
       }, []);
-      const setFieldValue = React24.useCallback((name, rawValue) => {
+      const setFieldValue = React25.useCallback((name, rawValue) => {
         const {ref, options} = fieldsRef.current[name];
         const value = isWeb && isHTMLElement(ref) && isNullOrUndefined(rawValue) ? "" : rawValue;
         if (isRadioInput(ref)) {
@@ -25598,7 +25598,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           ref.value = value;
         }
       }, []);
-      const isFormDirty = React24.useCallback((name, data3) => {
+      const isFormDirty = React25.useCallback((name, data3) => {
         if (readFormStateRef.current.isDirty) {
           const formValues = getValues();
           name && data3 && set2(formValues, name, data3);
@@ -25606,7 +25606,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
         return false;
       }, []);
-      const updateAndGetDirtyState = React24.useCallback((name, shouldRender = true) => {
+      const updateAndGetDirtyState = React25.useCallback((name, shouldRender = true) => {
         if (readFormStateRef.current.isDirty || readFormStateRef.current.dirtyFields) {
           const isFieldDirty = !deepEqual(get4(defaultValuesAtRenderRef.current, name), getFieldValue(fieldsRef, name, shallowFieldsStateRef));
           const isDirtyFieldExist = get4(formStateRef.current.dirtyFields, name);
@@ -25622,7 +25622,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
         return {};
       }, []);
-      const executeValidation = React24.useCallback(async (name, skipReRender) => {
+      const executeValidation = React25.useCallback(async (name, skipReRender) => {
         {
           if (!fieldsRef.current[name]) {
             console.warn("\u{1F4CB} Field is missing with `name` attribute: ", name);
@@ -25633,7 +25633,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         shouldRenderBaseOnError(name, error2, skipReRender);
         return isUndefined(error2);
       }, [shouldRenderBaseOnError, isValidateAllFieldCriteria]);
-      const executeSchemaOrResolverValidation = React24.useCallback(async (names) => {
+      const executeSchemaOrResolverValidation = React25.useCallback(async (names) => {
         const {errors: errors5} = await resolverRef.current(getValues(), contextRef.current, isValidateAllFieldCriteria);
         const previousFormIsValid = formStateRef.current.isValid;
         if (Array.isArray(names)) {
@@ -25652,7 +25652,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           return !error2;
         }
       }, [shouldRenderBaseOnError, isValidateAllFieldCriteria]);
-      const trigger = React24.useCallback(async (name) => {
+      const trigger = React25.useCallback(async (name) => {
         const fields = name || Object.keys(fieldsRef.current);
         if (resolverRef.current) {
           return executeSchemaOrResolverValidation(fields);
@@ -25665,7 +25665,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
         return await executeValidation(fields);
       }, [executeSchemaOrResolverValidation, executeValidation]);
-      const setInternalValues = React24.useCallback((name, value, {shouldDirty, shouldValidate}) => {
+      const setInternalValues = React25.useCallback((name, value, {shouldDirty, shouldValidate}) => {
         const data3 = {};
         set2(data3, name, value);
         for (const fieldName of getPath(name, value)) {
@@ -25676,7 +25676,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           }
         }
       }, [trigger, setFieldValue, updateAndGetDirtyState]);
-      const setInternalValue = React24.useCallback((name, value, config19) => {
+      const setInternalValue = React25.useCallback((name, value, config19) => {
         !isPrimitive(value) && set2(shallowFieldsStateRef.current, name, cloneObject(value));
         if (fieldsRef.current[name]) {
           setFieldValue(name, value);
@@ -25791,15 +25791,15 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
         return setFieldArrayDefaultValues(getFieldsValues(fieldsRef, cloneObject(shallowFieldsStateRef.current), shouldUnregister));
       }
-      const validateResolver = React24.useCallback(async (values = {}) => {
+      const validateResolver = React25.useCallback(async (values = {}) => {
         const {errors: errors5} = await resolverRef.current(Object.assign(Object.assign({}, getValues()), values), contextRef.current, isValidateAllFieldCriteria);
         const isValid = isEmptyObject2(errors5);
         formStateRef.current.isValid !== isValid && updateFormState({
           isValid
         });
       }, [isValidateAllFieldCriteria]);
-      const removeFieldEventListener = React24.useCallback((field, forceDelete) => findRemovedFieldAndRemoveListener(fieldsRef, handleChangeRef.current, field, shallowFieldsStateRef, shouldUnregister, forceDelete), [shouldUnregister]);
-      const updateWatchedValue = React24.useCallback((name) => {
+      const removeFieldEventListener = React25.useCallback((field, forceDelete) => findRemovedFieldAndRemoveListener(fieldsRef, handleChangeRef.current, field, shallowFieldsStateRef, shouldUnregister, forceDelete), [shouldUnregister]);
+      const updateWatchedValue = React25.useCallback((name) => {
         if (isWatchAllRef.current) {
           updateFormState();
         } else {
@@ -25812,7 +25812,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           renderWatchedInputs(name);
         }
       }, []);
-      const removeFieldEventListenerAndRef = React24.useCallback((field, forceDelete) => {
+      const removeFieldEventListenerAndRef = React25.useCallback((field, forceDelete) => {
         if (field) {
           removeFieldEventListener(field, forceDelete);
           if (shouldUnregister && !compact2(field.options || []).length) {
@@ -25843,7 +25843,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         });
         error2.shouldFocus && ref && ref.focus && ref.focus();
       }
-      const watchInternal = React24.useCallback((fieldNames, defaultValue, watchId) => {
+      const watchInternal = React25.useCallback((fieldNames, defaultValue, watchId) => {
         const watchFields = watchId ? useWatchFieldsRef.current[watchId] : watchFieldsRef.current;
         let fieldValues = getFieldsValues(fieldsRef, cloneObject(shallowFieldsStateRef.current), shouldUnregister, false, fieldNames);
         if (isString2(fieldNames)) {
@@ -25941,7 +25941,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           }
         }
       }
-      const handleSubmit = React24.useCallback((onValid, onInvalid) => async (e2) => {
+      const handleSubmit = React25.useCallback((onValid, onInvalid) => async (e2) => {
         if (e2 && e2.preventDefault) {
           e2.preventDefault();
           e2.persist();
@@ -26036,11 +26036,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         shallowFieldsStateRef.current = shouldUnregister ? {} : cloneObject(values || defaultValuesRef.current);
         resetRefs(omitResetState);
       };
-      React24.useEffect(() => {
+      React25.useEffect(() => {
         resolver && readFormStateRef.current.isValid && validateResolver();
         observerRef.current = observerRef.current || !isWeb ? observerRef.current : onDomRemove(fieldsRef, removeFieldEventListenerAndRef);
       }, [removeFieldEventListenerAndRef, defaultValuesRef.current]);
-      React24.useEffect(() => () => {
+      React25.useEffect(() => () => {
         observerRef.current && observerRef.current.disconnect();
         isUnMount.current = true;
         {
@@ -26052,10 +26052,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }
       const commonProps = {
         trigger,
-        setValue: React24.useCallback(setValue, [setInternalValue, trigger]),
-        getValues: React24.useCallback(getValues, []),
-        register: React24.useCallback(register, [defaultValuesRef.current]),
-        unregister: React24.useCallback(unregister, []),
+        setValue: React25.useCallback(setValue, [setInternalValue, trigger]),
+        getValues: React25.useCallback(getValues, []),
+        register: React25.useCallback(register, [defaultValuesRef.current]),
+        unregister: React25.useCallback(unregister, []),
         formState: isProxyEnabled ? new Proxy(formState, {
           get: (obj, prop) => {
             {
@@ -26071,7 +26071,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           }
         }) : formState
       };
-      const control = React24.useMemo(() => Object.assign({
+      const control = React25.useMemo(() => Object.assign({
         isFormDirty,
         updateWatchedValue,
         shouldUnregister,
@@ -26108,9 +26108,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         watch,
         control,
         handleSubmit,
-        reset: React24.useCallback(reset, []),
-        clearErrors: React24.useCallback(clearErrors, []),
-        setError: React24.useCallback(setError, []),
+        reset: React25.useCallback(reset, []),
+        clearErrors: React25.useCallback(clearErrors, []),
+        setError: React25.useCallback(setError, []),
         errors: formState.errors
       }, commonProps);
     }
@@ -26140,12 +26140,12 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
       return t2;
     }
-    var FormContext = React24.createContext(null);
+    var FormContext = React25.createContext(null);
     FormContext.displayName = "RHFContext";
-    var useFormContext = () => React24.useContext(FormContext);
+    var useFormContext = () => React25.useContext(FormContext);
     var FormProvider = (_a4) => {
       var {children} = _a4, props = __rest2(_a4, ["children"]);
-      return React24.createElement(FormContext.Provider, {value: Object.assign({}, props)}, children);
+      return React25.createElement(FormContext.Provider, {value: Object.assign({}, props)}, children);
     };
     var generateId = () => {
       const d2 = typeof performance === UNDEFINED ? Date.now() : performance.now() * 1e3;
@@ -26225,20 +26225,20 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           throw new Error("\u{1F4CB} useFieldArray is missing `control` prop. https://react-hook-form.com/api#useFieldArray");
         }
       }
-      const focusIndexRef = React24.useRef(-1);
+      const focusIndexRef = React25.useRef(-1);
       const {isFormDirty, updateWatchedValue, resetFieldArrayFunctionRef, fieldArrayNamesRef, fieldsRef, defaultValuesRef, removeFieldEventListener, formStateRef, shallowFieldsStateRef, updateFormState, readFormStateRef, validFieldsRef, fieldsWithValidationRef, fieldArrayDefaultValuesRef, validateResolver, getValues, shouldUnregister, fieldArrayValuesRef} = control || methods.control;
       const fieldArrayParentName = getFieldArrayParentName(name);
-      const memoizedDefaultValues = React24.useRef([
+      const memoizedDefaultValues = React25.useRef([
         ...get4(fieldArrayDefaultValuesRef.current, fieldArrayParentName) ? get4(fieldArrayDefaultValuesRef.current, name, []) : get4(shouldUnregister ? defaultValuesRef.current : shallowFieldsStateRef.current, name, [])
       ]);
-      const [fields, setFields] = React24.useState(mapIds(memoizedDefaultValues.current, keyName));
+      const [fields, setFields] = React25.useState(mapIds(memoizedDefaultValues.current, keyName));
       set2(fieldArrayValuesRef.current, name, fields);
       const omitKey = (fields2) => fields2.map((_a4 = {}) => {
         var _b = keyName, omitted = _a4[_b], rest = __rest2(_a4, [typeof _b === "symbol" ? _b : _b + ""]);
         return rest;
       });
       fieldArrayNamesRef.current.add(name);
-      const getFieldArrayValue = React24.useCallback(() => get4(fieldArrayValuesRef.current, name, []), []);
+      const getFieldArrayValue = React25.useCallback(() => get4(fieldArrayValuesRef.current, name, []), []);
       const getCurrentFieldsValues = () => mapIds(get4(getValues(), name, getFieldArrayValue()).map((item, index2) => Object.assign(Object.assign({}, getFieldArrayValue()[index2]), item)), keyName, true);
       fieldArrayNamesRef.current.add(name);
       if (fieldArrayParentName && !get4(fieldArrayDefaultValuesRef.current, fieldArrayParentName)) {
@@ -26382,7 +26382,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           argD: to
         }, void 0, fieldValues, false);
       };
-      React24.useEffect(() => {
+      React25.useEffect(() => {
         {
           if (!name) {
             console.warn("\u{1F4CB} useFieldArray is missing `name` attribute. https://react-hook-form.com/api#useFieldArray");
@@ -26405,7 +26405,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
         focusIndexRef.current = -1;
       }, [fields, name]);
-      React24.useEffect(() => {
+      React25.useEffect(() => {
         const resetFunctions = resetFieldArrayFunctionRef.current;
         const fieldArrayNames = fieldArrayNamesRef.current;
         if (!getFieldArrayParentName(name)) {
@@ -26424,12 +26424,12 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         };
       }, []);
       return {
-        swap: React24.useCallback(swap, [name]),
-        move: React24.useCallback(move, [name]),
-        prepend: React24.useCallback(prepend$1, [name]),
-        append: React24.useCallback(append, [name]),
-        remove: React24.useCallback(remove, [name]),
-        insert: React24.useCallback(insert$1, [name]),
+        swap: React25.useCallback(swap, [name]),
+        move: React25.useCallback(move, [name]),
+        prepend: React25.useCallback(prepend$1, [name]),
+        append: React25.useCallback(append, [name]),
+        remove: React25.useCallback(remove, [name]),
+        insert: React25.useCallback(insert$1, [name]),
         fields
       };
     };
@@ -26444,12 +26444,12 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       const {defaultValuesRef, setValue, register, unregister, trigger, mode: mode2, reValidateMode: {isReValidateOnBlur, isReValidateOnChange}, formState, formStateRef: {current: {isSubmitted, touched, errors: errors5}}, updateFormState, readFormStateRef, fieldsRef, fieldArrayNamesRef, shallowFieldsStateRef} = control || methods.control;
       const isNotFieldArray = !isNameInFieldArray(fieldArrayNamesRef.current, name);
       const getInitialValue = () => !isUndefined(get4(shallowFieldsStateRef.current, name)) && isNotFieldArray ? get4(shallowFieldsStateRef.current, name) : isUndefined(defaultValue) ? get4(defaultValuesRef.current, name) : defaultValue;
-      const [value, setInputStateValue] = React24.useState(getInitialValue());
-      const valueRef = React24.useRef(value);
-      const ref = React24.useRef({
+      const [value, setInputStateValue] = React25.useState(getInitialValue());
+      const valueRef = React25.useRef(value);
+      const ref = React25.useRef({
         focus: () => null
       });
-      const onFocusRef = React24.useRef(onFocus || (() => {
+      const onFocusRef = React25.useRef(onFocus || (() => {
         if (isFunction2(ref.current.focus)) {
           ref.current.focus();
         }
@@ -26459,7 +26459,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           }
         }
       }));
-      const shouldValidate = React24.useCallback((isBlurEvent) => !skipValidation(Object.assign({
+      const shouldValidate = React25.useCallback((isBlurEvent) => !skipValidation(Object.assign({
         isBlurEvent,
         isReValidateOnBlur,
         isReValidateOnChange,
@@ -26473,13 +26473,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         name,
         mode2
       ]);
-      const commonTask = React24.useCallback(([event]) => {
+      const commonTask = React25.useCallback(([event]) => {
         const data3 = getInputValue(event);
         setInputStateValue(data3);
         valueRef.current = data3;
         return data3;
       }, []);
-      const registerField = React24.useCallback((shouldUpdateValue) => {
+      const registerField = React25.useCallback((shouldUpdateValue) => {
         {
           if (!name) {
             return console.warn("\u{1F4CB} Field is missing `name` prop. https://react-hook-form.com/api#Controller");
@@ -26506,8 +26506,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
         shouldUpdateValue && isNotFieldArray && setInputStateValue(getInitialValue());
       }, [rules, name, register]);
-      React24.useEffect(() => () => unregister(name), [name]);
-      React24.useEffect(() => {
+      React25.useEffect(() => () => unregister(name), [name]);
+      React25.useEffect(() => {
         {
           if (isUndefined(value)) {
             console.warn(`\u{1F4CB} ${name} is missing in the 'defaultValue' prop of either its Controller (https://react-hook-form.com/api#Controller) or useForm (https://react-hook-form.com/api#useForm)`);
@@ -26518,10 +26518,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
         registerField();
       }, [registerField]);
-      React24.useEffect(() => {
+      React25.useEffect(() => {
         !fieldsRef.current[name] && registerField(true);
       });
-      const onBlur = React24.useCallback(() => {
+      const onBlur = React25.useCallback(() => {
         if (readFormStateRef.current.touched && !get4(touched, name)) {
           set2(touched, name, true);
           updateFormState({
@@ -26530,7 +26530,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
         shouldValidate(true) && trigger(name);
       }, [name, updateFormState, shouldValidate, trigger, readFormStateRef]);
-      const onChange = React24.useCallback((...event) => setValue(name, commonTask(event), {
+      const onChange = React25.useCallback((...event) => setValue(name, commonTask(event), {
         shouldValidate: shouldValidate(),
         shouldDirty: true
       }), [setValue, name, shouldValidate]);
@@ -26566,10 +26566,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
       }
       const {useWatchFieldsRef, useWatchRenderFunctionsRef, watchInternal, defaultValuesRef} = control || methods.control;
-      const updateValue = React24.useState()[1];
-      const idRef = React24.useRef();
-      const defaultValueRef = React24.useRef(defaultValue);
-      React24.useEffect(() => {
+      const updateValue = React25.useState()[1];
+      const idRef = React25.useRef();
+      const defaultValueRef = React25.useRef(defaultValue);
+      React25.useEffect(() => {
         {
           if (name === "") {
             console.warn("\u{1F4CB} useWatch is missing `name` attribute. https://react-hook-form.com/api#useWatch");
@@ -26598,7 +26598,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       const {rules, as, render, defaultValue, control, onFocus} = props, rest = __rest2(props, ["rules", "as", "render", "defaultValue", "control", "onFocus"]);
       const {field, meta} = useController(props);
       const componentProps = Object.assign(Object.assign({}, rest), field);
-      return as ? React24.isValidElement(as) ? React24.cloneElement(as, componentProps) : React24.createElement(as, componentProps) : render ? render(field, meta) : null;
+      return as ? React25.isValidElement(as) ? React25.cloneElement(as, componentProps) : React25.createElement(as, componentProps) : render ? render(field, meta) : null;
     };
     exports.Controller = Controller2;
     exports.FormProvider = FormProvider;
@@ -29206,7 +29206,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   });
 
   // src/index.tsx
-  var react22 = __toModule(require_react());
+  var react23 = __toModule(require_react());
   var react_dom = __toModule(require_react_dom());
 
   // node_modules/@apollo/client/node_modules/tslib/tslib.es6.js
@@ -37526,6 +37526,7 @@ const client = new ApolloClient({
 
   // src/config/cache.ts
   var isLoggedInVar = makeVar(false);
+  var isAdminVar = makeVar(false);
   var cache7 = new InMemoryCache({
     typePolicies: {
       Query: {
@@ -37533,6 +37534,11 @@ const client = new ApolloClient({
           isLoggedIn: {
             read() {
               return isLoggedInVar();
+            }
+          },
+          isAdmin: {
+            read() {
+              return isAdminVar();
             }
           }
         }
@@ -45516,11 +45522,11 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     return value || null;
   }
   var Route = /* @__PURE__ */ function(_React$Component) {
-    _inheritsLoose(Route2, _React$Component);
-    function Route2() {
+    _inheritsLoose(Route4, _React$Component);
+    function Route4() {
       return _React$Component.apply(this, arguments) || this;
     }
-    var _proto = Route2.prototype;
+    var _proto = Route4.prototype;
     _proto.render = function render() {
       var _this = this;
       return react14.default.createElement(context7.Consumer, null, function(context$1) {
@@ -45540,7 +45546,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
         }, props.match ? children ? typeof children === "function" ? evalChildrenDev(children, props, _this.props.path) : children : component ? react14.default.createElement(component, props) : render2 ? render2(props) : null : typeof children === "function" ? evalChildrenDev(children, props, _this.props.path) : null);
       });
     };
-    return Route2;
+    return Route4;
   }(react14.default.Component);
   if (true) {
     Route.propTypes = {
@@ -45942,7 +45948,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   var ariaCurrentType;
 
   // src/components/_app.tsx
-  var react21 = __toModule(require_react());
+  var react22 = __toModule(require_react());
 
   // src/config/graphql.tsx
   var LoginDocument = graphql_tag.default`
@@ -45977,32 +45983,51 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   }
 
   // src/config/routes.tsx
-  var react20 = __toModule(require_react());
+  var react21 = __toModule(require_react());
 
-  // src/pages/Home.tsx
-  var react16 = __toModule(require_react());
-  var Home = () => {
-    return /* @__PURE__ */ react16.default.createElement("div", null, "Welcome to UDM.");
-  };
-
-  // src/pages/Login.tsx
+  // src/components/Route.tsx
   var react17 = __toModule(require_react());
 
-  // src/utils/checkPermissions.tsx
+  // src/utils/permissions.tsx
+  var react16 = __toModule(require_react());
   var checkAuth = () => {
-    const {data: data3, loading} = useUserQuery({
+    const {loading, data: data3} = useUserQuery({
       fetchPolicy: "cache-first"
     });
-    if (loading) {
-    }
-    if (data3?.CurrentUser) {
-      console.log(data3.CurrentUser);
-      return true;
-    }
-    return false;
+    const history3 = useHistory();
+    react16.useEffect(() => {
+      if (!loading && !data3?.CurrentUser) {
+        history3.push("/login");
+      }
+    }, [loading, data3]);
+  };
+
+  // src/components/Route.tsx
+  var Route2 = ({
+    exact,
+    path,
+    component: Component2,
+    restricted,
+    admin
+  }) => {
+    restricted && checkAuth();
+    return /* @__PURE__ */ react17.default.createElement(Route, {
+      exact,
+      path,
+      render: (props) => /* @__PURE__ */ react17.default.createElement(Component2, {
+        ...props
+      })
+    });
+  };
+
+  // src/pages/Home.tsx
+  var react18 = __toModule(require_react());
+  var Home = () => {
+    return /* @__PURE__ */ react18.default.createElement("div", null, "Welcome to UDM.");
   };
 
   // src/pages/Login.tsx
+  var react19 = __toModule(require_react());
   var react_hook_form = __toModule(require_dist());
 
   // node_modules/nanoclone/src/index.js
@@ -48022,7 +48047,6 @@ attempted value: ${formattedValue}
   });
   var Login = () => {
     const client7 = useApolloClient();
-    const isLoggedIn = checkAuth();
     const [Login3] = useLoginMutation();
     const history3 = useHistory();
     const {register, handleSubmit, errors: errors5, control} = react_hook_form.useForm({
@@ -48044,30 +48068,24 @@ attempted value: ${formattedValue}
       } else
         console.log(errors5);
     };
-    react17.useEffect(() => {
-      if (isLoggedIn) {
-        console.log("Logged in:" + isLoggedIn);
-        history3.push("/");
-      }
-    }, []);
-    return /* @__PURE__ */ react17.default.createElement("div", null, /* @__PURE__ */ react17.default.createElement("h1", null, "Sign in"), /* @__PURE__ */ react17.default.createElement("form", {
+    return /* @__PURE__ */ react19.default.createElement("div", null, /* @__PURE__ */ react19.default.createElement("h1", null, "Sign in"), /* @__PURE__ */ react19.default.createElement("form", {
       noValidate: true,
       onSubmit: handleSubmit(onFormSubmit)
-    }, /* @__PURE__ */ react17.default.createElement("input", {
+    }, /* @__PURE__ */ react19.default.createElement("input", {
       name: "email",
       type: "email",
       ref: register
-    }), /* @__PURE__ */ react17.default.createElement("input", {
+    }), /* @__PURE__ */ react19.default.createElement("input", {
       name: "password",
       type: "password",
       ref: register
-    }), /* @__PURE__ */ react17.default.createElement("button", {
+    }), /* @__PURE__ */ react19.default.createElement("button", {
       type: "submit"
     }, "Sign in")));
   };
 
   // src/pages/Profile.tsx
-  var react18 = __toModule(require_react());
+  var react20 = __toModule(require_react());
   var Profile = () => {
     const {loading, error: error2, data: data3} = useUserQuery({
       fetchPolicy: "network-only"
@@ -48077,34 +48095,19 @@ attempted value: ${formattedValue}
     if (error2) {
       console.log(error2);
     }
-    return /* @__PURE__ */ react18.default.createElement("div", null, data3?.CurrentUser?.firstName);
-  };
-
-  // src/components/PrivateRoutes.tsx
-  var react19 = __toModule(require_react());
-  var PrivateRoute = (route) => {
-    const isLoggedIn = isLoggedInVar();
-    const history3 = useHistory();
-    return /* @__PURE__ */ react19.default.createElement(Route, {
-      path: route.path,
-      render: (props) => isLoggedIn ? /* @__PURE__ */ react19.default.createElement(route.component, {
-        ...props
-      }) : /* @__PURE__ */ react19.default.createElement(Redirect, {
-        to: "/"
-      })
-    });
+    return /* @__PURE__ */ react20.default.createElement("div", null, data3?.CurrentUser?.firstName);
   };
 
   // src/config/routes.tsx
   var Routes = () => {
-    return /* @__PURE__ */ react20.default.createElement("div", null, /* @__PURE__ */ react20.default.createElement(Switch, null, /* @__PURE__ */ react20.default.createElement(Route, {
+    return /* @__PURE__ */ react21.default.createElement("div", null, /* @__PURE__ */ react21.default.createElement(Switch, null, /* @__PURE__ */ react21.default.createElement(Route2, {
       path: "/login",
       component: Login
-    }), /* @__PURE__ */ react20.default.createElement(PrivateRoute, {
+    }), /* @__PURE__ */ react21.default.createElement(Route2, {
+      restricted: true,
       path: "/profile",
-      component: Profile,
-      private: true
-    }), /* @__PURE__ */ react20.default.createElement(Route, {
+      component: Profile
+    }), /* @__PURE__ */ react21.default.createElement(Route2, {
       exact: true,
       path: "/",
       component: Home
@@ -48112,9 +48115,9 @@ attempted value: ${formattedValue}
   };
 
   // src/components/_app.tsx
-  function App() {
+  var App = () => {
     const {data: data3, loading} = useUserQuery({
-      fetchPolicy: "cache-first"
+      fetchPolicy: "network-only"
     });
     if (loading) {
     }
@@ -48122,12 +48125,12 @@ attempted value: ${formattedValue}
       console.log(data3.CurrentUser);
       isLoggedInVar(true);
     }
-    return /* @__PURE__ */ react21.default.createElement("div", null, /* @__PURE__ */ react21.default.createElement(Routes, null));
-  }
+    return /* @__PURE__ */ react22.default.createElement("div", null, /* @__PURE__ */ react22.default.createElement(Routes, null));
+  };
   var app_default = App;
 
   // src/index.tsx
-  react_dom.default.render(/* @__PURE__ */ react22.default.createElement(react22.default.StrictMode, null, /* @__PURE__ */ react22.default.createElement(ApolloProvider, {
+  react_dom.default.render(/* @__PURE__ */ react23.default.createElement(react23.default.StrictMode, null, /* @__PURE__ */ react23.default.createElement(ApolloProvider, {
     client: client3
-  }, /* @__PURE__ */ react22.default.createElement(ChakraProvider, null, /* @__PURE__ */ react22.default.createElement(HashRouter, null, /* @__PURE__ */ react22.default.createElement(app_default, null))))), document.getElementById("root"));
+  }, /* @__PURE__ */ react23.default.createElement(ChakraProvider, null, /* @__PURE__ */ react23.default.createElement(HashRouter, null, /* @__PURE__ */ react23.default.createElement(app_default, null))))), document.getElementById("root"));
 })();
