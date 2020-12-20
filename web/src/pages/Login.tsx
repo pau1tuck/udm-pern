@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useHistory, Redirect } from "react-router-dom";
 import { useApolloClient } from "@apollo/client";
-import { useLoginMutation } from "../config/graphql";
+import { useLoginMutation } from "~/config/graphql";
+import { isLoggedInVar } from "~config/cache";
 import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -37,6 +38,7 @@ export const Login = () => {
         if (response && response.data) {
             client.resetStore();
             console.log(response.data?.Login);
+            isLoggedInVar(true);
             history.push("/");
         } else console.log(errors);
     };
@@ -45,8 +47,18 @@ export const Login = () => {
         <div>
             <h1>Sign in</h1>
             <form noValidate onSubmit={handleSubmit(onFormSubmit)}>
-                <input name="email" type="email" ref={register} />
-                <input name="password" type="password" ref={register} />
+                <input
+                    name="email"
+                    type="email"
+                    placeholder="Email address"
+                    ref={register}
+                />
+                <input
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    ref={register}
+                />
 
                 <button type="submit">Sign in</button>
             </form>

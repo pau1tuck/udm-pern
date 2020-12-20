@@ -10,5 +10,10 @@ export const Profile = () => {
     if (error) {
         console.log(error);
     }
-    return <div>{data?.CurrentUser?.firstName}</div>;
+    return (
+        <div>
+            Welcome, {data?.CurrentUser?.firstName}{" "}
+            {data?.CurrentUser?.lastName}.
+        </div>
+    );
 };

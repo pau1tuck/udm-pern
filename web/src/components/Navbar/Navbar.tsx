@@ -1,7 +1,38 @@
-import { Flex, Heading } from "@chakra-ui/react";
 import React from "react";
+import { Link as ReactLink } from "react-router-dom";
+import {
+    Box,
+    Button,
+    ButtonGroup,
+    Flex,
+    Heading,
+    Link,
+} from "@chakra-ui/react";
 
 export const Navbar = () => {
+    const guestLinks = (
+        <ButtonGroup variant="outline" spacing="3">
+            <Button
+                as={ReactLink}
+                to="/login"
+                colorScheme="white"
+                variant="ghost"
+            >
+                Log in
+            </Button>
+            <Button
+                as={ReactLink}
+                to="/register"
+                colorScheme="blue"
+                variant="solid"
+            >
+                Sign up
+            </Button>
+        </ButtonGroup>
+    );
+
+    const userLinks = {};
+
     return (
         <div>
             <Flex
@@ -9,8 +40,8 @@ export const Navbar = () => {
                 align="center"
                 justify="space-between"
                 wrap="wrap"
-                padding="1.5rem"
-                bg="teal.500"
+                padding="0.5rem"
+                bg="gray.500"
                 color="white"
             >
                 <Flex align="center" mr={5}>
@@ -18,6 +49,8 @@ export const Navbar = () => {
                         UDM
                     </Heading>
                 </Flex>
+
+                <Box display={{ base: "block" }}></Box>
             </Flex>
         </div>
     );

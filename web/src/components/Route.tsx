@@ -20,11 +20,9 @@ export const Route: React.FC<IRoute> = ({
 }: IRoute) => {
     restricted && checkAuth();
     return (
-        <MyRoute
-            exact={exact}
-            path={path}
-            render={(props) => <Component {...props} />}
-        />
+        <MyRoute exact={exact} path={path}>
+            <Component />
+        </MyRoute>
     );
 };
 

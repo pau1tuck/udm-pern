@@ -1,7 +1,8 @@
 import React from "react";
 import { isLoggedInVar } from "~config/cache";
 import { useUserQuery } from "~config/graphql";
-import { Routes } from "../config/routes";
+import { Navbar } from "./Navbar/Navbar";
+import { Routes } from "~/config/routes";
 
 const App = () => {
     const { data, loading } = useUserQuery({
@@ -15,6 +16,7 @@ const App = () => {
     }
     return (
         <div>
+            <Navbar />
             <Routes />
         </div>
     );
