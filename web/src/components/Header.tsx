@@ -1,17 +1,28 @@
-import { Box, Flex, Image } from "@chakra-ui/react";
 import React from "react";
+import { Box, Center, Flex, Image, Text } from "@chakra-ui/react";
 
 export const Header: React.FC = () => {
     return (
-        <Flex>
-            <Box boxSize="sm">
-                <Image
-                    boxSize="100px"
-                    objectFit="cover"
-                    src="https://bit.ly/sage-adebayo"
-                    alt="Segun Adebayo"
-                />
-            </Box>
-        </Flex>
+        <div>
+            <Flex justifyContent="center">
+                <Box mt="-60px" zIndex="10">
+                    <Image
+                        objectFit="cover"
+                        src="/images/udm-logo.png"
+                        alt="Segun Adebayo"
+                    />
+                </Box>
+            </Flex>
+            <Center>
+                <Text
+                    fontFamily="Michroma"
+                    fontSize="1rem"
+                    fontWeight="600"
+                    color="lightgrey"
+                >
+                    UNDERGROUND &nbsp; &nbsp; DANCE &nbsp; &nbsp; MUSIC
+                </Text>
+            </Center>
+        </div>
     );
 };

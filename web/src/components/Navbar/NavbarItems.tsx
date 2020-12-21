@@ -1,23 +1,14 @@
 import React, { useEffect } from "react";
 import { Link as ReactLink } from "react-router-dom";
-import {
-    Avatar,
-    Box,
-    Button,
-    ButtonGroup,
-    Flex,
-    Heading,
-    Link,
-    Text,
-    Wrap,
-    WrapItem,
-} from "@chakra-ui/react";
 import { useUserQuery } from "~config/graphql";
+import { Avatar, Box, Button, ButtonGroup, Flex, Text } from "@chakra-ui/react";
 
-export const Navbar = () => {
+export const NavbarItems: React.FC = () => {
     const { loading, error, data } = useUserQuery({
         fetchPolicy: "network-only",
     });
+
+    const user = data?.CurrentUser;
 
     const guestLinks = (
         <ButtonGroup
@@ -48,35 +39,31 @@ export const Navbar = () => {
     const userLinks = (
         <Flex alignItems="center">
             <Text mr="15px" fontFamily="heading" fontWeight="600" fontSize="sm">
-                {data?.CurrentUser?.firstName +
-                    " " +
-                    data?.CurrentUser?.lastName}
+                {user?.firstName + " " + user?.lastName}
             </Text>
             <Avatar mr="8px" src="https://bit.ly/sage-adebayo" />
         </Flex>
     );
 
-    useEffect(() => {}, [data?.CurrentUser]);
+    useEffect(() => {}, [user]);
 
     if (loading) {
+        return (
+            <Box display={{ base: "block" }}>
+                <Text
+                    mr="5px"
+                    fontFamily="heading"
+                    fontWeight="600"
+                    fontSize="sm"
+                >
+                    Loading...
+                </Text>
+            </Box>
+        );
     }
     return (
-        <div>
-            <Flex
-                as="nav"
-                align="center"
-                justify="space-between"
-                wrap="wrap"
-                padding="0.5rem"
-                color="white"
-                opacity="0.9"
-            >
-                <Flex align="center" />
-
-                <Box display={{ base: "block" }}>
-                    {data?.CurrentUser ? userLinks : guestLinks}
-                </Box>
-            </Flex>
-        </div>
+        <Box display={{ base: "block" }}>
+            {data?.CurrentUser ? userLinks : guestLinks}
+        </Box>
     );
 };

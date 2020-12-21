@@ -1,8 +1,7 @@
 import React from "react";
-import { isLoggedInVar } from "~config/cache";
-import { useUserQuery } from "~config/graphql";
 import { Box } from "@chakra-ui/react";
-import { Navbar } from "./Navbar";
+import { Navbar } from "./Navbar/Navbar";
+import { Header } from "./Header";
 import { Routes } from "~/config/routes";
 
 const App = () => {
@@ -14,6 +13,7 @@ const App = () => {
             bgRepeat="no-repeat"
         >
             <Navbar />
+            <Header />
             <Routes />
         </Box>
     );
