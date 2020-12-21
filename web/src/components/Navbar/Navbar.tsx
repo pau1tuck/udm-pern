@@ -1,17 +1,21 @@
 import React from "react";
 import { Link as ReactLink } from "react-router-dom";
 import {
+    Avatar,
     Box,
     Button,
     ButtonGroup,
     Flex,
     Heading,
     Link,
+    Text,
+    Wrap,
+    WrapItem,
 } from "@chakra-ui/react";
 
 export const Navbar = () => {
     const guestLinks = (
-        <ButtonGroup variant="outline" spacing="3">
+        <ButtonGroup variant="outline" spacing="2">
             <Button
                 as={ReactLink}
                 to="/login"
@@ -31,7 +35,14 @@ export const Navbar = () => {
         </ButtonGroup>
     );
 
-    const userLinks = {};
+    const userLinks = (
+        <Flex alignItems="center">
+            <Text mr="15px" fontWeight="bold">
+                Welcome, Paul.
+            </Text>
+            <Avatar mr="8px" src="https://bit.ly/sage-adebayo" />
+        </Flex>
+    );
 
     return (
         <div>
@@ -41,16 +52,21 @@ export const Navbar = () => {
                 justify="space-between"
                 wrap="wrap"
                 padding="0.5rem"
-                bg="gray.500"
                 color="white"
+                opacity="0.9"
             >
                 <Flex align="center" mr={5}>
-                    <Heading as="h1" size="lg" letterSpacing={"-.1rem"}>
+                    <Heading
+                        as="h1"
+                        size="lg"
+                        paddingLeft="8px"
+                        letterSpacing={"-.1rem"}
+                    >
                         UDM
                     </Heading>
                 </Flex>
 
-                <Box display={{ base: "block" }}></Box>
+                <Box display={{ base: "block" }}>{userLinks}</Box>
             </Flex>
         </div>
     );

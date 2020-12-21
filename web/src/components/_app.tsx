@@ -1,6 +1,7 @@
 import React from "react";
 import { isLoggedInVar } from "~config/cache";
 import { useUserQuery } from "~config/graphql";
+import { Box, Container } from "@chakra-ui/react";
 import { Navbar } from "./Navbar/Navbar";
 import { Routes } from "~/config/routes";
 
@@ -15,10 +16,15 @@ const App = () => {
         isLoggedInVar(true);
     }
     return (
-        <div>
+        <Box
+            height="100vh"
+            bgImage="url('/images/background.jpg')"
+            bgSize="cover"
+            bgRepeat="no-repeat"
+        >
             <Navbar />
             <Routes />
-        </div>
+        </Box>
     );
 };
 
