@@ -15,7 +15,7 @@ export const Header: React.FC = () => {
             </Flex>
             <Center>
                 <Text
-                    fontFamily="Michroma"
+                    fontFamily="title"
                     fontSize="1rem"
                     fontWeight="600"
                     color="lightgrey"

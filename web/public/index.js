@@ -45576,12 +45576,19 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     fonts: {
       body: "'Architects Daughter', sans-serif",
       heading: "'Montserrat', sans-serif",
-      tag: "'Michroma', monospace"
+      title: "'Michroma', monospace"
     },
     colors: {
       brand: {
         100: "#f7fafc",
         900: "#1a202c"
+      }
+    },
+    styles: {
+      global: {
+        body: {
+          color: "white"
+        }
       }
     }
   });
@@ -47405,7 +47412,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       src: "/images/udm-logo.png",
       alt: "Segun Adebayo"
     }))), /* @__PURE__ */ react26.default.createElement(Center, null, /* @__PURE__ */ react26.default.createElement(Text, {
-      fontFamily: "Michroma",
+      fontFamily: "title",
       fontSize: "1rem",
       fontWeight: "600",
       color: "lightgrey"
@@ -47450,15 +47457,24 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   // src/pages/Home.tsx
   var react30 = __toModule(require_react());
   var Home = () => {
+    const trackContainer = /* @__PURE__ */ react30.default.createElement(Box, {
+      width: "250px",
+      height: "300px",
+      margin: "0px 10px 20px 10px",
+      borderWidth: "1px",
+      borderRadius: "lg",
+      borderColor: "darkgray"
+    });
     return /* @__PURE__ */ react30.default.createElement(Flex, {
       justifyContent: "center"
     }, /* @__PURE__ */ react30.default.createElement(Container, {
       maxW: "1200px",
       margin: "30px 10px",
-      borderWidth: "1px",
-      borderRadius: "lg",
       overflow: "hidden"
-    }, /* @__PURE__ */ react30.default.createElement("div", null, "Welcome to UDM."), ";"));
+    }, /* @__PURE__ */ react30.default.createElement(Flex, {
+      flexWrap: "wrap",
+      justifyContent: "center"
+    }, trackContainer, trackContainer, trackContainer, trackContainer, trackContainer, trackContainer, trackContainer, trackContainer)));
   };
 
   // src/pages/Login.tsx
@@ -49558,7 +49574,8 @@ attempted value: ${formattedValue}
       height: "100vh",
       bgImage: "url('/images/background.jpg')",
       bgSize: "cover",
-      bgRepeat: "no-repeat"
+      bgRepeat: "no-repeat",
+      bgAttachment: "fixed"
     }, /* @__PURE__ */ react35.default.createElement(Navbar, null), /* @__PURE__ */ react35.default.createElement(Header, null), /* @__PURE__ */ react35.default.createElement(Routes, null));
   };
   var app_default = App;

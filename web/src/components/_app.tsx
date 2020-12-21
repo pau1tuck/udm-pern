@@ -11,6 +11,7 @@ const App = () => {
             bgImage="url('/images/background.jpg')"
             bgSize="cover"
             bgRepeat="no-repeat"
+            bgAttachment="fixed"
         >
             <Navbar />
             <Header />
