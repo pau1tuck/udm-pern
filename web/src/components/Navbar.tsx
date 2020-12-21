@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link as ReactLink } from "react-router-dom";
 import {
     Avatar,
@@ -12,10 +12,20 @@ import {
     Wrap,
     WrapItem,
 } from "@chakra-ui/react";
+import { useUserQuery } from "~config/graphql";
 
 export const Navbar = () => {
+    const { loading, error, data } = useUserQuery({
+        fetchPolicy: "network-only",
+    });
+
     const guestLinks = (
-        <ButtonGroup variant="outline" spacing="2">
+        <ButtonGroup
+            variant="outline"
+            spacing="2"
+            fontFamily="heading"
+            fontWeight="600"
+        >
             <Button
                 as={ReactLink}
                 to="/login"
@@ -38,12 +48,18 @@ export const Navbar = () => {
     const userLinks = (
         <Flex alignItems="center">
             <Text mr="15px" fontFamily="heading" fontWeight="600" fontSize="sm">
-                Paul Tuck
+                {data?.CurrentUser?.firstName +
+                    " " +
+                    data?.CurrentUser?.lastName}
             </Text>
             <Avatar mr="8px" src="https://bit.ly/sage-adebayo" />
         </Flex>
     );
 
+    useEffect(() => {}, [data?.CurrentUser]);
+
+    if (loading) {
+    }
     return (
         <div>
             <Flex
@@ -57,7 +73,9 @@ export const Navbar = () => {
             >
                 <Flex align="center" />
 
-                <Box display={{ base: "block" }}>{userLinks}</Box>
+                <Box display={{ base: "block" }}>
+                    {data?.CurrentUser ? userLinks : guestLinks}
+                </Box>
             </Flex>
         </div>
     );
