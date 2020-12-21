@@ -32,6 +32,11 @@ const UserRoutes = [
         path: "/playlists",
         restricted: true,
     },
+    {
+        name: "Playlist",
+        path: "/playlists/:id",
+        restricted: true,
+    },
 ];
 
 const AdminRoutes = [];

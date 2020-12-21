@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "./config/apollo";
 import { ChakraProvider } from "@chakra-ui/react";
-import fonts from "./config/fonts";
 import { theme } from "~config/theme";
 import { HashRouter as Router } from "react-router-dom";
 import App from "./components/_app";

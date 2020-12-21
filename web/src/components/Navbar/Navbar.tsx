@@ -37,8 +37,8 @@ export const Navbar = () => {
 
     const userLinks = (
         <Flex alignItems="center">
-            <Text mr="15px" fontWeight="bold">
-                Welcome, Paul.
+            <Text mr="15px" fontFamily="heading" fontWeight="600" fontSize="sm">
+                Paul Tuck
             </Text>
             <Avatar mr="8px" src="https://bit.ly/sage-adebayo" />
         </Flex>
@@ -55,16 +55,7 @@ export const Navbar = () => {
                 color="white"
                 opacity="0.9"
             >
-                <Flex align="center" mr={5}>
-                    <Heading
-                        as="h1"
-                        size="lg"
-                        paddingLeft="8px"
-                        letterSpacing={"-.1rem"}
-                    >
-                        UDM
-                    </Heading>
-                </Flex>
+                <Flex align="center" />
 
                 <Box display={{ base: "block" }}>{userLinks}</Box>
             </Flex>
