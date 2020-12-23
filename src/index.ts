@@ -14,6 +14,7 @@ import { buildSchema } from "type-graphql";
 import { UserResolver } from "./server/resolvers/UserResolver";
 
 import cors from "cors";
+import { TrackResolver } from "./server/resolvers/TrackResolver";
 
 const __production: boolean = process.env.NODE_ENV === "production";
 
@@ -53,7 +54,7 @@ const server = async () => {
     );
 
     const graphQLSchema = await buildSchema({
-        resolvers: [UserResolver],
+        resolvers: [UserResolver, TrackResolver],
         validate: false,
     });
 

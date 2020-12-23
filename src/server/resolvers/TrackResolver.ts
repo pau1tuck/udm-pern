@@ -13,9 +13,8 @@ import {
     UseMiddleware,
 } from "type-graphql";
 import { getConnection } from "typeorm";
-import { User } from "../entities/User";
 import { Track } from "../entities/Track";
-import { isAdmin, isAuthenticated } from "../utils/permissions";
+import { isAdmin } from "../utils/permissions";
 import { IContext } from "../config/types";
 
 @InputType()
@@ -40,9 +39,18 @@ class PaginatedTracks {
 }
 @Resolver(Track)
 export class TrackResolver {
-    @Query(() => [Track])
-    async Tracks(): Promise<Track[]> {
-        return await Track.find();
+    @Query(() => PaginatedTracks)
+    async Tracks(): Promise<PaginatedTracks> {
+        const tracks = await getConnection()
+            .getRepository(Track)
+            .createQueryBuilder("t")
+            .orderBy('t."createdAt"', "DESC")
+            .getMany();
+        return {
+            tracks: tracks,
+            hasMore: tracks.length === 9,
+        };
+        // return await Track.find();
     }
 
     @Query(() => Track, { nullable: true })
