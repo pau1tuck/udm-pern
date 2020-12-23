@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"name": ".vscode",
+			"path": ".vscode"
+		},
+		{
+			"name": "server",
+			"path": "server"
+		},
+		{
+			"name": "web",
+			"path": "web"
+		}
+	]
+}
