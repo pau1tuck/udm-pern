@@ -20,53 +20,53 @@ import { TrackResolver } from "./resolvers/TrackResolver";
 const PRODUCTION: boolean = process.env.NODE_ENV === "production";
 
 const server = async () => {
-    const orm: Connection = await createConnection(database);
+	const orm: Connection = await createConnection(database);
 
-    const app: Express = express();
+	const app: Express = express();
 
-    app.disable("x-powered-by");
+	app.disable("x-powered-by");
 
-    app.set("trust proxy", 1);
-    app.use(
-        cors({
-            origin: process.env.CORS_ORIGIN,
-            credentials: true,
-        })
-    );
+	app.set("trust proxy", 1);
+	app.use(
+		cors({
+			origin: process.env.CORS_ORIGIN,
+			credentials: true
+		})
+	);
 
-    app.use(
-        session({
-            name: "sid",
-            store: new RedisStore({
-                client: redisClient as any,
-                disableTouch: true,
-                disableTTL: true,
-            }),
-            cookie: {
-                maxAge: 1000 * 60 * 60 * 24 * 365,
-                httpOnly: true,
-                sameSite: "lax", // set true
-                secure: PRODUCTION,
-            },
-            secret: process.env.SESSION_SECRET || "secret",
-            resave: false,
-            saveUninitialized: false,
-        })
-    );
+	app.use(
+		session({
+			name: "sid",
+			store: new RedisStore({
+				client: redisClient as any,
+				disableTouch: true,
+				disableTTL: true
+			}),
+			cookie: {
+				maxAge: 1000 * 60 * 60 * 24 * 365,
+				httpOnly: true,
+				sameSite: "lax", // set true
+				secure: PRODUCTION
+			},
+			secret: process.env.SESSION_SECRET || "secret",
+			resave: false,
+			saveUninitialized: false
+		})
+	);
 
-    const graphQLSchema = await buildSchema({
-        resolvers: [UserResolver, TrackResolver],
-        validate: false,
-    });
+	const graphQLSchema = await buildSchema({
+		resolvers: [ UserResolver, TrackResolver ],
+		validate: false
+	});
 
-    const apolloServer = new ApolloServer({
-        schema: graphQLSchema,
-        context: ({ req, res }) => ({ req, res, redisClient }),
-    });
+	const apolloServer = new ApolloServer({
+		schema: graphQLSchema,
+		context: ({ req, res }) => ({ req, res, redisClient })
+	});
 
-    apolloServer.applyMiddleware({ app, cors: false });
+	apolloServer.applyMiddleware({ app, cors: false });
 
-    /*
+	/*
     app.use(express.static(path.join(`${__dirname}/web/public`))); // optionally one can add some route handler to protect this resource
 
     /*
@@ -86,10 +86,10 @@ const server = async () => {
     /* app.get("*", (req: Request, res: Response) => {
         res.sendFile(path.join(__dirname + "/web/public/index.html"));
     }); */
-    app.listen(process.env.PORT, () => {
-        console.log(`Server running on http://localhost:${process.env.PORT}.`);
-    });
+	app.listen(process.env.PORT, () => {
+		console.log(`Server running on http://localhost:${process.env.PORT}.`);
+	});
 };
 server().catch((err) => {
-    console.error(err);
+	console.error(err);
 });
