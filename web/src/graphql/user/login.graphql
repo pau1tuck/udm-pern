@@ -3,7 +3,9 @@ mutation login($email: String!, $password: String!) {
         id
         firstName
         lastName
-        isAdmin
+        country
+        email
         isMember
+        isAdmin
     }
 }

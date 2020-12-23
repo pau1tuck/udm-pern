@@ -48124,8 +48124,10 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     id
     firstName
     lastName
-    isAdmin
+    country
+    email
     isMember
+    isAdmin
   }
 }
     `;
@@ -48164,10 +48166,9 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       fontSize: "sm"
     }, user?.firstName + " " + user?.lastName), /* @__PURE__ */ react25.default.createElement(Avatar, {
       mr: "8px",
-      src: "/images/avatar2.png"
+      src: "public/images/avatar2.png"
     }));
     react25.useEffect(() => {
-      console.log(data3?.CurrentUser);
     }, [data3?.CurrentUser]);
     if (loading) {
       return /* @__PURE__ */ react25.default.createElement(Box, {
@@ -50316,15 +50317,19 @@ attempted value: ${formattedValue}
       mode: "onChange"
     });
     const onFormSubmit = async (values) => {
-      const {email, password} = values;
       const response = await Login3({
-        variables: {
-          email,
-          password
+        variables: values,
+        update: (cache11, {data: data3}) => {
+          cache11.writeQuery({
+            query: CurrentUserDocument,
+            data: {
+              __typename: "Query",
+              CurrentUser: data3?.Login
+            }
+          });
         }
       });
       if (response && response.data) {
-        console.log(response.data?.Login);
         history3.push("/");
       } else
         console.log(errors5);

@@ -74,7 +74,6 @@ export type Mutation = {
 
 
 export type MutationRegisterArgs = {
-  isAdmin: Scalars['Boolean'];
   password: Scalars['String'];
   email: Scalars['String'];
   country: Scalars['String'];
@@ -150,7 +149,7 @@ export type LoginMutation = (
   { __typename?: 'Mutation' }
   & { Login?: Maybe<(
     { __typename?: 'User' }
-    & Pick<User, 'id' | 'firstName' | 'lastName' | 'isAdmin' | 'isMember'>
+    & Pick<User, 'id' | 'firstName' | 'lastName' | 'country' | 'email' | 'isMember' | 'isAdmin'>
   )> }
 );
 
@@ -239,8 +238,10 @@ export const LoginDocument = gql`
     id
     firstName
     lastName
-    isAdmin
+    country
+    email
     isMember
+    isAdmin
   }
 }
     `;

@@ -41,13 +41,11 @@ export const NavbarItems: React.FC = () => {
             <Text mr="15px" fontFamily="heading" fontWeight="600" fontSize="sm">
                 {user?.firstName + " " + user?.lastName}
             </Text>
-            <Avatar mr="8px" src="/images/avatar2.png" />
+            <Avatar mr="8px" src="public/images/avatar2.png" />
         </Flex>
     );
 
-    useEffect(() => {
-        console.log(data?.CurrentUser);
-    }, [data?.CurrentUser]);
+    useEffect(() => {}, [data?.CurrentUser]);
 
     if (loading) {
         return (

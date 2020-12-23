@@ -1,7 +1,11 @@
 import React, { useEffect } from "react";
 import { useHistory, Redirect } from "react-router-dom";
 import { useApolloClient } from "@apollo/client";
-import { useLoginMutation } from "~/config/graphql";
+import {
+    CurrentUserDocument,
+    CurrentUserQuery,
+    useLoginMutation,
+} from "~/config/graphql";
 import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -27,15 +31,19 @@ export const Login = () => {
     });
 
     const onFormSubmit = async (values: any) => {
-        const { email, password } = values;
-        const response = await Login({
-            variables: {
-                email,
-                password,
+        const response: any = await Login({
+            variables: values,
+            update: (cache, { data }) => {
+                cache.writeQuery<CurrentUserQuery>({
+                    query: CurrentUserDocument,
+                    data: {
+                        __typename: "Query",
+                        CurrentUser: data?.Login,
+                    },
+                });
             },
         });
         if (response && response.data) {
-            console.log(response.data?.Login);
             history.push("/");
         } else console.log(errors);
     };
