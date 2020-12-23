@@ -13,4 +13,5 @@ const httpLink = createHttpLink({
 export const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
     link: httpLink,
     cache: new InMemoryCache(),
+    connectToDevTools: true,
 });

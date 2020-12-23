@@ -19,8 +19,8 @@ export const Navbar = () => {
         <div>
             <Flex
                 as="nav"
-                height="60px"
-                padding="0.6rem"
+                height={12}
+                padding="1rem"
                 align="center"
                 justify="space-between"
                 wrap="wrap"

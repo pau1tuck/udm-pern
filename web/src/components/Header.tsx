@@ -5,7 +5,7 @@ export const Header: React.FC = () => {
     return (
         <div>
             <Flex justifyContent="center">
-                <Box mt="-60px" zIndex="10">
+                <Box mt="-50px" zIndex="10">
                     <Image
                         objectFit="cover"
                         src="public/images/udm-logo.png"

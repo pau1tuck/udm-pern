@@ -37667,7 +37667,8 @@ const client = new ApolloClient({
   });
   var client2 = new ApolloClient({
     link: httpLink,
-    cache: new InMemoryCache()
+    cache: new InMemoryCache(),
+    connectToDevTools: true
   });
 
   // node_modules/@emotion/react/dist/emotion-react.browser.esm.js
@@ -48142,6 +48143,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     });
     const user = data3?.CurrentUser;
     const guestLinks = /* @__PURE__ */ react25.default.createElement(ButtonGroup, {
+      mr: 2,
       variant: "outline",
       spacing: "2",
       fontFamily: "heading",
@@ -48165,7 +48167,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       fontWeight: "600",
       fontSize: "sm"
     }, user?.firstName + " " + user?.lastName), /* @__PURE__ */ react25.default.createElement(Avatar, {
-      mr: "8px",
+      mr: 3,
       src: "public/images/avatar2.png"
     }));
     react25.useEffect(() => {
@@ -48174,7 +48176,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       return /* @__PURE__ */ react25.default.createElement(Box, {
         display: {base: "block"}
       }, /* @__PURE__ */ react25.default.createElement(Text, {
-        mr: "5px",
+        mr: 4,
         fontFamily: "heading",
         fontWeight: "600",
         fontSize: "sm"
@@ -48189,8 +48191,8 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   var Navbar = () => {
     return /* @__PURE__ */ react27.default.createElement("div", null, /* @__PURE__ */ react27.default.createElement(Flex, {
       as: "nav",
-      height: "60px",
-      padding: "0.6rem",
+      height: 12,
+      padding: "1rem",
       align: "center",
       justify: "space-between",
       wrap: "wrap",
@@ -48207,7 +48209,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     return /* @__PURE__ */ react29.default.createElement("div", null, /* @__PURE__ */ react29.default.createElement(Flex, {
       justifyContent: "center"
     }, /* @__PURE__ */ react29.default.createElement(Box, {
-      mt: "-60px",
+      mt: "-50px",
       zIndex: "10"
     }, /* @__PURE__ */ react29.default.createElement(Image2, {
       objectFit: "cover",

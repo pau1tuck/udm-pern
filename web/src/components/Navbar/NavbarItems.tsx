@@ -12,6 +12,7 @@ export const NavbarItems: React.FC = () => {
 
     const guestLinks = (
         <ButtonGroup
+            mr={2}
             variant="outline"
             spacing="2"
             fontFamily="heading"
@@ -41,7 +42,7 @@ export const NavbarItems: React.FC = () => {
             <Text mr="15px" fontFamily="heading" fontWeight="600" fontSize="sm">
                 {user?.firstName + " " + user?.lastName}
             </Text>
-            <Avatar mr="8px" src="public/images/avatar2.png" />
+            <Avatar mr={3} src="public/images/avatar2.png" />
         </Flex>
     );
 
@@ -51,7 +52,7 @@ export const NavbarItems: React.FC = () => {
         return (
             <Box display={{ base: "block" }}>
                 <Text
-                    mr="5px"
+                    mr={4}
                     fontFamily="heading"
                     fontWeight="600"
                     fontSize="sm"
