@@ -8,7 +8,7 @@
         "sourceMap": true,
         "baseUrl": ".",
         "rootDir": "src",
-        "outDir": ".",
+        "outDir": "build",
         "paths": {
             "~/*": ["src/*"]
         },
@@ -29,5 +29,5 @@
         "resolveJsonModule": true
     },
     "include": ["src/**/*"],
-    "exclude": ["web/", "node_modules/"]
+    "exclude": ["build/", "node_modules/"]
 }

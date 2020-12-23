@@ -1,43 +1,17 @@
 import {
     Arg,
-    Field,
-    InputType,
     Int,
     Mutation,
-    ObjectType,
     Query,
     Resolver,
     UseMiddleware,
 } from "type-graphql";
 import { getConnection } from "typeorm";
 import { Track } from "../entities/Track";
+import { TrackInput } from "../types/TrackInput";
+import { PaginatedTracks } from "../types/PaginatedTracks";
 import { isAdmin } from "../utils/permissions";
 
-@InputType()
-class TrackInput {
-    @Field()
-    artist!: string;
-
-    @Field()
-    title!: string;
-
-    @Field()
-    version!: string;
-
-    @Field()
-    label!: string;
-
-    @Field()
-    youTubeId!: string;
-}
-@ObjectType()
-class PaginatedTracks {
-    @Field(() => [Track])
-    tracks!: Track[];
-
-    @Field()
-    hasMore!: boolean;
-}
 @Resolver(Track)
 export class TrackResolver {
     @Query(() => PaginatedTracks)

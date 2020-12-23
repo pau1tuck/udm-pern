@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable no-console */
 import {
     Resolver,
     Query,
@@ -16,8 +18,8 @@ export class UserResolver {
     // USERS
     @Query(() => [User])
     @UseMiddleware(isAdmin)
-    async Users(): Promise<User[]> {
-        return await User.find();
+    Users(): Promise<User[]> {
+        return User.find();
     }
 
     // CURRENT USER
@@ -36,8 +38,7 @@ export class UserResolver {
         @Arg("lastName") lastName: string,
         @Arg("country") country: string,
         @Arg("email") email: string,
-        @Arg("password") password: string,
-        @Arg("isAdmin") isAdmin: boolean
+        @Arg("password") password: string
     ) {
         const encryptedPassword = await argon2.hash(password);
 
@@ -48,7 +49,6 @@ export class UserResolver {
                 country,
                 email,
                 password: encryptedPassword,
-                isAdmin,
             });
         } catch (err) {
             console.log(err);
@@ -76,7 +76,7 @@ export class UserResolver {
             throw new Error("Incorrect password");
         }
 
-        ctx.req.session!.userId = user.id;
+        ctx.req.session.userId = user.id;
 
         return user;
     }
