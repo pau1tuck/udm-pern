@@ -4,6 +4,7 @@ node_modules
 */node_modules
 server/node_modules
 web/node_modules
+yarn-error.log
 
 .env
 server/.env

@@ -11,13 +11,16 @@ import { createConnection, Connection } from "typeorm";
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
 import cors from "cors";
-import { UserResolver } from "./resolvers/UserResolver";
 
 import database from "./config/database";
 import { RedisStore, redisClient } from "./config/redis";
+
+import { UserResolver } from "./resolvers/UserResolver";
 import { TrackResolver } from "./resolvers/TrackResolver";
 
 const PRODUCTION: boolean = process.env.NODE_ENV === "production";
+const WORKERS = process.env.WEB_CONCURRENCY || 1;
+const PORT = process.env.PORT || 5000;
 
 const server = async () => {
 	const orm: Connection = await createConnection(database);
@@ -86,8 +89,8 @@ const server = async () => {
     /* app.get("*", (req: Request, res: Response) => {
         res.sendFile(path.join(__dirname + "/web/public/index.html"));
     }); */
-	app.listen(process.env.PORT, () => {
-		console.log(`Server running on http://localhost:${process.env.PORT}.`);
+	app.listen(PORT, () => {
+		console.log(`Server running on http://localhost:${PORT}.`);
 	});
 };
 server().catch((err) => {
