@@ -3,7 +3,7 @@
         "target": "es6",
         "module": "esnext",
         "lib": ["dom", "dom.iterable", "esnext"],
-        "outDir": "./build",
+        "outDir": "./public",
         "baseUrl": ".",
         "paths": {
             "~*": ["./src/*"]
@@ -26,5 +26,5 @@
         "removeComments": true
     },
     "include": ["src/**/*"],
-    "exclude": ["node_modules", "**/node_modules/*", "**/*.spec.ts"]
+    "exclude": ["node_modules/", "**/node_modules/*", "**/*.spec.ts"]
 }

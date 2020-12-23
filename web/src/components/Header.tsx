@@ -8,8 +8,8 @@ export const Header: React.FC = () => {
                 <Box mt="-60px" zIndex="10">
                     <Image
                         objectFit="cover"
-                        src="/images/udm-logo.png"
-                        alt="Segun Adebayo"
+                        src="public/images/udm-logo.png"
+                        alt="UDM"
                     />
                 </Box>
             </Flex>

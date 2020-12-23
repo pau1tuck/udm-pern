@@ -29,10 +29,10 @@ const server = () => __awaiter(void 0, void 0, void 0, function* () {
     const orm = yield typeorm_1.createConnection(database_1.default);
     const app = express_1.default();
     app.disable("x-powered-by");
+    app.set("trust proxy", 1);
     app.use(cors_1.default({
-        origin: "*",
-        optionsSuccessStatus: 200,
-        credentials: false,
+        origin: process.env.CORS_ORIGIN,
+        credentials: true,
     }));
     app.use(express_session_1.default({
         name: "sid",
@@ -57,9 +57,9 @@ const server = () => __awaiter(void 0, void 0, void 0, function* () {
     });
     const apolloServer = new apollo_server_express_1.ApolloServer({
         schema: graphQLSchema,
-        context: ({ req, res }) => ({ req, res }),
+        context: ({ req, res }) => ({ req, res, redisClient: redis_1.redisClient }),
     });
-    apolloServer.applyMiddleware({ app });
+    apolloServer.applyMiddleware({ app, cors: false });
     app.listen(process.env.PORT, () => {
         console.log(`Server running on http://localhost:${process.env.PORT}.`);
     });

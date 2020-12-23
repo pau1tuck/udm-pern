@@ -37662,8 +37662,8 @@ const client = new ApolloClient({
 
   // src/config/apollo.ts
   var httpLink = createHttpLink({
-    uri: "http://localhost:4000/graphql/",
-    credentials: "same-origin"
+    uri: "http://localhost:5000/graphql/",
+    credentials: "include"
   });
   var client2 = new ApolloClient({
     link: httpLink,
@@ -48136,7 +48136,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   // src/components/Navbar/NavbarItems.tsx
   var NavbarItems = () => {
     const {loading, error: error2, data: data3} = useCurrentUserQuery({
-      fetchPolicy: "cache-only"
+      fetchPolicy: "cache-first"
     });
     const user = data3?.CurrentUser;
     const guestLinks = /* @__PURE__ */ react25.default.createElement(ButtonGroup, {
@@ -48167,7 +48167,8 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       src: "/images/avatar2.png"
     }));
     react25.useEffect(() => {
-    }, [user]);
+      console.log(data3?.CurrentUser);
+    }, [data3?.CurrentUser]);
     if (loading) {
       return /* @__PURE__ */ react25.default.createElement(Box, {
         display: {base: "block"}
@@ -48209,8 +48210,8 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       zIndex: "10"
     }, /* @__PURE__ */ react29.default.createElement(Image2, {
       objectFit: "cover",
-      src: "/images/udm-logo.png",
-      alt: "Segun Adebayo"
+      src: "public/images/udm-logo.png",
+      alt: "UDM"
     }))), /* @__PURE__ */ react29.default.createElement(Center, null, /* @__PURE__ */ react29.default.createElement(Text, {
       fontFamily: "title",
       fontSize: "1rem",
@@ -50323,7 +50324,6 @@ attempted value: ${formattedValue}
         }
       });
       if (response && response.data) {
-        client6.resetStore();
         console.log(response.data?.Login);
         history3.push("/");
       } else
@@ -50466,7 +50466,7 @@ attempted value: ${formattedValue}
   var App = () => {
     return /* @__PURE__ */ react40.default.createElement(Box, {
       height: "100vh",
-      bgImage: "url('/images/background.jpg')",
+      bgImage: "url('public/images/background.jpg')",
       bgSize: "cover",
       bgRepeat: "no-repeat",
       bgAttachment: "fixed"

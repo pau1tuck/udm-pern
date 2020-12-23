@@ -35,7 +35,6 @@ export const Login = () => {
             },
         });
         if (response && response.data) {
-            client.resetStore();
             console.log(response.data?.Login);
             history.push("/");
         } else console.log(errors);

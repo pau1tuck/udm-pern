@@ -4,11 +4,13 @@
     "author": "@pau1tuck",
     "private": true,
     "scripts": {
-        "start": "esbuild src/index.tsx --bundle --define:process.env.NODE_ENV=\\\"development\\\" --outfile=public/index.js",
+        "build": "esbuild src/index.tsx --bundle --define:process.env.NODE_ENV=\\\"development\\\" --outfile=public/index.js",
+        "start": "web-dev-server --open public/ --node-resolve --watch",
         "gen": "graphql-codegen --config codegen.yml",
-        "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
+        "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
+        "test:watch": "web-test-runner test/**/*.test.tsx --watch"
     },
-    "proxy": "http://localhost:4000",
+    "proxy": "http://localhost:5000",
     "dependencies": {
         "@apollo/client": "^3.3.5",
         "@chakra-ui/react": "^1.0.3",
@@ -38,6 +40,9 @@
         "@types/react-dom": "^17.0.0",
         "@types/react-router-dom": "^5.1.6",
         "@types/yup": "^0.29.10",
+        "@web/dev-server": "^0.1.0",
+        "@web/dev-server-esbuild": "^0.2.9",
+        "@web/test-runner": "^0.11.0",
         "core-js": "^3.8.1",
         "esbuild": "^0.8.21",
         "typescript": "^4.1.3"

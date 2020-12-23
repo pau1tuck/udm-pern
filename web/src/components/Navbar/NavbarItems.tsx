@@ -5,7 +5,7 @@ import { Avatar, Box, Button, ButtonGroup, Flex, Text } from "@chakra-ui/react";
 
 export const NavbarItems: React.FC = () => {
     const { loading, error, data } = useCurrentUserQuery({
-        fetchPolicy: "cache-only",
+        fetchPolicy: "cache-first",
     });
 
     const user = data?.CurrentUser;
@@ -45,7 +45,9 @@ export const NavbarItems: React.FC = () => {
         </Flex>
     );
 
-    useEffect(() => {}, [user]);
+    useEffect(() => {
+        console.log(data?.CurrentUser);
+    }, [data?.CurrentUser]);
 
     if (loading) {
         return (

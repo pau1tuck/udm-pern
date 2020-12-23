@@ -26,11 +26,11 @@ const server = async () => {
 
     app.disable("x-powered-by");
 
+    app.set("trust proxy", 1);
     app.use(
         cors({
-            origin: "*",
-            optionsSuccessStatus: 200,
-            credentials: false,
+            origin: process.env.CORS_ORIGIN,
+            credentials: true,
         })
     );
 
@@ -61,10 +61,10 @@ const server = async () => {
 
     const apolloServer = new ApolloServer({
         schema: graphQLSchema,
-        context: ({ req, res }) => ({ req, res }),
+        context: ({ req, res }) => ({ req, res, redisClient }),
     });
 
-    apolloServer.applyMiddleware({ app });
+    apolloServer.applyMiddleware({ app, cors: false });
 
     /*
     app.use(express.static(path.join(`${__dirname}/web/public`))); // optionally one can add some route handler to protect this resource
@@ -86,7 +86,6 @@ const server = async () => {
     /* app.get("*", (req: Request, res: Response) => {
         res.sendFile(path.join(__dirname + "/web/public/index.html"));
     }); */
-
     app.listen(process.env.PORT, () => {
         console.log(`Server running on http://localhost:${process.env.PORT}.`);
     });

@@ -4117,8 +4117,8 @@
         "affectsGlobalScope": false
       },
       "./src/config/redis.ts": {
-        "version": "c229db4b7b1ab3e39aebf8b867c47a9a13726eb514a11dcb24cfa1ab577ff357",
-        "signature": "44f9cf539e98700b045976d85740503fb7ab9fb1791994536a3aae25f3a198df",
+        "version": "176b37996c0a0f19316518049200a2de96acf7b7bae9643c528efaf0d9724930",
+        "signature": "f1fcd7dcddeace57e543fa76d4abedf6fe63a4ea25972c3b21937025cc791037",
         "affectsGlobalScope": false
       },
       "./src/entities/Track.ts": {
@@ -4142,7 +4142,7 @@
         "affectsGlobalScope": false
       },
       "./src/index.ts": {
-        "version": "645224d32cfc3c658fa7540c9866de74e709632850759fe5f5bac1eecf39a988",
+        "version": "2de9345822db74e29c3d74c25c04ca9f6ce16f69e67062aca9394a9a6c25f4f3",
         "signature": "ed67f3476bd1d2cf794092aeaa5206fe302cf3ae937d015e00252859b0914122",
         "affectsGlobalScope": false
       },
@@ -7833,7 +7833,7 @@
       "./src/config/redis.ts": [
         "./node_modules/@types/connect-redis/index.d.ts",
         "./node_modules/@types/express-session/index.d.ts",
-        "./node_modules/@types/redis/index.d.ts"
+        "./node_modules/@types/ioredis/index.d.ts"
       ],
       "./src/config/types.ts": [
         "./node_modules/@types/express/index.d.ts"
@@ -11312,7 +11312,7 @@
       ],
       "./src/config/redis.ts": [
         "./node_modules/@types/connect-redis/index.d.ts",
-        "./node_modules/@types/redis/index.d.ts"
+        "./node_modules/@types/ioredis/index.d.ts"
       ],
       "./src/config/types.ts": [
         "./node_modules/@types/express/index.d.ts"

@@ -4,16 +4,12 @@ import { Navbar } from "./Navbar/Navbar";
 import { Header } from "./Header";
 import { Routes } from "~/config/routes";
 import { Container, Flex } from "@chakra-ui/react";
-import { useCurrentUserQuery } from "~config/graphql";
 
 const App = () => {
-    const { loading, error, data } = useCurrentUserQuery({
-        fetchPolicy: "cache-only",
-    });
     return (
         <Box
             height="100vh"
-            bgImage="url('/images/background.jpg')"
+            bgImage="url('public/images/background.jpg')"
             bgSize="cover"
             bgRepeat="no-repeat"
             bgAttachment="fixed"
