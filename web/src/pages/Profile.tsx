@@ -1,8 +1,8 @@
 import React from "react";
-import { useUserQuery } from "~/config/graphql";
+import { useCurrentUserQuery } from "~/config/graphql";
 
 export const Profile = () => {
-    const { loading, error, data } = useUserQuery({
+    const { loading, error, data } = useCurrentUserQuery({
         fetchPolicy: "network-only",
     });
     if (loading) {
@@ -10,10 +10,10 @@ export const Profile = () => {
     if (error) {
         console.log(error);
     }
+    const user = data?.CurrentUser;
     return (
         <div>
-            Welcome, {data?.CurrentUser?.firstName}{" "}
-            {data?.CurrentUser?.lastName}.
+            Welcome, {user.firstName} {user.lastName}.
         </div>
     );
 };

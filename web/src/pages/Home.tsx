@@ -1,5 +1,14 @@
 import React from "react";
-import { Box, Center, Container, Flex, Wrap, WrapItem } from "@chakra-ui/react";
+import { Link as ReactLink } from "react-router-dom";
+import {
+    Box,
+    Button,
+    Center,
+    Container,
+    Flex,
+    Wrap,
+    WrapItem,
+} from "@chakra-ui/react";
 
 export const Home = () => {
     const trackContainer = (
@@ -13,20 +22,21 @@ export const Home = () => {
         ></Box>
     );
     return (
-        <Flex justifyContent="center">
-            <Container maxW="1200px" margin="30px 10px" overflow="hidden">
-                <Flex flexWrap="wrap" justifyContent="center">
-                    {trackContainer}
-                    {trackContainer}
-                    {trackContainer}
-                    {trackContainer}
+        <>
+            <Flex flexWrap="wrap" justifyContent="center">
+                {trackContainer}
+                {trackContainer}
+                {trackContainer}
+                {trackContainer}
 
-                    {trackContainer}
-                    {trackContainer}
-                    {trackContainer}
-                    {trackContainer}
-                </Flex>
-            </Container>
-        </Flex>
+                {trackContainer}
+                {trackContainer}
+                {trackContainer}
+                {trackContainer}
+            </Flex>
+            <Button as={ReactLink} to="/admin/add-track">
+                Add Track
+            </Button>
+        </>
     );
 };

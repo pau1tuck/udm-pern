@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { Link as ReactLink } from "react-router-dom";
-import { useUserQuery } from "~config/graphql";
+import { useCurrentUserQuery } from "~config/graphql";
 import { Avatar, Box, Button, ButtonGroup, Flex, Text } from "@chakra-ui/react";
 
 export const NavbarItems: React.FC = () => {
-    const { loading, error, data } = useUserQuery({
-        fetchPolicy: "network-only",
+    const { loading, error, data } = useCurrentUserQuery({
+        fetchPolicy: "cache-only",
     });
 
     const user = data?.CurrentUser;
@@ -41,7 +41,7 @@ export const NavbarItems: React.FC = () => {
             <Text mr="15px" fontFamily="heading" fontWeight="600" fontSize="sm">
                 {user?.firstName + " " + user?.lastName}
             </Text>
-            <Avatar mr="8px" src="https://bit.ly/sage-adebayo" />
+            <Avatar mr="8px" src="/images/avatar2.png" />
         </Flex>
     );
 

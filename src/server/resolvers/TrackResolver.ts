@@ -1,32 +1,32 @@
 import {
     Arg,
-    Ctx,
     Field,
-    FieldResolver,
     InputType,
     Int,
     Mutation,
     ObjectType,
     Query,
     Resolver,
-    Root,
     UseMiddleware,
 } from "type-graphql";
 import { getConnection } from "typeorm";
 import { Track } from "../entities/Track";
 import { isAdmin } from "../utils/permissions";
-import { IContext } from "../config/types";
 
 @InputType()
 class TrackInput {
     @Field()
     artist!: string;
+
     @Field()
     title!: string;
+
     @Field()
     version!: string;
+
     @Field()
     label!: string;
+
     @Field()
     youTubeId!: string;
 }
@@ -34,21 +34,24 @@ class TrackInput {
 class PaginatedTracks {
     @Field(() => [Track])
     tracks!: Track[];
+
     @Field()
     hasMore!: boolean;
 }
 @Resolver(Track)
 export class TrackResolver {
     @Query(() => PaginatedTracks)
-    async Tracks(): Promise<PaginatedTracks> {
+    async Tracks(
+        @Arg("limit", () => Int) limit: number
+    ): Promise<PaginatedTracks> {
         const tracks = await getConnection()
             .getRepository(Track)
             .createQueryBuilder("t")
             .orderBy('t."createdAt"', "DESC")
             .getMany();
         return {
-            tracks: tracks,
-            hasMore: tracks.length === 9,
+            tracks,
+            hasMore: tracks.length === limit + 1,
         };
         // return await Track.find();
     }
@@ -60,10 +63,7 @@ export class TrackResolver {
 
     @Mutation(() => Track)
     @UseMiddleware(isAdmin)
-    async createTrack(
-        @Arg("input") input: TrackInput,
-        @Ctx() { req }: IContext
-    ): Promise<Track> {
+    async CreateTrack(@Arg("input") input: TrackInput): Promise<Track> {
         return Track.create({
             ...input,
         }).save();
@@ -71,19 +71,18 @@ export class TrackResolver {
 
     @Mutation(() => Track, { nullable: true })
     @UseMiddleware(isAdmin)
-    async updateTrack(
+    async UpdateTrack(
         @Arg("id") id: string,
         @Arg("artist") artist: string,
         @Arg("title") title: string,
         @Arg("version") version: string,
         @Arg("label") label: string,
-        @Arg("youTubeId") youTubeId: string,
-        @Ctx() { req }: IContext
+        @Arg("youTubeId") youTubeId: string
     ): Promise<Track | null> {
         const result = await getConnection()
             .createQueryBuilder()
             .update(Track)
-            .set({ artist, title, version, label })
+            .set({ artist, title, version, label, youTubeId })
             .where("id = :id", {
                 id,
             })
@@ -95,10 +94,7 @@ export class TrackResolver {
 
     @Mutation(() => Boolean)
     @UseMiddleware(isAdmin)
-    async deleteTrack(
-        @Arg("id") id: string,
-        @Ctx() { req }: IContext
-    ): Promise<boolean> {
+    async DeleteTrack(@Arg("id") id: string): Promise<boolean> {
         await Track.delete({ id });
         return true;
     }

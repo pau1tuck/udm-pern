@@ -4,7 +4,7 @@ import { Route } from "~components/Route";
 import { Home } from "../pages/Home";
 import { Login } from "../pages/Login";
 import { Profile } from "~pages/Profile";
-import { ListTracks } from "../pages/admin/ListTracks";
+import { CreateTrack } from "~pages/admin/CreateTrack";
 
 const UserRoutes = [
     {
@@ -47,6 +47,7 @@ export const Routes = () => {
             <Switch>
                 <Route path="/login" component={Login} />
                 <Route restricted path="/profile" component={Profile} />
+                <Route admin path="/admin/add-track" component={CreateTrack} />
                 <Route exact path="/" component={Home} />
             </Switch>
         </div>

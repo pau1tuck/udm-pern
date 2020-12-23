@@ -1,0 +1,13 @@
+mutation createTrack($input: TrackInput!) {
+    CreateTrack(input: $input) {
+        id
+        artist
+        title
+        version
+        label
+        youTubeId
+        createdAt
+        updatedAt
+        votes
+    }
+}

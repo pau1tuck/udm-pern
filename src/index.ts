@@ -19,7 +19,7 @@ import { TrackResolver } from "./server/resolvers/TrackResolver";
 const __production: boolean = process.env.NODE_ENV === "production";
 
 const server = async () => {
-    const orm: Connection = await createConnection(database);
+    const _orm: Connection = await createConnection(database);
 
     const app: Express = express();
 
@@ -74,7 +74,7 @@ const server = async () => {
         res.end();
     }); */
 
-    app.get(["/", "/*"], (req, res) => {
+    app.get(["/", "/*"], (_req: Request, res: Response) => {
         //this is required to support any client side routing written in react.
         res.status(200);
         res.sendFile(path.join(__dirname, "/web/public/", "index.html"));

@@ -3,8 +3,13 @@ import { Box } from "@chakra-ui/react";
 import { Navbar } from "./Navbar/Navbar";
 import { Header } from "./Header";
 import { Routes } from "~/config/routes";
+import { Container, Flex } from "@chakra-ui/react";
+import { useCurrentUserQuery } from "~config/graphql";
 
 const App = () => {
+    const { loading, error, data } = useCurrentUserQuery({
+        fetchPolicy: "cache-only",
+    });
     return (
         <Box
             height="100vh"
@@ -15,7 +20,11 @@ const App = () => {
         >
             <Navbar />
             <Header />
-            <Routes />
+            <Flex justifyContent="center">
+                <Container maxW="1200px" margin="30px 10px" overflow="hidden">
+                    <Routes />
+                </Container>
+            </Flex>
         </Box>
     );
 };

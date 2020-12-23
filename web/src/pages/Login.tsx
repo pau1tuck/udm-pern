@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useHistory, Redirect } from "react-router-dom";
 import { useApolloClient } from "@apollo/client";
 import { useLoginMutation } from "~/config/graphql";
-import { isLoggedInVar } from "~config/cache";
 import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -38,7 +37,6 @@ export const Login = () => {
         if (response && response.data) {
             client.resetStore();
             console.log(response.data?.Login);
-            isLoggedInVar(true);
             history.push("/");
         } else console.log(errors);
     };

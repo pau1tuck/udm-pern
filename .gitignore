@@ -1,7 +1,10 @@
 .vscode/
 
-node_modules/
-web/node_modules/
+node_modules
+*/node_modules
+server/node_modules
+web/node_modules
 
 .env
+server/.env
 web/.env

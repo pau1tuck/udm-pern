@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { useUserQuery } from "../config/graphql";
+import { useCurrentUserQuery } from "../config/graphql";
 
 export const checkAuth = () => {
-    const { loading, data } = useUserQuery({
+    const { loading, data } = useCurrentUserQuery({
         fetchPolicy: "cache-first",
     });
     const history = useHistory();
@@ -16,14 +16,15 @@ export const checkAuth = () => {
 };
 
 export const checkAdmin = () => {
-    const { data, loading } = useUserQuery({
-        fetchPolicy: "cache-first",
+    const { loading, data } = useCurrentUserQuery({
+        fetchPolicy: "network-only",
     });
-    if (loading) {
-    }
-    if (data?.CurrentUser?.isAdmin) {
-        console.log("User is admin: " + data.CurrentUser.isAdmin);
-        return true;
-    }
-    return false;
+    const history = useHistory();
+
+    useEffect(() => {
+        if (!loading && !data?.CurrentUser?.isAdmin) {
+            console.log(data?.CurrentUser);
+            history.push("/");
+        }
+    }, [data]);
 };

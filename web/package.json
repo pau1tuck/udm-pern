@@ -5,7 +5,8 @@
     "private": true,
     "scripts": {
         "start": "esbuild src/index.tsx --bundle --define:process.env.NODE_ENV=\\\"development\\\" --outfile=public/index.js",
-        "gen": "graphql-codegen --config codegen.yml"
+        "gen": "graphql-codegen --config codegen.yml",
+        "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
     },
     "proxy": "http://localhost:4000",
     "dependencies": {

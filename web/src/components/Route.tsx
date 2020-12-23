@@ -1,7 +1,6 @@
 import React from "react";
 import { Redirect, Route as MyRoute } from "react-router-dom";
-import { checkAuth } from "~/utils/permissions";
-import { isLoggedInVar } from "~config/cache";
+import { checkAuth, checkAdmin } from "~/utils/permissions";
 
 interface IRoute {
     exact?: boolean;
@@ -19,25 +18,10 @@ export const Route: React.FC<IRoute> = ({
     admin,
 }: IRoute) => {
     restricted && checkAuth();
+    admin && checkAdmin();
     return (
         <MyRoute exact={exact} path={path}>
             <Component />
         </MyRoute>
-    );
-};
-
-export const PrivateRoute: React.FC<IRoute> = ({
-    path,
-    component: Component,
-}: IRoute) => {
-    const isLoggedIn = isLoggedInVar();
-
-    return (
-        <MyRoute
-            path={path}
-            render={(props) =>
-                isLoggedIn ? <Component {...props} /> : <Redirect to="/login" />
-            }
-        />
     );
 };

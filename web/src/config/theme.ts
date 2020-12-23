@@ -2,15 +2,17 @@ import { extendTheme } from "@chakra-ui/react";
 
 export const theme = extendTheme({
     fonts: {
-        body: "'Architects Daughter', sans-serif",
+        body: "'Montserrat', sans-serif",
+        label: "'Architects Daughter', sans-serif",
         heading: "'Montserrat', sans-serif",
         title: "'Michroma', monospace",
     },
     colors: {
-        brand: {
+        primary: {
             100: "#f7fafc",
             // ...
             900: "#1a202c",
+            main: "#0886F7",
         },
     },
     styles: {

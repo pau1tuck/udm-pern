@@ -35,10 +35,6 @@ export class Track extends BaseEntity {
     @Column()
     youTubeId!: string;
 
-    @Field(() => Int)
-    @Column({ type: "int", default: 0 })
-    votes!: number;
-
     @Field(() => String)
     @CreateDateColumn()
     createdAt!: Date;
@@ -46,4 +42,8 @@ export class Track extends BaseEntity {
     @Field(() => String)
     @UpdateDateColumn()
     updatedAt!: Date;
+
+    @Field(() => Int)
+    @Column({ type: "int", default: 0 })
+    votes!: number;
 }
