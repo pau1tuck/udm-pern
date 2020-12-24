@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { NavbarItems } from "./navbar-items";
 
-export const Navbar = () => {
+export const Navbar = ({ user }: any) => {
     return (
         <div>
             <Flex
@@ -28,7 +28,7 @@ export const Navbar = () => {
                 opacity="0.9"
             >
                 <Flex align="center" />
-                <NavbarItems />
+                <NavbarItems user={user} />
             </Flex>
         </div>
     );

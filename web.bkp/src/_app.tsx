@@ -1,20 +1,36 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
-import { Navbar } from "../modules/core/navbar/navbar";
-import { Header } from "./Header";
+import { Navbar } from "./modules/core/navbar/navbar";
+import { Header } from "./components/Header";
 import { Routes } from "~/config/routes";
 import { Container, Flex } from "@chakra-ui/react";
 import { useCurrentUserQuery } from "~config/graphql";
-import { userVar } from "~/config/cache";
+import { cache, userVar } from "~/config/cache";
+import { client } from "~config/apollo";
+import { gql } from "@apollo/client";
 
 const App = () => {
     const { loading, error, data } = useCurrentUserQuery({
         fetchPolicy: "cache-first",
     });
+    const { CurrentUser } = client.readQuery({
+        query: gql`
+            query currentUser {
+                CurrentUser {
+                    firstName
+                }
+            }
+        `,
+    });
+    console.log("Current user is: " + CurrentUser);
+    let user: any = null;
     if (loading) {
+        <div>Loading...</div>;
     }
     if (!loading && data?.CurrentUser) {
-        userVar(data.CurrentUser);
+        user = data.CurrentUser;
+        localStorage.setItem("user", user.firstName + " " + user.lastName);
+        userVar(user.firstName + " " + user.lastName);
     }
     return (
         <Box
@@ -23,7 +39,7 @@ const App = () => {
             bgRepeat="no-repeat"
             bgAttachment="fixed"
         >
-            <Navbar />
+            <Navbar user={user} />
             <Header />
             <Flex justifyContent="center">
                 <Container maxW="1200px" margin="30px 10px" overflow="hidden">

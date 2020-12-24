@@ -2,14 +2,9 @@ import React, { useEffect } from "react";
 import { Link as ReactLink } from "react-router-dom";
 import { useCurrentUserQuery } from "~config/graphql";
 import { Avatar, Box, Button, ButtonGroup, Flex, Text } from "@chakra-ui/react";
+import { userVar } from "~config/cache";
 
-export const NavbarItems: React.FC = () => {
-    const { loading, error, data } = useCurrentUserQuery({
-        fetchPolicy: "cache-first",
-    });
-
-    const user = data?.CurrentUser;
-
+export const NavbarItems = ({ user }: any) => {
     const guestLinks = (
         <ButtonGroup
             mr={2}
@@ -46,9 +41,8 @@ export const NavbarItems: React.FC = () => {
         </Flex>
     );
 
-    useEffect(() => {}, [data?.CurrentUser]);
-
-    if (loading) {
+    {
+        /* if (loading) {
         return (
             <Box display={{ base: "block" }}>
                 <Text
@@ -61,10 +55,9 @@ export const NavbarItems: React.FC = () => {
                 </Text>
             </Box>
         );
+    } */
     }
     return (
-        <Box display={{ base: "block" }}>
-            {data?.CurrentUser ? userLinks : guestLinks}
-        </Box>
+        <Box display={{ base: "block" }}>{user ? userLinks : guestLinks}</Box>
     );
 };

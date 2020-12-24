@@ -27316,12 +27316,12 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         throw new TypeError(FUNC_ERROR_TEXT);
       }
       var memoized = function() {
-        var args = arguments, key = resolver ? resolver.apply(this, args) : args[0], cache11 = memoized.cache;
-        if (cache11.has(key)) {
-          return cache11.get(key);
+        var args = arguments, key = resolver ? resolver.apply(this, args) : args[0], cache15 = memoized.cache;
+        if (cache15.has(key)) {
+          return cache15.get(key);
         }
         var result = func.apply(this, args);
-        memoized.cache = cache11.set(key, result) || cache11;
+        memoized.cache = cache15.set(key, result) || cache15;
         return result;
       };
       memoized.cache = new (memoize6.Cache || MapCache)();
@@ -27337,12 +27337,12 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     var MAX_MEMOIZE_SIZE = 500;
     function memoizeCapped(func) {
       var result = memoize6(func, function(key) {
-        if (cache11.size === MAX_MEMOIZE_SIZE) {
-          cache11.clear();
+        if (cache15.size === MAX_MEMOIZE_SIZE) {
+          cache15.clear();
         }
         return key;
       });
-      var cache11 = result.cache;
+      var cache15 = result.cache;
       return result;
     }
     module.exports = memoizeCapped;
@@ -27924,8 +27924,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
 
   // node_modules/lodash/_cacheHas.js
   var require_cacheHas = __commonJS((exports, module) => {
-    function cacheHas(cache11, key) {
-      return cache11.has(key);
+    function cacheHas(cache15, key) {
+      return cache15.has(key);
     }
     module.exports = cacheHas;
   });
@@ -33712,7 +33712,7 @@ const client = new ApolloClient({
     if (options === void 0) {
       options = Object.create(null);
     }
-    var cache11 = new Cache(options.max || Math.pow(2, 16), function(entry) {
+    var cache15 = new Cache(options.max || Math.pow(2, 16), function(entry) {
       return entry.dispose();
     });
     var keyArgs = options.keyArgs || function() {
@@ -33728,17 +33728,17 @@ const client = new ApolloClient({
       if (key === void 0) {
         return originalFunction.apply(null, arguments);
       }
-      var entry = cache11.get(key);
+      var entry = cache15.get(key);
       if (!entry) {
-        cache11.set(key, entry = new Entry(originalFunction));
+        cache15.set(key, entry = new Entry(originalFunction));
         entry.subscribe = options.subscribe;
       }
       var value = entry.recompute(Array.prototype.slice.call(arguments));
-      cache11.set(key, entry);
-      caches.add(cache11);
+      cache15.set(key, entry);
+      caches.add(cache15);
       if (!parentEntrySlot.hasValue()) {
-        caches.forEach(function(cache12) {
-          return cache12.clean();
+        caches.forEach(function(cache16) {
+          return cache16.clean();
         });
         caches.clear();
       }
@@ -33747,7 +33747,7 @@ const client = new ApolloClient({
     function lookup() {
       var key = makeCacheKey.apply(null, arguments);
       if (key !== void 0) {
-        return cache11.get(key);
+        return cache15.get(key);
       }
     }
     optimistic.dirty = function() {
@@ -33764,7 +33764,7 @@ const client = new ApolloClient({
     };
     optimistic.forget = function() {
       var key = makeCacheKey.apply(null, arguments);
-      return key !== void 0 && cache11.delete(key);
+      return key !== void 0 && cache15.delete(key);
     };
     return optimistic;
   }
@@ -34503,8 +34503,8 @@ const client = new ApolloClient({
 
   // node_modules/@apollo/client/cache/inmemory/writeToStore.js
   var StoreWriter = function() {
-    function StoreWriter2(cache11, reader) {
-      this.cache = cache11;
+    function StoreWriter2(cache15, reader) {
+      this.cache = cache15;
       this.reader = reader;
     }
     StoreWriter2.prototype.writeToStore = function(_a4) {
@@ -34757,13 +34757,13 @@ const client = new ApolloClient({
     }
   }
   var varsByCache = new WeakMap();
-  function forgetCache(cache11) {
-    var vars = varsByCache.get(cache11);
+  function forgetCache(cache15) {
+    var vars = varsByCache.get(cache15);
     if (vars) {
       consumeAndIterate(vars, function(rv) {
-        return rv.forgetCache(cache11);
+        return rv.forgetCache(cache15);
       });
-      varsByCache.delete(cache11);
+      varsByCache.delete(cache15);
     }
   }
   function makeVar(value) {
@@ -34780,9 +34780,9 @@ const client = new ApolloClient({
           });
         }
       } else {
-        var cache11 = cacheSlot.getValue();
-        if (cache11)
-          attach(cache11);
+        var cache15 = cacheSlot.getValue();
+        if (cache15)
+          attach(cache15);
         varDep(rv);
       }
       return value;
@@ -34793,18 +34793,18 @@ const client = new ApolloClient({
         listeners.delete(listener);
       };
     };
-    var attach = rv.attachCache = function(cache11) {
-      caches2.add(cache11);
-      var vars = varsByCache.get(cache11);
+    var attach = rv.attachCache = function(cache15) {
+      caches2.add(cache15);
+      var vars = varsByCache.get(cache15);
       if (!vars)
-        varsByCache.set(cache11, vars = new Set());
+        varsByCache.set(cache15, vars = new Set());
       vars.add(rv);
       return rv;
     };
-    rv.forgetCache = function(cache11) {
-      var deleted = caches2.delete(cache11);
+    rv.forgetCache = function(cache15) {
+      var deleted = caches2.delete(cache15);
       if (deleted) {
-        var vars = varsByCache.get(cache11);
+        var vars = varsByCache.get(cache15);
         if (vars)
           vars.delete(rv);
       }
@@ -34812,9 +34812,9 @@ const client = new ApolloClient({
     };
     return rv;
   }
-  function broadcast(cache11) {
-    if (cache11.broadcastWatches) {
-      cache11.broadcastWatches();
+  function broadcast(cache15) {
+    if (cache15.broadcastWatches) {
+      cache15.broadcastWatches();
     }
   }
 
@@ -35253,8 +35253,8 @@ const client = new ApolloClient({
     typePolicies: {}
   };
   var InMemoryCache = function(_super) {
-    __extends(InMemoryCache2, _super);
-    function InMemoryCache2(config19) {
+    __extends(InMemoryCache3, _super);
+    function InMemoryCache3(config19) {
       if (config19 === void 0) {
         config19 = {};
       }
@@ -35294,18 +35294,18 @@ const client = new ApolloClient({
       }));
       return _this;
     }
-    InMemoryCache2.prototype.restore = function(data3) {
+    InMemoryCache3.prototype.restore = function(data3) {
       if (data3)
         this.data.replace(data3);
       return this;
     };
-    InMemoryCache2.prototype.extract = function(optimistic) {
+    InMemoryCache3.prototype.extract = function(optimistic) {
       if (optimistic === void 0) {
         optimistic = false;
       }
       return (optimistic ? this.optimisticData : this.data).extract();
     };
-    InMemoryCache2.prototype.read = function(options) {
+    InMemoryCache3.prototype.read = function(options) {
       var _a4 = options.returnPartialData, returnPartialData = _a4 === void 0 ? false : _a4;
       try {
         return this.storeReader.diffQueryAgainstStore({
@@ -35323,7 +35323,7 @@ const client = new ApolloClient({
         throw e2;
       }
     };
-    InMemoryCache2.prototype.write = function(options) {
+    InMemoryCache3.prototype.write = function(options) {
       try {
         ++this.txCount;
         return this.storeWriter.writeToStore({
@@ -35339,7 +35339,7 @@ const client = new ApolloClient({
         }
       }
     };
-    InMemoryCache2.prototype.modify = function(options) {
+    InMemoryCache3.prototype.modify = function(options) {
       if (hasOwn.call(options, "id") && !options.id) {
         return false;
       }
@@ -35353,7 +35353,7 @@ const client = new ApolloClient({
         }
       }
     };
-    InMemoryCache2.prototype.diff = function(options) {
+    InMemoryCache3.prototype.diff = function(options) {
       return this.storeReader.diffQueryAgainstStore({
         store: options.optimistic ? this.optimisticData : this.data,
         rootId: options.id || "ROOT_QUERY",
@@ -35363,7 +35363,7 @@ const client = new ApolloClient({
         config: this.config
       });
     };
-    InMemoryCache2.prototype.watch = function(watch) {
+    InMemoryCache3.prototype.watch = function(watch) {
       var _this = this;
       this.watches.add(watch);
       if (watch.immediate) {
@@ -35377,19 +35377,19 @@ const client = new ApolloClient({
         _this.maybeBroadcastWatch.forget(watch);
       };
     };
-    InMemoryCache2.prototype.gc = function() {
+    InMemoryCache3.prototype.gc = function() {
       return this.optimisticData.gc();
     };
-    InMemoryCache2.prototype.retain = function(rootId, optimistic) {
+    InMemoryCache3.prototype.retain = function(rootId, optimistic) {
       return (optimistic ? this.optimisticData : this.data).retain(rootId);
     };
-    InMemoryCache2.prototype.release = function(rootId, optimistic) {
+    InMemoryCache3.prototype.release = function(rootId, optimistic) {
       return (optimistic ? this.optimisticData : this.data).release(rootId);
     };
-    InMemoryCache2.prototype.identify = function(object4) {
+    InMemoryCache3.prototype.identify = function(object4) {
       return isReference(object4) ? object4.__ref : this.policies.identify(object4)[0];
     };
-    InMemoryCache2.prototype.evict = function(options) {
+    InMemoryCache3.prototype.evict = function(options) {
       if (!options.id) {
         if (hasOwn.call(options, "id")) {
           return false;
@@ -35405,20 +35405,20 @@ const client = new ApolloClient({
         }
       }
     };
-    InMemoryCache2.prototype.reset = function() {
+    InMemoryCache3.prototype.reset = function() {
       this.data.clear();
       this.optimisticData = this.data;
       this.broadcastWatches();
       return Promise.resolve();
     };
-    InMemoryCache2.prototype.removeOptimistic = function(idToRemove) {
+    InMemoryCache3.prototype.removeOptimistic = function(idToRemove) {
       var newOptimisticData = this.optimisticData.removeLayer(idToRemove);
       if (newOptimisticData !== this.optimisticData) {
         this.optimisticData = newOptimisticData;
         this.broadcastWatches();
       }
     };
-    InMemoryCache2.prototype.performTransaction = function(transaction, optimisticId) {
+    InMemoryCache3.prototype.performTransaction = function(transaction, optimisticId) {
       var _this = this;
       var perform = function(layer) {
         var _a4 = _this, data3 = _a4.data, optimisticData = _a4.optimisticData;
@@ -35445,7 +35445,7 @@ const client = new ApolloClient({
       }
       this.broadcastWatches(fromOptimisticTransaction);
     };
-    InMemoryCache2.prototype.transformDocument = function(document2) {
+    InMemoryCache3.prototype.transformDocument = function(document2) {
       if (this.addTypename) {
         var result = this.typenameDocumentCache.get(document2);
         if (!result) {
@@ -35457,7 +35457,7 @@ const client = new ApolloClient({
       }
       return document2;
     };
-    InMemoryCache2.prototype.broadcastWatches = function(fromOptimisticTransaction) {
+    InMemoryCache3.prototype.broadcastWatches = function(fromOptimisticTransaction) {
       var _this = this;
       if (!this.txCount) {
         this.watches.forEach(function(c2) {
@@ -35465,7 +35465,7 @@ const client = new ApolloClient({
         });
       }
     };
-    InMemoryCache2.prototype.broadcastWatch = function(c2, fromOptimisticTransaction) {
+    InMemoryCache3.prototype.broadcastWatch = function(c2, fromOptimisticTransaction) {
       this.watchDep.dirty(c2);
       this.watchDep(c2);
       var diff = this.diff({
@@ -35478,16 +35478,16 @@ const client = new ApolloClient({
       }
       c2.callback(diff);
     };
-    return InMemoryCache2;
+    return InMemoryCache3;
   }(ApolloCache);
 
   // node_modules/@apollo/client/core/LocalState.js
   var LocalState = function() {
     function LocalState4(_a4) {
-      var cache11 = _a4.cache, client6 = _a4.client, resolvers = _a4.resolvers, fragmentMatcher = _a4.fragmentMatcher;
-      this.cache = cache11;
-      if (client6) {
-        this.client = client6;
+      var cache15 = _a4.cache, client8 = _a4.client, resolvers = _a4.resolvers, fragmentMatcher = _a4.fragmentMatcher;
+      this.cache = cache15;
+      if (client8) {
+        this.client = client8;
       }
       if (resolvers) {
         this.addResolvers(resolvers);
@@ -35545,11 +35545,11 @@ const client = new ApolloClient({
       return removeClientSetsFromDocument(document2);
     };
     LocalState4.prototype.prepareContext = function(context8) {
-      var cache11 = this.cache;
+      var cache15 = this.cache;
       return __assign(__assign({}, context8), {
-        cache: cache11,
+        cache: cache15,
         getCacheKey: function(obj) {
-          return cache11.identify(obj);
+          return cache15.identify(obj);
         }
       });
     };
@@ -35613,19 +35613,19 @@ const client = new ApolloClient({
         onlyRunForcedResolvers = false;
       }
       return __awaiter(this, void 0, void 0, function() {
-        var mainDefinition, fragments4, fragmentMap, definitionOperation, defaultOperationType, _a4, cache11, client6, execContext;
+        var mainDefinition, fragments4, fragmentMap, definitionOperation, defaultOperationType, _a4, cache15, client8, execContext;
         return __generator(this, function(_b) {
           mainDefinition = getMainDefinition(document2);
           fragments4 = getFragmentDefinitions(document2);
           fragmentMap = createFragmentMap(fragments4);
           definitionOperation = mainDefinition.operation;
           defaultOperationType = definitionOperation ? definitionOperation.charAt(0).toUpperCase() + definitionOperation.slice(1) : "Query";
-          _a4 = this, cache11 = _a4.cache, client6 = _a4.client;
+          _a4 = this, cache15 = _a4.cache, client8 = _a4.client;
           execContext = {
             fragmentMap,
             context: __assign(__assign({}, context8), {
-              cache: cache11,
-              client: client6
+              cache: cache15,
+              client: client8
             }),
             variables,
             fragmentMatcher,
@@ -35764,11 +35764,11 @@ const client = new ApolloClient({
 
   // node_modules/@apollo/client/core/QueryInfo.js
   var destructiveMethodCounts = new (canUseWeakMap ? WeakMap : Map)();
-  function wrapDestructiveCacheMethod(cache11, methodName) {
-    var original = cache11[methodName];
+  function wrapDestructiveCacheMethod(cache15, methodName) {
+    var original = cache15[methodName];
     if (typeof original === "function") {
-      cache11[methodName] = function() {
-        destructiveMethodCounts.set(cache11, (destructiveMethodCounts.get(cache11) + 1) % 1e15);
+      cache15[methodName] = function() {
+        destructiveMethodCounts.set(cache15, (destructiveMethodCounts.get(cache15) + 1) % 1e15);
         return original.apply(this, arguments);
       };
     }
@@ -35780,8 +35780,8 @@ const client = new ApolloClient({
     }
   }
   var QueryInfo = function() {
-    function QueryInfo3(cache11) {
-      this.cache = cache11;
+    function QueryInfo3(cache15) {
+      this.cache = cache15;
       this.listeners = new Set();
       this.document = null;
       this.lastRequestId = 1;
@@ -35790,11 +35790,11 @@ const client = new ApolloClient({
       this.dirty = false;
       this.diff = null;
       this.observableQuery = null;
-      if (!destructiveMethodCounts.has(cache11)) {
-        destructiveMethodCounts.set(cache11, 0);
-        wrapDestructiveCacheMethod(cache11, "evict");
-        wrapDestructiveCacheMethod(cache11, "modify");
-        wrapDestructiveCacheMethod(cache11, "reset");
+      if (!destructiveMethodCounts.has(cache15)) {
+        destructiveMethodCounts.set(cache15, 0);
+        wrapDestructiveCacheMethod(cache15, "evict");
+        wrapDestructiveCacheMethod(cache15, "modify");
+        wrapDestructiveCacheMethod(cache15, "reset");
       }
     }
     QueryInfo3.prototype.init = function(query) {
@@ -35939,9 +35939,9 @@ const client = new ApolloClient({
         this.diff = {result: result.data, complete: true};
       } else if (allowCacheWrite) {
         if (shouldWriteResult(result, options.errorPolicy)) {
-          this.cache.performTransaction(function(cache11) {
+          this.cache.performTransaction(function(cache15) {
             if (_this.shouldWrite(result, options.variables)) {
-              cache11.writeQuery({
+              cache15.writeQuery({
                 query: _this.document,
                 data: result.data,
                 variables: options.variables
@@ -35957,7 +35957,7 @@ const client = new ApolloClient({
                 return;
               }
             }
-            var diff = cache11.diff({
+            var diff = cache15.diff({
               query: _this.document,
               variables: options.variables,
               returnPartialData: true,
@@ -36010,7 +36010,7 @@ const client = new ApolloClient({
   var hasOwnProperty4 = Object.prototype.hasOwnProperty;
   var QueryManager = function() {
     function QueryManager3(_a4) {
-      var cache11 = _a4.cache, link2 = _a4.link, _b = _a4.queryDeduplication, queryDeduplication = _b === void 0 ? false : _b, onBroadcast = _a4.onBroadcast, _c = _a4.ssrMode, ssrMode = _c === void 0 ? false : _c, _d = _a4.clientAwareness, clientAwareness = _d === void 0 ? {} : _d, localState = _a4.localState, assumeImmutableResults = _a4.assumeImmutableResults;
+      var cache15 = _a4.cache, link2 = _a4.link, _b = _a4.queryDeduplication, queryDeduplication = _b === void 0 ? false : _b, onBroadcast = _a4.onBroadcast, _c = _a4.ssrMode, ssrMode = _c === void 0 ? false : _c, _d = _a4.clientAwareness, clientAwareness = _d === void 0 ? {} : _d, localState = _a4.localState, assumeImmutableResults = _a4.assumeImmutableResults;
       this.clientAwareness = {};
       this.queries = new Map();
       this.fetchCancelFns = new Map();
@@ -36019,11 +36019,11 @@ const client = new ApolloClient({
       this.requestIdCounter = 1;
       this.mutationIdCounter = 1;
       this.inFlightLinkObservables = new Map();
-      this.cache = cache11;
+      this.cache = cache15;
       this.link = link2;
       this.queryDeduplication = queryDeduplication;
       this.clientAwareness = clientAwareness;
-      this.localState = localState || new LocalState({cache: cache11});
+      this.localState = localState || new LocalState({cache: cache15});
       this.ssrMode = ssrMode;
       this.assumeImmutableResults = !!assumeImmutableResults;
       if (this.onBroadcast = onBroadcast) {
@@ -36180,10 +36180,10 @@ const client = new ApolloClient({
         });
       });
     };
-    QueryManager3.prototype.markMutationResult = function(mutation, cache11) {
+    QueryManager3.prototype.markMutationResult = function(mutation, cache15) {
       var _this = this;
-      if (cache11 === void 0) {
-        cache11 = this.cache;
+      if (cache15 === void 0) {
+        cache15 = this.cache;
       }
       if (shouldWriteResult(mutation.result, mutation.errorPolicy)) {
         var cacheWrites_1 = [{
@@ -36202,7 +36202,7 @@ const client = new ApolloClient({
             }
             var updater = updateQueries_1[queryName];
             var _b = _this.queries.get(queryId), document2 = _b.document, variables = _b.variables;
-            var _c = cache11.diff({
+            var _c = cache15.diff({
               query: document2,
               variables,
               returnPartialData: true,
@@ -36225,7 +36225,7 @@ const client = new ApolloClient({
             }
           });
         }
-        cache11.performTransaction(function(c2) {
+        cache15.performTransaction(function(c2) {
           cacheWrites_1.forEach(function(write) {
             return c2.write(write);
           });
@@ -36239,9 +36239,9 @@ const client = new ApolloClient({
     QueryManager3.prototype.markMutationOptimistic = function(optimisticResponse, mutation) {
       var _this = this;
       var data3 = typeof optimisticResponse === "function" ? optimisticResponse(mutation.variables) : optimisticResponse;
-      return this.cache.recordOptimisticTransaction(function(cache11) {
+      return this.cache.recordOptimisticTransaction(function(cache15) {
         try {
-          _this.markMutationResult(__assign(__assign({}, mutation), {result: {data: data3}}), cache11);
+          _this.markMutationResult(__assign(__assign({}, mutation), {result: {data: data3}}), cache15);
         } catch (error2) {
           invariant.error(error2);
         }
@@ -36704,16 +36704,16 @@ const client = new ApolloClient({
       this.defaultOptions = {};
       this.resetStoreCallbacks = [];
       this.clearStoreCallbacks = [];
-      var uri = options.uri, credentials = options.credentials, headers = options.headers, cache11 = options.cache, _a4 = options.ssrMode, ssrMode = _a4 === void 0 ? false : _a4, _b = options.ssrForceFetchDelay, ssrForceFetchDelay = _b === void 0 ? 0 : _b, _c = options.connectToDevTools, connectToDevTools = _c === void 0 ? typeof window === "object" && !window.__APOLLO_CLIENT__ && true : _c, _d = options.queryDeduplication, queryDeduplication = _d === void 0 ? true : _d, defaultOptions2 = options.defaultOptions, _e = options.assumeImmutableResults, assumeImmutableResults = _e === void 0 ? false : _e, resolvers = options.resolvers, typeDefs = options.typeDefs, fragmentMatcher = options.fragmentMatcher, clientAwarenessName = options.name, clientAwarenessVersion = options.version;
+      var uri = options.uri, credentials = options.credentials, headers = options.headers, cache15 = options.cache, _a4 = options.ssrMode, ssrMode = _a4 === void 0 ? false : _a4, _b = options.ssrForceFetchDelay, ssrForceFetchDelay = _b === void 0 ? 0 : _b, _c = options.connectToDevTools, connectToDevTools = _c === void 0 ? typeof window === "object" && !window.__APOLLO_CLIENT__ && true : _c, _d = options.queryDeduplication, queryDeduplication = _d === void 0 ? true : _d, defaultOptions2 = options.defaultOptions, _e = options.assumeImmutableResults, assumeImmutableResults = _e === void 0 ? false : _e, resolvers = options.resolvers, typeDefs = options.typeDefs, fragmentMatcher = options.fragmentMatcher, clientAwarenessName = options.name, clientAwarenessVersion = options.version;
       var link2 = options.link;
       if (!link2) {
         link2 = uri ? new HttpLink({uri, credentials, headers}) : ApolloLink.empty();
       }
-      if (!cache11) {
+      if (!cache15) {
         throw new InvariantError("To initialize Apollo Client, you must specify a 'cache' property in the options object. \nFor more information, please visit: https://go.apollo.dev/c/docs");
       }
       this.link = link2;
-      this.cache = cache11;
+      this.cache = cache15;
       this.disableNetworkFetches = ssrMode || ssrForceFetchDelay > 0;
       this.queryDeduplication = queryDeduplication;
       this.defaultOptions = defaultOptions2 || {};
@@ -36751,7 +36751,7 @@ const client = new ApolloClient({
       }
       this.version = version;
       this.localState = new LocalState({
-        cache: cache11,
+        cache: cache15,
         client: this,
         resolvers,
         fragmentMatcher
@@ -36931,14 +36931,14 @@ const client = new ApolloClient({
   // node_modules/@apollo/client/react/context/ApolloProvider.js
   var react3 = __toModule(require_react());
   var ApolloProvider = function(_a4) {
-    var client6 = _a4.client, children = _a4.children;
+    var client8 = _a4.client, children = _a4.children;
     var ApolloContext3 = getApolloContext();
     return react3.default.createElement(ApolloContext3.Consumer, null, function(context8) {
       if (context8 === void 0) {
         context8 = {};
       }
-      if (client6 && context8.client !== client6) {
-        context8 = Object.assign({}, context8, {client: client6});
+      if (client8 && context8.client !== client8) {
+        context8 = Object.assign({}, context8, {client: client8});
       }
       invariant(context8.client, 'ApolloProvider was not passed a client instance. Make sure you pass in your client via the "client" prop.');
       return react3.default.createElement(ApolloContext3.Provider, {value: context8}, children);
@@ -36948,9 +36948,9 @@ const client = new ApolloClient({
   // node_modules/@apollo/client/react/hooks/useApolloClient.js
   var react4 = __toModule(require_react());
   function useApolloClient() {
-    var client6 = react4.default.useContext(getApolloContext()).client;
-    invariant(client6, "No Apollo Client instance can be found. Please ensure that you have called `ApolloProvider` higher up in your tree.");
-    return client6;
+    var client8 = react4.default.useContext(getApolloContext()).client;
+    invariant(client8, "No Apollo Client instance can be found. Please ensure that you have called `ApolloProvider` higher up in your tree.");
+    return client8;
   }
 
   // node_modules/@apollo/client/react/hooks/utils/useBaseQuery.js
@@ -37042,12 +37042,12 @@ const client = new ApolloClient({
       this.isMounted = false;
     };
     OperationData6.prototype.refreshClient = function() {
-      var client6 = this.options && this.options.client || this.context && this.context.client;
-      invariant(!!client6, 'Could not find "client" in the context or passed in as an option. Wrap the root component in an <ApolloProvider>, or pass an ApolloClient instance in via options.');
+      var client8 = this.options && this.options.client || this.context && this.context.client;
+      invariant(!!client8, 'Could not find "client" in the context or passed in as an option. Wrap the root component in an <ApolloProvider>, or pass an ApolloClient instance in via options.');
       var isNew = false;
-      if (client6 !== this.client) {
+      if (client8 !== this.client) {
         isNew = true;
-        this.client = client6;
+        this.client = client8;
         this.cleanup();
       }
       return {
@@ -37660,14 +37660,30 @@ const client = new ApolloClient({
     return useBaseQuery(query, options, false);
   }
 
+  // src/config/cache.ts
+  var userVar = makeVar("");
+  var cache7 = new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          currentUser: {
+            read() {
+              return userVar();
+            }
+          }
+        }
+      }
+    }
+  });
+
   // src/config/apollo.ts
   var httpLink = createHttpLink({
     uri: "http://localhost:5000/graphql/",
     credentials: "include"
   });
-  var client2 = new ApolloClient({
+  var client3 = new ApolloClient({
     link: httpLink,
-    cache: new InMemoryCache(),
+    cache: cache7,
     connectToDevTools: true
   });
 
@@ -38193,13 +38209,13 @@ const client = new ApolloClient({
 
   // node_modules/@emotion/weak-memoize/dist/weak-memoize.browser.esm.js
   var weakMemoize = function weakMemoize2(func) {
-    var cache11 = new WeakMap();
+    var cache15 = new WeakMap();
     return function(arg) {
-      if (cache11.has(arg)) {
-        return cache11.get(arg);
+      if (cache15.has(arg)) {
+        return cache15.get(arg);
       }
       var ret = func(arg);
-      cache11.set(arg, ret);
+      cache15.set(arg, ret);
       return ret;
     };
   };
@@ -38207,11 +38223,11 @@ const client = new ApolloClient({
 
   // node_modules/@emotion/memoize/dist/emotion-memoize.browser.esm.js
   function memoize(fn) {
-    var cache11 = Object.create(null);
+    var cache15 = Object.create(null);
     return function(arg) {
-      if (cache11[arg] === void 0)
-        cache11[arg] = fn(arg);
-      return cache11[arg];
+      if (cache15[arg] === void 0)
+        cache15[arg] = fn(arg);
+      return cache15[arg];
     };
   }
   var emotion_memoize_browser_esm_default = memoize;
@@ -38290,12 +38306,12 @@ const client = new ApolloClient({
   var isIgnoringComment = function isIgnoringComment2(element) {
     return !!element && element.type === "comm" && element.children.indexOf(ignoreFlag) > -1;
   };
-  var createUnsafeSelectorsAlarm = function createUnsafeSelectorsAlarm2(cache11) {
+  var createUnsafeSelectorsAlarm = function createUnsafeSelectorsAlarm2(cache15) {
     return function(element, index2, children) {
       if (element.type !== "rule")
         return;
       var unsafePseudoClasses = element.value.match(/(:first|:nth|:nth-last)-child/g);
-      if (unsafePseudoClasses && cache11.compat !== true) {
+      if (unsafePseudoClasses && cache15.compat !== true) {
         var prevElement = index2 > 0 ? children[index2 - 1] : null;
         if (prevElement && isIgnoringComment(last(prevElement.children))) {
           return;
@@ -38376,7 +38392,7 @@ const client = new ApolloClient({
     if (true) {
       omnipresentPlugins.push(createUnsafeSelectorsAlarm({
         get compat() {
-          return cache11.compat;
+          return cache15.compat;
         }
       }), incorrectImportAlarm);
     }
@@ -38406,11 +38422,11 @@ const client = new ApolloClient({
         }
         stylis2(selector2 ? selector2 + "{" + serialized.styles + "}" : serialized.styles);
         if (shouldCache) {
-          cache11.inserted[serialized.name] = true;
+          cache15.inserted[serialized.name] = true;
         }
       };
     }
-    var cache11 = {
+    var cache15 = {
       key,
       sheet: new StyleSheet({
         key,
@@ -38424,8 +38440,8 @@ const client = new ApolloClient({
       registered: {},
       insert: _insert
     };
-    cache11.sheet.hydrate(nodesToHydrate);
-    return cache11;
+    cache15.sheet.hydrate(nodesToHydrate);
+    return cache15;
   };
   var emotion_cache_browser_esm_default = createCache;
 
@@ -38461,15 +38477,15 @@ const client = new ApolloClient({
     });
     return rawClassName;
   }
-  var insertStyles = function insertStyles2(cache11, serialized, isStringTag) {
-    var className = cache11.key + "-" + serialized.name;
-    if ((isStringTag === false || isBrowser === false) && cache11.registered[className] === void 0) {
-      cache11.registered[className] = serialized.styles;
+  var insertStyles = function insertStyles2(cache15, serialized, isStringTag) {
+    var className = cache15.key + "-" + serialized.name;
+    if ((isStringTag === false || isBrowser === false) && cache15.registered[className] === void 0) {
+      cache15.registered[className] = serialized.styles;
     }
-    if (cache11.inserted[serialized.name] === void 0) {
+    if (cache15.inserted[serialized.name] === void 0) {
       var current = serialized;
       do {
-        var maybeStyles = cache11.insert(serialized === current ? "." + className : "", current, cache11.sheet, true);
+        var maybeStyles = cache15.insert(serialized === current ? "." + className : "", current, cache15.sheet, true);
         current = current.next;
       } while (current !== void 0);
     }
@@ -38809,8 +38825,8 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   var CacheProvider = EmotionCacheContext.Provider;
   var withEmotionCache = function withEmotionCache2(func) {
     return /* @__PURE__ */ react8.forwardRef(function(props, ref) {
-      var cache11 = react8.useContext(EmotionCacheContext);
-      return func(props, cache11, ref);
+      var cache15 = react8.useContext(EmotionCacheContext);
+      return func(props, cache15, ref);
     });
   };
   var ThemeContext = /* @__PURE__ */ react8.createContext({});
@@ -38843,16 +38859,16 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   };
   var typePropName = "__EMOTION_TYPE_PLEASE_DO_NOT_USE__";
   var labelPropName = "__EMOTION_LABEL_PLEASE_DO_NOT_USE__";
-  var Emotion = /* @__PURE__ */ withEmotionCache(function(props, cache11, ref) {
+  var Emotion = /* @__PURE__ */ withEmotionCache(function(props, cache15, ref) {
     var cssProp = props.css;
-    if (typeof cssProp === "string" && cache11.registered[cssProp] !== void 0) {
-      cssProp = cache11.registered[cssProp];
+    if (typeof cssProp === "string" && cache15.registered[cssProp] !== void 0) {
+      cssProp = cache15.registered[cssProp];
     }
     var type = props[typePropName];
     var registeredStyles = [cssProp];
     var className = "";
     if (typeof props.className === "string") {
-      className = getRegisteredStyles(cache11.registered, registeredStyles, props.className);
+      className = getRegisteredStyles(cache15.registered, registeredStyles, props.className);
     } else if (props.className != null) {
       className = props.className + " ";
     }
@@ -38863,8 +38879,8 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
         serialized = serializeStyles([serialized, "label:" + labelFromStack + ";"]);
       }
     }
-    var rules = insertStyles(cache11, serialized, typeof type === "string");
-    className += cache11.key + "-" + serialized.name;
+    var rules = insertStyles(cache15, serialized, typeof type === "string");
+    className += cache15.key + "-" + serialized.name;
     var newProps = {};
     for (var key in props) {
       if (hasOwnProperty5.call(props, key) && key !== "css" && key !== typePropName && key !== labelPropName) {
@@ -38959,7 +38975,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     }
   };
   var warnedAboutCssPropForGlobal = false;
-  var Global = /* @__PURE__ */ withEmotionCache(function(props, cache11) {
+  var Global = /* @__PURE__ */ withEmotionCache(function(props, cache15) {
     if (!warnedAboutCssPropForGlobal && (props.className || props.css)) {
       console.error("It looks like you're using the css prop on Global, did you mean to use the styles prop instead?");
       warnedAboutCssPropForGlobal = true;
@@ -38968,16 +38984,16 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     var serialized = serializeStyles([styles3], void 0, typeof styles3 === "function" || Array.isArray(styles3) ? react9.useContext(ThemeContext) : void 0);
     var sheetRef = react9.useRef();
     react9.useLayoutEffect(function() {
-      var key = cache11.key + "-global";
+      var key = cache15.key + "-global";
       var sheet3 = new StyleSheet({
         key,
-        nonce: cache11.sheet.nonce,
-        container: cache11.sheet.container,
-        speedy: cache11.sheet.isSpeedy
+        nonce: cache15.sheet.nonce,
+        container: cache15.sheet.container,
+        speedy: cache15.sheet.isSpeedy
       });
       var node = document.querySelector('style[data-emotion="' + key + " " + serialized.name + '"]');
-      if (cache11.sheet.tags.length) {
-        sheet3.before = cache11.sheet.tags[0];
+      if (cache15.sheet.tags.length) {
+        sheet3.before = cache15.sheet.tags[0];
       }
       if (node !== null) {
         sheet3.hydrate([node]);
@@ -38986,10 +39002,10 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       return function() {
         sheet3.flush();
       };
-    }, [cache11]);
+    }, [cache15]);
     react9.useLayoutEffect(function() {
       if (serialized.next !== void 0) {
-        insertStyles(cache11, serialized.next, true);
+        insertStyles(cache15, serialized.next, true);
       }
       var sheet3 = sheetRef.current;
       if (sheet3.tags.length) {
@@ -38997,8 +39013,8 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
         sheet3.before = element;
         sheet3.flush();
       }
-      cache11.insert("", serialized, sheet3, false);
-    }, [cache11, serialized.name]);
+      cache15.insert("", serialized, sheet3, false);
+    }, [cache15, serialized.name]);
     return null;
   });
   if (true) {
@@ -39070,7 +39086,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     }
     return rawClassName + css4(registeredStyles);
   }
-  var ClassNames = /* @__PURE__ */ withEmotionCache(function(props, cache11) {
+  var ClassNames = /* @__PURE__ */ withEmotionCache(function(props, cache15) {
     var hasRendered = false;
     var css4 = function css5() {
       if (hasRendered && true) {
@@ -39079,11 +39095,11 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
       }
-      var serialized = serializeStyles(args, cache11.registered);
+      var serialized = serializeStyles(args, cache15.registered);
       {
-        insertStyles(cache11, serialized, false);
+        insertStyles(cache15, serialized, false);
       }
-      return cache11.key + "-" + serialized.name;
+      return cache15.key + "-" + serialized.name;
     };
     var cx3 = function cx4() {
       if (hasRendered && true) {
@@ -39092,7 +39108,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
         args[_key2] = arguments[_key2];
       }
-      return merge(cache11.registered, css4, classnames(args));
+      return merge(cache15.registered, css4, classnames(args));
     };
     var content = {
       css: css4,
@@ -39536,12 +39552,12 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     return obj === void 0 ? fallback : obj;
   }
   var memoize4 = (fn) => {
-    var cache11 = new WeakMap();
+    var cache15 = new WeakMap();
     var memoizedFn = (obj, path, fallback, index2) => {
-      if (!cache11.has(obj)) {
-        cache11.set(obj, new Map());
+      if (!cache15.has(obj)) {
+        cache15.set(obj, new Map());
       }
-      var map2 = cache11.get(obj);
+      var map2 = cache15.get(obj);
       if (map2.has(path)) {
         return map2.get(path);
       }
@@ -40090,7 +40106,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     return obj === undef ? def : obj;
   };
   var createParser = function createParser2(config19) {
-    var cache11 = {};
+    var cache15 = {};
     var parse = function parse2(props) {
       var styles3 = {};
       var shouldSort = false;
@@ -40102,14 +40118,14 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
         var raw = props[key];
         var scale = get2(props.theme, sx.scale, sx.defaults);
         if (typeof raw === "object") {
-          cache11.breakpoints = !isCacheDisabled && cache11.breakpoints || get2(props.theme, "breakpoints", defaults.breakpoints);
+          cache15.breakpoints = !isCacheDisabled && cache15.breakpoints || get2(props.theme, "breakpoints", defaults.breakpoints);
           if (Array.isArray(raw)) {
-            cache11.media = !isCacheDisabled && cache11.media || [null].concat(cache11.breakpoints.map(createMediaQuery));
-            styles3 = merge2(styles3, parseResponsiveStyle(cache11.media, sx, scale, raw, props));
+            cache15.media = !isCacheDisabled && cache15.media || [null].concat(cache15.breakpoints.map(createMediaQuery));
+            styles3 = merge2(styles3, parseResponsiveStyle(cache15.media, sx, scale, raw, props));
             continue;
           }
           if (raw !== null) {
-            styles3 = merge2(styles3, parseResponsiveObject(cache11.breakpoints, sx, scale, raw, props));
+            styles3 = merge2(styles3, parseResponsiveObject(cache15.breakpoints, sx, scale, raw, props));
             shouldSort = true;
           }
           continue;
@@ -40123,7 +40139,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     };
     parse.config = config19;
     parse.propNames = Object.keys(config19);
-    parse.cache = cache11;
+    parse.cache = cache15;
     var keys = Object.keys(config19).filter(function(k2) {
       return k2 !== "config";
     });
@@ -40810,7 +40826,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   var parser5 = compose(backgroundParser, borderParser, colorParser, flexboxParser, layoutParser, outlineParser, gridParser, othersParser, positionParser, shadowParser, spaceParser, typographyParser, transformParser, transitionParser, listParser);
 
   // node_modules/@chakra-ui/styled-system/dist/esm/css.js
-  var cache9 = {
+  var cache11 = {
     themeBreakpoints: [],
     breakpoints: [],
     breakpointValues: [],
@@ -40820,9 +40836,9 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     if (themeBreakpoints === void 0) {
       themeBreakpoints = [];
     }
-    var isCached = cache9.themeBreakpoints === themeBreakpoints;
+    var isCached = cache11.themeBreakpoints === themeBreakpoints;
     if (isCached) {
-      return cache9;
+      return cache11;
     }
     var {
       breakpoints: breakpoints4,
@@ -40840,10 +40856,10 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       breakpointValues: []
     });
     var mediaQueries = [null, ...breakpointValues.map((bp) => "@media screen and (min-width: " + bp + ")").slice(1)];
-    cache9.themeBreakpoints = themeBreakpoints;
-    cache9.mediaQueries = mediaQueries;
-    cache9.breakpointValues = breakpointValues;
-    cache9.breakpoints = breakpoints4;
+    cache11.themeBreakpoints = themeBreakpoints;
+    cache11.mediaQueries = mediaQueries;
+    cache11.breakpointValues = breakpointValues;
+    cache11.breakpoints = breakpoints4;
     return {
       breakpoints: breakpoints4,
       mediaQueries
@@ -41083,7 +41099,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
           styles3.push(args[i2], args[0][i2]);
         }
       }
-      var Styled = withEmotionCache(function(props, cache11, ref) {
+      var Styled = withEmotionCache(function(props, cache15, ref) {
         var finalTag = shouldUseAs && props.as || baseTag;
         var className = "";
         var classInterpolations = [];
@@ -41096,13 +41112,13 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
           mergedProps.theme = react16.useContext(ThemeContext);
         }
         if (typeof props.className === "string") {
-          className = getRegisteredStyles(cache11.registered, classInterpolations, props.className);
+          className = getRegisteredStyles(cache15.registered, classInterpolations, props.className);
         } else if (props.className != null) {
           className = props.className + " ";
         }
-        var serialized = serializeStyles(styles3.concat(classInterpolations), cache11.registered, mergedProps);
-        var rules = insertStyles(cache11, serialized, typeof finalTag === "string");
-        className += cache11.key + "-" + serialized.name;
+        var serialized = serializeStyles(styles3.concat(classInterpolations), cache15.registered, mergedProps);
+        var rules = insertStyles(cache15, serialized, typeof finalTag === "string");
+        className += cache15.key + "-" + serialized.name;
         if (targetClassName !== void 0) {
           className += " " + targetClassName;
         }
@@ -47522,15 +47538,15 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     };
   }
   var messageType;
-  var cache10 = {};
+  var cache12 = {};
   var cacheLimit = 1e4;
   var cacheCount = 0;
   function compilePath(path) {
-    if (cache10[path])
-      return cache10[path];
+    if (cache12[path])
+      return cache12[path];
     var generator = path_to_regexp.default.compile(path);
     if (cacheCount < cacheLimit) {
-      cache10[path] = generator;
+      cache12[path] = generator;
       cacheCount++;
     }
     return generator;
@@ -48075,14 +48091,96 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   }
   var ariaCurrentType;
 
-  // src/components/_app.tsx
+  // src/_app.tsx
   var react40 = __toModule(require_react());
 
-  // src/components/Navbar/Navbar.tsx
+  // src/modules/core/navbar/navbar.tsx
   var react27 = __toModule(require_react());
 
-  // src/components/Navbar/NavbarItems.tsx
+  // src/modules/core/navbar/navbar-items.tsx
   var react25 = __toModule(require_react());
+  var NavbarItems = ({user}) => {
+    const guestLinks = /* @__PURE__ */ react25.default.createElement(ButtonGroup, {
+      mr: 2,
+      variant: "outline",
+      spacing: "2",
+      fontFamily: "heading",
+      fontWeight: "600"
+    }, /* @__PURE__ */ react25.default.createElement(Button, {
+      as: Link,
+      to: "/login",
+      colorScheme: "white",
+      variant: "ghost"
+    }, "Log in"), /* @__PURE__ */ react25.default.createElement(Button, {
+      as: Link,
+      to: "/register",
+      colorScheme: "blue",
+      variant: "solid"
+    }, "Sign up"));
+    const userLinks = /* @__PURE__ */ react25.default.createElement(Flex, {
+      alignItems: "center"
+    }, /* @__PURE__ */ react25.default.createElement(Text, {
+      mr: "15px",
+      fontFamily: "heading",
+      fontWeight: "600",
+      fontSize: "sm"
+    }, user?.firstName + " " + user?.lastName), /* @__PURE__ */ react25.default.createElement(Avatar, {
+      mr: 3,
+      src: "/images/avatar2.png"
+    }));
+    {
+    }
+    return /* @__PURE__ */ react25.default.createElement(Box, {
+      display: {base: "block"}
+    }, user ? userLinks : guestLinks);
+  };
+
+  // src/modules/core/navbar/navbar.tsx
+  var Navbar = ({user}) => {
+    return /* @__PURE__ */ react27.default.createElement("div", null, /* @__PURE__ */ react27.default.createElement(Flex, {
+      as: "nav",
+      height: 12,
+      padding: "1rem",
+      align: "center",
+      justify: "space-between",
+      wrap: "wrap",
+      color: "white",
+      opacity: "0.9"
+    }, /* @__PURE__ */ react27.default.createElement(Flex, {
+      align: "center"
+    }), /* @__PURE__ */ react27.default.createElement(NavbarItems, {
+      user
+    })));
+  };
+
+  // src/components/Header.tsx
+  var react29 = __toModule(require_react());
+  var Header = () => {
+    return /* @__PURE__ */ react29.default.createElement("div", null, /* @__PURE__ */ react29.default.createElement(Flex, {
+      justifyContent: "center"
+    }, /* @__PURE__ */ react29.default.createElement(Box, {
+      mt: "-50px",
+      zIndex: "10"
+    }, /* @__PURE__ */ react29.default.createElement(Image2, {
+      objectFit: "cover",
+      src: "/images/udm-logo.png",
+      alt: "UDM"
+    }))), /* @__PURE__ */ react29.default.createElement(Center, null, /* @__PURE__ */ react29.default.createElement(Text, {
+      fontFamily: "title",
+      fontSize: "1rem",
+      fontWeight: "600",
+      color: "lightgrey"
+    }, "UNDERGROUND \xA0 \xA0 DANCE \xA0 \xA0 MUSIC")));
+  };
+
+  // src/config/routes.tsx
+  var react39 = __toModule(require_react());
+
+  // src/utils/route.tsx
+  var react32 = __toModule(require_react());
+
+  // src/utils/permissions.tsx
+  var react31 = __toModule(require_react());
 
   // src/config/graphql.tsx
   var CreateTrackDocument = graphql_tag.default`
@@ -48136,101 +48234,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     return useMutation(LoginDocument, baseOptions);
   }
 
-  // src/components/Navbar/NavbarItems.tsx
-  var NavbarItems = () => {
-    const {loading, error: error2, data: data3} = useCurrentUserQuery({
-      fetchPolicy: "cache-first"
-    });
-    const user = data3?.CurrentUser;
-    const guestLinks = /* @__PURE__ */ react25.default.createElement(ButtonGroup, {
-      mr: 2,
-      variant: "outline",
-      spacing: "2",
-      fontFamily: "heading",
-      fontWeight: "600"
-    }, /* @__PURE__ */ react25.default.createElement(Button, {
-      as: Link,
-      to: "/login",
-      colorScheme: "white",
-      variant: "ghost"
-    }, "Log in"), /* @__PURE__ */ react25.default.createElement(Button, {
-      as: Link,
-      to: "/register",
-      colorScheme: "blue",
-      variant: "solid"
-    }, "Sign up"));
-    const userLinks = /* @__PURE__ */ react25.default.createElement(Flex, {
-      alignItems: "center"
-    }, /* @__PURE__ */ react25.default.createElement(Text, {
-      mr: "15px",
-      fontFamily: "heading",
-      fontWeight: "600",
-      fontSize: "sm"
-    }, user?.firstName + " " + user?.lastName), /* @__PURE__ */ react25.default.createElement(Avatar, {
-      mr: 3,
-      src: "/images/avatar2.png"
-    }));
-    react25.useEffect(() => {
-    }, [data3?.CurrentUser]);
-    if (loading) {
-      return /* @__PURE__ */ react25.default.createElement(Box, {
-        display: {base: "block"}
-      }, /* @__PURE__ */ react25.default.createElement(Text, {
-        mr: 4,
-        fontFamily: "heading",
-        fontWeight: "600",
-        fontSize: "sm"
-      }, "Loading..."));
-    }
-    return /* @__PURE__ */ react25.default.createElement(Box, {
-      display: {base: "block"}
-    }, data3?.CurrentUser ? userLinks : guestLinks);
-  };
-
-  // src/components/Navbar/Navbar.tsx
-  var Navbar = () => {
-    return /* @__PURE__ */ react27.default.createElement("div", null, /* @__PURE__ */ react27.default.createElement(Flex, {
-      as: "nav",
-      height: 12,
-      padding: "1rem",
-      align: "center",
-      justify: "space-between",
-      wrap: "wrap",
-      color: "white",
-      opacity: "0.9"
-    }, /* @__PURE__ */ react27.default.createElement(Flex, {
-      align: "center"
-    }), /* @__PURE__ */ react27.default.createElement(NavbarItems, null)));
-  };
-
-  // src/components/Header.tsx
-  var react29 = __toModule(require_react());
-  var Header = () => {
-    return /* @__PURE__ */ react29.default.createElement("div", null, /* @__PURE__ */ react29.default.createElement(Flex, {
-      justifyContent: "center"
-    }, /* @__PURE__ */ react29.default.createElement(Box, {
-      mt: "-50px",
-      zIndex: "10"
-    }, /* @__PURE__ */ react29.default.createElement(Image2, {
-      objectFit: "cover",
-      src: "/images/udm-logo.png",
-      alt: "UDM"
-    }))), /* @__PURE__ */ react29.default.createElement(Center, null, /* @__PURE__ */ react29.default.createElement(Text, {
-      fontFamily: "title",
-      fontSize: "1rem",
-      fontWeight: "600",
-      color: "lightgrey"
-    }, "UNDERGROUND \xA0 \xA0 DANCE \xA0 \xA0 MUSIC")));
-  };
-
-  // src/config/routes.tsx
-  var react39 = __toModule(require_react());
-
-  // src/utils/route.tsx
-  var react32 = __toModule(require_react());
-
   // src/utils/permissions.tsx
-  var react31 = __toModule(require_react());
   var checkAuth = () => {
     const {loading, data: data3} = useCurrentUserQuery({
       fetchPolicy: "cache-first"
@@ -50311,7 +50315,7 @@ attempted value: ${formattedValue}
     ["password"]: create3().min(8).max(30).required().label("Password")
   });
   var Login = () => {
-    const client6 = useApolloClient();
+    const client8 = useApolloClient();
     const [Login2] = useLoginMutation();
     const history3 = useHistory();
     const {register, handleSubmit, errors: errors5, control} = react_hook_form.useForm({
@@ -50321,8 +50325,8 @@ attempted value: ${formattedValue}
     const onFormSubmit = async (values) => {
       const response = await Login2({
         variables: values,
-        update: (cache11, {data: data3}) => {
-          cache11.writeQuery({
+        update: (cache15, {data: data3}) => {
+          cache15.writeQuery({
             query: CurrentUserDocument,
             data: {
               __typename: "Query",
@@ -50469,14 +50473,38 @@ attempted value: ${formattedValue}
     })));
   };
 
-  // src/components/_app.tsx
+  // src/_app.tsx
   var App = () => {
+    const {loading, error: error2, data: data3} = useCurrentUserQuery({
+      fetchPolicy: "cache-first"
+    });
+    const {CurrentUser} = client3.readQuery({
+      query: graphql_tag.default`
+            query currentUser {
+                CurrentUser {
+                    firstName
+                }
+            }
+        `
+    });
+    console.log("Current user is: " + CurrentUser);
+    let user = null;
+    if (loading) {
+      /* @__PURE__ */ react40.default.createElement("div", null, "Loading...");
+    }
+    if (!loading && data3?.CurrentUser) {
+      user = data3.CurrentUser;
+      localStorage.setItem("user", user.firstName + " " + user.lastName);
+      userVar(user.firstName + " " + user.lastName);
+    }
     return /* @__PURE__ */ react40.default.createElement(Box, {
       bgImage: "url('/images/background.jpg')",
       bgSize: "cover",
       bgRepeat: "no-repeat",
       bgAttachment: "fixed"
-    }, /* @__PURE__ */ react40.default.createElement(Navbar, null), /* @__PURE__ */ react40.default.createElement(Header, null), /* @__PURE__ */ react40.default.createElement(Flex, {
+    }, /* @__PURE__ */ react40.default.createElement(Navbar, {
+      user
+    }), /* @__PURE__ */ react40.default.createElement(Header, null), /* @__PURE__ */ react40.default.createElement(Flex, {
       justifyContent: "center"
     }, /* @__PURE__ */ react40.default.createElement(Container, {
       maxW: "1200px",
@@ -50488,7 +50516,7 @@ attempted value: ${formattedValue}
 
   // src/index.tsx
   react_dom.default.render(/* @__PURE__ */ react43.default.createElement(react43.default.StrictMode, null, /* @__PURE__ */ react43.default.createElement(ApolloProvider, {
-    client: client2
+    client: client3
   }, /* @__PURE__ */ react43.default.createElement(ChakraProvider, {
     theme: theme4
   }, /* @__PURE__ */ react43.default.createElement(HashRouter, null, /* @__PURE__ */ react43.default.createElement(app_default, null))))), document.getElementById("root"));

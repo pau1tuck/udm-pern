@@ -5,7 +5,7 @@ import { client } from "./config/apollo";
 import { ChakraProvider } from "@chakra-ui/react";
 import { theme } from "~config/theme";
 import { HashRouter as Router } from "react-router-dom";
-import App from "./components/_app";
+import App from "./_app";
 
 ReactDOM.render(
     <React.StrictMode>

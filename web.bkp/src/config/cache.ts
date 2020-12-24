@@ -1,6 +1,6 @@
 import { makeVar, InMemoryCache } from "@apollo/client";
 
-export const userVar = makeVar({});
+export const userVar = makeVar("");
 
 export const cache = new InMemoryCache({
     typePolicies: {
