@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
 require("reflect-metadata");
 require("dotenv/config");
-const path_1 = tslib_1.__importDefault(require("path"));
 const express_1 = tslib_1.__importDefault(require("express"));
 const express_session_1 = tslib_1.__importDefault(require("express-session"));
 const typeorm_1 = require("typeorm");
@@ -18,7 +17,7 @@ const PRODUCTION = process.env.NODE_ENV === "production";
 const WORKERS = process.env.WEB_CONCURRENCY || 1;
 const PORT = process.env.PORT || 5000;
 const server = () => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
-    const _orm = yield typeorm_1.createConnection(database_1.default);
+    const orm = yield typeorm_1.createConnection(database_1.default);
     const app = express_1.default();
     app.disable("x-powered-by");
     app.set("trust proxy", 1);
@@ -52,12 +51,6 @@ const server = () => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
         context: ({ req, res }) => ({ req, res, redisClient: redis_1.redisClient }),
     });
     apolloServer.applyMiddleware({ app, cors: false });
-    app.use(express_1.default.static(path_1.default.join(`${__dirname}/public`)));
-    app.use("*", (req, res) => {
-        res.status(200);
-        res.sendFile(path_1.default.join(`${__dirname}/public/index.html`));
-        res.end();
-    });
     app.listen(PORT, () => {
         console.log(`Server running on http://localhost:${PORT}.`);
     });
