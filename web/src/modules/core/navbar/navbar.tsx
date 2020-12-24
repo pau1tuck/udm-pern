@@ -12,7 +12,7 @@ import {
     Wrap,
     WrapItem,
 } from "@chakra-ui/react";
-import { NavbarItems } from "./NavbarItems";
+import { NavbarItems } from "./navbar-items";
 
 export const Navbar = () => {
     return (

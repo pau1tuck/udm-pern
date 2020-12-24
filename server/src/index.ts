@@ -23,7 +23,7 @@ const WORKERS = process.env.WEB_CONCURRENCY || 1;
 const PORT = process.env.PORT || 5000;
 
 const server = async () => {
-    const _orm: Connection = await createConnection(database);
+    const orm: Connection = await createConnection(database);
 
     const app: Express = express();
 

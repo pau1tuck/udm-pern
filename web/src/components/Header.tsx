@@ -8,7 +8,7 @@ export const Header: React.FC = () => {
                 <Box mt="-50px" zIndex="10">
                     <Image
                         objectFit="cover"
-                        src="public/images/udm-logo.png"
+                        src="/images/udm-logo.png"
                         alt="UDM"
                     />
                 </Box>

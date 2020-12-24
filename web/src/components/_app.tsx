@@ -1,15 +1,24 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
-import { Navbar } from "./Navbar/Navbar";
+import { Navbar } from "../modules/core/navbar/navbar";
 import { Header } from "./Header";
 import { Routes } from "~/config/routes";
 import { Container, Flex } from "@chakra-ui/react";
+import { useCurrentUserQuery } from "~config/graphql";
+import { userVar } from "~/config/cache";
 
 const App = () => {
+    const { loading, error, data } = useCurrentUserQuery({
+        fetchPolicy: "cache-first",
+    });
+    if (loading) {
+    }
+    if (!loading && data?.CurrentUser) {
+        userVar(data.CurrentUser);
+    }
     return (
         <Box
-            height="100vh"
-            bgImage="url('public/images/background.jpg')"
+            bgImage="url('/images/background.jpg')"
             bgSize="cover"
             bgRepeat="no-repeat"
             bgAttachment="fixed"

@@ -1,10 +1,6 @@
 {
 	"folders": [
 		{
-			"name": ".vscode",
-			"path": ".vscode"
-		},
-		{
 			"name": "server",
 			"path": "server"
 		},

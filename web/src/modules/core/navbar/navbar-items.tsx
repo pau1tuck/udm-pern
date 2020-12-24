@@ -42,7 +42,7 @@ export const NavbarItems: React.FC = () => {
             <Text mr="15px" fontFamily="heading" fontWeight="600" fontSize="sm">
                 {user?.firstName + " " + user?.lastName}
             </Text>
-            <Avatar mr={3} src="public/images/avatar2.png" />
+            <Avatar mr={3} src="/images/avatar2.png" />
         </Flex>
     );
 

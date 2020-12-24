@@ -1,10 +1,10 @@
 import React from "react";
 import { Switch } from "react-router-dom";
-import { Route } from "~components/Route";
-import { Home } from "../pages/Home";
-import { Login } from "../pages/Login";
-import { Profile } from "~pages/Profile";
-import { CreateTrack } from "~pages/admin/CreateTrack";
+import { Route } from "~utils/route";
+import { Home } from "../modules/core/home/home";
+import { Login } from "../modules/login";
+import { Profile } from "~modules/Profile";
+import { CreateTrack } from "~modules/admin/CreateTrack";
 
 const UserRoutes = [
     {

@@ -5,7 +5,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "esbuild src/index.tsx --bundle --define:process.env.NODE_ENV=\\\"development\\\" --outfile=public/index.js",
-		"build": "esbuild src/index.tsx --bundle --define:process.env.NODE_ENV=\\\"production\\\" --outfile=../server/dist/public/index.js",
+		"build": "esbuild src/index.tsx --bundle --define:process.env.NODE_ENV=\\\"development\\\" --outfile=../server/dist/public/index.js",
 		"start": "web-dev-server --open build/ --node-resolve --watch",
 		"gen": "graphql-codegen --config codegen.yml",
 		"lint": "eslint '*/**/*.{ts,tsx}' --quiet --fix",
