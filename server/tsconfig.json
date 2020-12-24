@@ -8,9 +8,9 @@
         "sourceMap": true,
         "baseUrl": ".",
         "rootDir": "src",
-        "outDir": "build",
+        "outDir": ".",
         "paths": {
-            "~/*": ["src/*"]
+            "~/*": ["src/server/*"]
         },
         "moduleResolution": "node",
         "removeComments": true,

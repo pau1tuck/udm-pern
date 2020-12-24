@@ -11,6 +11,9 @@
 		{
 			"name": "web",
 			"path": "web"
+		},
+		{
+			"path": "native"
 		}
 	]
 }

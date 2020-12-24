@@ -4,10 +4,11 @@
 	"author": "@pau1tuck",
 	"private": true,
 	"scripts": {
-		"build": "esbuild src/index.tsx --bundle --define:process.env.NODE_ENV=\\\"development\\\" --outfile=build/index.js",
+		"dev": "esbuild src/index.tsx --bundle --define:process.env.NODE_ENV=\\\"development\\\" --outfile=public/index.js",
+		"build": "esbuild src/index.tsx --bundle --define:process.env.NODE_ENV=\\\"production\\\" --outfile=../server/dist/public/index.js",
 		"start": "web-dev-server --open build/ --node-resolve --watch",
 		"gen": "graphql-codegen --config codegen.yml",
-		"lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
+		"lint": "eslint '*/**/*.{ts,tsx}' --quiet --fix",
 		"test:watch": "web-test-runner test/**/*.test.tsx --watch"
 	},
 	"proxy": "http://localhost:5000",
