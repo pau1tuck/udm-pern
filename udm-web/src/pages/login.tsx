@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { useLoginMutation, UserQuery, UserDocument } from "../graphql/graphql";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
@@ -31,7 +31,7 @@ const Login = () => {
     const router = useRouter();
     const [Login] = useLoginMutation();
 
-    const { register, handleSubmit, errors, control, formState } = useForm({
+    const { register, handleSubmit, errors, formState } = useForm({
         resolver: yupResolver(validationSchema),
         mode: "onChange",
     });
