@@ -1,4 +1,5 @@
-{
+{ 
+    "extends": "./tsconfig_base.json",
     "compilerOptions": {
         "incremental": true,
         "target": "es6",
@@ -8,9 +9,9 @@
         "sourceMap": true,
         "baseUrl": ".",
         "rootDir": "src",
-        "outDir": ".",
+        "outDir": "dist",
         "paths": {
-            "~/*": ["src/server/*"]
+            "~/*": ["src/*"]
         },
         "moduleResolution": "node",
         "removeComments": true,
@@ -29,5 +30,5 @@
         "resolveJsonModule": true
     },
     "include": ["src/**/*"],
-    "exclude": ["build/", "node_modules/"]
+    "exclude": ["node_modules/"]
 }

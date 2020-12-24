@@ -42,6 +42,7 @@
 		"class-validator": "^0.12.2",
 		"eslint": "^7.16.0",
 		"eslint-config-airbnb-typescript": "^12.0.0",
+		"eslint-config-airbnb-typescript-prettier": "^4.1.0",
 		"eslint-config-prettier": "^7.1.0",
 		"eslint-plugin-import": "^2.22.1",
 		"eslint-plugin-prettier": "^3.3.0",
