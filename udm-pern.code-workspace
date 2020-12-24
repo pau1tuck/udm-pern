@@ -1,11 +1,10 @@
 {
 	"folders": [
 		{
-			"name": "server",
 			"path": "server"
 		},
 		{
-			"path": "native"
+			"path": "udm-web"
 		}
 	]
 }

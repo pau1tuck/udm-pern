@@ -69,7 +69,7 @@ const server = async () => {
 
     apolloServer.applyMiddleware({ app, cors: false });
 
-    app.use(express.static(path.join(`${__dirname}/public`))); // optionally one can add some route handler to protect this resource
+    /* app.use(express.static(path.join(`${__dirname}/public`))); // optionally one can add some route handler to protect this resource
 
     app.use("*", (req: Request, res: Response) => {
         res.status(200);
