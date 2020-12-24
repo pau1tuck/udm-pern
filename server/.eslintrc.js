@@ -24,9 +24,9 @@ module.exports = {
 		//"no-unused-vars": [1, { varsIgnorePattern: "_" }],
 		"import/prefer-default-export": "off",
 		"max-classes-per-file": [ 1 ],
+		"class-methods-use-this": [ 0 ],
 		"@typescript-eslint/no-unused-vars": [ 0 ],
-		"@typescript-eslint/no-explicit-any": [ 0 ],
-		"class-methods-use-this": [ 0 ]
+		"@typescript-eslint/no-explicit-any": [ 0 ]
 	},
 	root: false
 };
