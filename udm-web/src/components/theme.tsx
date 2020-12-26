@@ -1,6 +1,10 @@
 import { extendTheme } from "@chakra-ui/react";
+import Image from "next/image";
 
 const theme = extendTheme({
+    useSystemColorMode: false,
+    initialColorMode: "dark",
+
     fonts: {
         body: "'Montserrat', sans-serif",
         label: "'Architects Daughter', sans-serif",
@@ -18,6 +22,10 @@ const theme = extendTheme({
     styles: {
         global: {
             body: {
+                backgroundImage: "url('/images/background.jpg')",
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+                backgroundAttachment: "fixed",
                 color: "white",
             },
         },

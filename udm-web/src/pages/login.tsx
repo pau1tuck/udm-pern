@@ -33,7 +33,7 @@ const Login = () => {
 
     const { register, handleSubmit, errors, formState } = useForm({
         resolver: yupResolver(validationSchema),
-        mode: "onChange",
+        mode: "onSubmit",
     });
 
     const onFormSubmit = async (values: any) => {

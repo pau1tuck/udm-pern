@@ -1,0 +1,10 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+.title {
+    margin-left: 13px;
+    opacity: 0.5;
+    animation: fadeIn 2s infinite alternate;
+}
