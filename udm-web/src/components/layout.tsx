@@ -4,6 +4,7 @@ import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
 import { Navbar } from "./navbar";
 import { Header } from "./header";
+import { Subheader } from "./subheader";
 import { DarkMode } from "@chakra-ui/react";
 
 const name = "Paul Tuck";
@@ -22,6 +23,9 @@ const Layout = ({
         <>
             <Navbar />
             <Header />
+            <div className={styles.content}>
+                <Subheader />
+            </div>
             <div className={styles.container}>
                 <Head>
                     <link rel="icon" href="/favicon.ico" />
@@ -39,12 +43,6 @@ const Layout = ({
                     <meta name="twitter:card" content="summary_large_image" />
                     <link href="/fonts/font-face.css" rel="stylesheet" />
                 </Head>
-                <img
-                    src="/images/profile.jpg"
-                    className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
-                    alt={name}
-                />
-                <h1 className={utilStyles.heading2Xl}>{name}</h1>
                 <main>{children}</main>
             </div>
         </>

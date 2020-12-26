@@ -7,7 +7,7 @@ const theme = extendTheme({
 
     fonts: {
         body: "'Montserrat', sans-serif",
-        label: "'Architects Daughter', sans-serif",
+        track: "'Architects Daughter', sans-serif",
         heading: "'Montserrat', sans-serif",
         title: "'Michroma', monospace",
     },
@@ -27,6 +27,9 @@ const theme = extendTheme({
                 backgroundRepeat: "no-repeat",
                 backgroundAttachment: "fixed",
                 color: "white",
+            },
+            "::placeholder": {
+                /* Chrome, Firefox, Opera, Safari 10.1+ */ color: "yellow",
             },
         },
     },

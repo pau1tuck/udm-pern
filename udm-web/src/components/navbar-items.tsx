@@ -36,9 +36,9 @@ export const NavbarItems = () => {
     );
     return (
         <>
-            {/* <Heading pl={1} fontFamily="title" color="gray.700">
+            {/*<Heading pt={1} pl={1} fontFamily="title" color="gray.700">
                 UDM
-    </Heading> */}
+    </Heading>*/}
             <Flex align="center" />
             <Box display={{ base: "block" }}>{guestLinks}</Box>
         </>
