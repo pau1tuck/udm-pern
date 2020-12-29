@@ -3,12 +3,14 @@ import utilStyles from "../styles/utils.module.css";
 import subheaderStyles from "../styles/subheader.module.css";
 
 import Typed from "react-typed";
-import { Box, Flex, Text } from "@chakra-ui/react";
-import Date from "./date";
+import { Box, ButtonGroup, Flex, Text } from "@chakra-ui/react";
+import { FaListUl } from "react-icons/fa";
+import { FiGrid } from "react-icons/fi";
 
 export const Subheader = () => {
     return (
         <Flex
+            display={{ base: "none", sm: "flex" }}
             mt={10}
             ml={3}
             as="nav"
@@ -24,11 +26,14 @@ export const Subheader = () => {
                 className={subheaderStyles.typed}
             />
             <Flex align="center" />
-            <Box display={{ base: "block" }}>
-                <Text fontFamily="track" fontSize="lg">
-                    December 27, 2020
-                </Text>
-            </Box>
+            <ButtonGroup>
+                <Box as="button">
+                    <FaListUl fontSize="1.7rem" color="gray" />
+                </Box>
+                <Box as="button">
+                    <FiGrid fontSize="1.7rem" color="gray" />
+                </Box>
+            </ButtonGroup>
         </Flex>
     );
 };

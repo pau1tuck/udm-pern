@@ -48,6 +48,9 @@ const Home = () => {
                         UDM Chart
                     </Heading>
                     <Heading as="button" size="md" mb={5} fontWeight="600">
+                        Top Tracks
+                    </Heading>
+                    <Heading as="button" size="md" mb={5} fontWeight="600">
                         Playlists
                     </Heading>
                 </Box>
