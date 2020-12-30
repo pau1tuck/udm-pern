@@ -34,6 +34,9 @@ export class User extends BaseEntity {
     @Column()
     password!: string;
 
+    @Column({ default: false })
+    verified!: boolean;
+
     @Field()
     @Column({ default: false })
     isMember!: boolean;

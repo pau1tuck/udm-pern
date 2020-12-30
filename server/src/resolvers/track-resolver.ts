@@ -10,7 +10,7 @@ import { getConnection } from "typeorm";
 import { Track } from "../entities/track";
 import { TrackInput } from "../types/track-input";
 import { PaginatedTracks } from "../types/paginated-tracks";
-import { isAdmin } from "../utils/permissions";
+import { isAdmin } from "../utils/check-permissions";
 
 @Resolver(Track)
 export class TrackResolver {

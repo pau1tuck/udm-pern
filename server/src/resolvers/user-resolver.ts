@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable no-console */
+import { Errback } from "express";
 import {
     Resolver,
     Query,
@@ -10,12 +9,12 @@ import {
 } from "type-graphql";
 import argon2 from "argon2";
 import { User } from "../entities/user";
-import { IContext } from "../types/context";
-import { isAdmin } from "../utils/permissions";
+import { IContext } from "../types/context.d";
+import { isAdmin } from "../utils/check-permissions";
 
 @Resolver(User)
 export class UserResolver {
-    // USERS
+    // ALL USERS
     @Query(() => [User])
     @UseMiddleware(isAdmin)
     Users(): Promise<User[]> {
@@ -57,7 +56,7 @@ export class UserResolver {
         return true;
     }
 
-    // LOGIN
+    // LOG IN
     @Mutation(() => User, { nullable: true })
     async Login(
         @Arg("email") email: string,
@@ -67,17 +66,38 @@ export class UserResolver {
         const user = await User.findOne({ where: { email } });
 
         if (!user) {
-            throw new Error("User not registered");
+            throw new Error("Email address not registered");
         }
 
-        const verify = await argon2.verify(user.password, password);
+        const checkPassword = await argon2.verify(user.password, password);
 
-        if (!verify) {
+        if (!checkPassword) {
             throw new Error("Incorrect password");
+        }
+
+        if (!user.verified) {
+            throw new Error("Please confirm your email address");
         }
 
         ctx.req.session.userId = user.id;
 
         return user;
+    }
+
+    // LOG OUT
+    @Mutation(() => Boolean)
+    async Logout(@Ctx() { req, res }: IContext) {
+        return new Promise((resolve) =>
+            req.session.destroy((err: Errback) => {
+                res.clearCookie("sid");
+                if (err) {
+                    console.log(err);
+                    resolve(false);
+                    return;
+                }
+
+                resolve(true);
+            })
+        );
     }
 }

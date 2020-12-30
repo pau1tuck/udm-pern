@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import "reflect-metadata";
 import "dotenv/config";
 import path from "path";
@@ -17,6 +16,7 @@ import { RedisStore, redisClient } from "./config/redis";
 
 import { UserResolver } from "./resolvers/user-resolver";
 import { TrackResolver } from "./resolvers/track-resolver";
+import { sendEmail } from "./utils/send-email";
 
 const PRODUCTION: boolean = process.env.NODE_ENV === "production";
 const WORKERS = process.env.WEB_CONCURRENCY || 1;
@@ -84,6 +84,11 @@ const server = async () => {
     app.listen(PORT, () => {
         console.log(`Server running on http://localhost:${PORT}.`);
     });
+    await sendEmail(
+        "pdrt888@gmail.com",
+        "Verify email address",
+        "Click here to verify your email address"
+    );
 };
 server().catch((err) => {
     console.error(err);
