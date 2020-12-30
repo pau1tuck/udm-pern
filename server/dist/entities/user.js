@@ -36,6 +36,10 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", String)
 ], User.prototype, "password", void 0);
 tslib_1.__decorate([
+    typeorm_1.Column({ default: false }),
+    tslib_1.__metadata("design:type", Boolean)
+], User.prototype, "verified", void 0);
+tslib_1.__decorate([
     type_graphql_1.Field(),
     typeorm_1.Column({ default: false }),
     tslib_1.__metadata("design:type", Boolean)

@@ -1,10 +1,6 @@
 import nodemailer from "nodemailer";
 
-export const sendEmail = async (
-    recipient: string,
-    subjectLine: string,
-    content: string
-) => {
+export const sendVerificationEmail = async (recipient: string, url: string) => {
     const testAccount = await nodemailer.createTestAccount();
 
     const transporter = nodemailer.createTransport({
@@ -21,9 +17,9 @@ export const sendEmail = async (
     const info = await transporter.sendMail({
         from: '"Underground Dance Music" <noreply@udm.online>',
         to: recipient,
-        subject: subjectLine,
+        subject: "Confirm email address",
         text: "Hello world?",
-        html: content,
+        html: `Click to confirm your email address: ${url}`,
     });
 
     console.log("Message sent: %s", info.messageId);

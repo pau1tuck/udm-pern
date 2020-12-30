@@ -16,7 +16,7 @@ module.exports = {
         "import/prefer-default-export": "off",
         "max-classes-per-file": [1],
         "class-methods-use-this": [0],
-        "@typescript-eslint/no-unused-vars": [0],
+        "@typescript-eslint/no-unused-vars": [0], 
         "@typescript-eslint/no-explicit-any": [0],
         "@typescript-eslint/explicit-module-boundary-types": [0]
     },

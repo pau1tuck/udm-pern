@@ -7,7 +7,7 @@ const typeorm_1 = require("typeorm");
 const track_1 = require("../entities/track");
 const track_input_1 = require("../types/track-input");
 const paginated_tracks_1 = require("../types/paginated-tracks");
-const permissions_1 = require("../utils/permissions");
+const check_permissions_1 = require("../utils/check-permissions");
 let TrackResolver = class TrackResolver {
     Tracks(limit) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
@@ -67,7 +67,7 @@ tslib_1.__decorate([
 ], TrackResolver.prototype, "Track", null);
 tslib_1.__decorate([
     type_graphql_1.Mutation(() => track_1.Track),
-    type_graphql_1.UseMiddleware(permissions_1.isAdmin),
+    type_graphql_1.UseMiddleware(check_permissions_1.isAdmin),
     tslib_1.__param(0, type_graphql_1.Arg("input")),
     tslib_1.__metadata("design:type", Function),
     tslib_1.__metadata("design:paramtypes", [track_input_1.TrackInput]),
@@ -75,7 +75,7 @@ tslib_1.__decorate([
 ], TrackResolver.prototype, "CreateTrack", null);
 tslib_1.__decorate([
     type_graphql_1.Mutation(() => track_1.Track, { nullable: true }),
-    type_graphql_1.UseMiddleware(permissions_1.isAdmin),
+    type_graphql_1.UseMiddleware(check_permissions_1.isAdmin),
     tslib_1.__param(0, type_graphql_1.Arg("id")),
     tslib_1.__param(1, type_graphql_1.Arg("artist")),
     tslib_1.__param(2, type_graphql_1.Arg("title")),
@@ -88,7 +88,7 @@ tslib_1.__decorate([
 ], TrackResolver.prototype, "UpdateTrack", null);
 tslib_1.__decorate([
     type_graphql_1.Mutation(() => Boolean),
-    type_graphql_1.UseMiddleware(permissions_1.isAdmin),
+    type_graphql_1.UseMiddleware(check_permissions_1.isAdmin),
     tslib_1.__param(0, type_graphql_1.Arg("id")),
     tslib_1.__metadata("design:type", Function),
     tslib_1.__metadata("design:paramtypes", [String]),

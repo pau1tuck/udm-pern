@@ -16,11 +16,12 @@ import { RedisStore, redisClient } from "./config/redis";
 
 import { UserResolver } from "./resolvers/user-resolver";
 import { TrackResolver } from "./resolvers/track-resolver";
-import { sendEmail } from "./utils/send-email";
+import { sendVerificationEmail } from "./utils/send-email";
+import { createVerificationUrl } from "./utils/create-verification-url";
 
 const PRODUCTION: boolean = process.env.NODE_ENV === "production";
 const WORKERS = process.env.WEB_CONCURRENCY || 1;
-const PORT = process.env.PORT || 5000;
+const PORT = parseInt(process.env.PORT, 10) || 5000;
 
 const server = async () => {
     const orm: Connection = await createConnection(database);
@@ -81,15 +82,14 @@ const server = async () => {
         res.sendFile(path.join(__dirname + "/web/public/index.html"));
     }); */
 
+    if (orm.isConnected) {
+        console.log("Connected to PostgreSQL database.");
+    }
     app.listen(PORT, () => {
-        console.log(`Server running on http://localhost:${PORT}.`);
+        console.log(`Server running on port ${PORT}.`);
     });
-    await sendEmail(
-        "pdrt888@gmail.com",
-        "Verify email address",
-        "Click here to verify your email address"
-    );
 };
+
 server().catch((err) => {
     console.error(err);
 });

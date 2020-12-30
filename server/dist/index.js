@@ -15,7 +15,7 @@ const user_resolver_1 = require("./resolvers/user-resolver");
 const track_resolver_1 = require("./resolvers/track-resolver");
 const PRODUCTION = process.env.NODE_ENV === "production";
 const WORKERS = process.env.WEB_CONCURRENCY || 1;
-const PORT = process.env.PORT || 5000;
+const PORT = parseInt(process.env.PORT, 10) || 5000;
 const server = () => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
     const orm = yield typeorm_1.createConnection(database_1.default);
     const app = express_1.default();
@@ -51,8 +51,11 @@ const server = () => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
         context: ({ req, res }) => ({ req, res, redisClient: redis_1.redisClient }),
     });
     apolloServer.applyMiddleware({ app, cors: false });
+    if (orm.isConnected) {
+        console.log("Connected to PostgreSQL database.");
+    }
     app.listen(PORT, () => {
-        console.log(`Server running on http://localhost:${PORT}.`);
+        console.log(`Server running on port ${PORT}.`);
     });
 });
 server().catch((err) => {
