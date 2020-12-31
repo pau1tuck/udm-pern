@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import utilStyles from "../styles/utils.module.css";
+import headerStyles from "../styles/header.module.css";
 import {
     Box,
     Center,
@@ -26,7 +26,7 @@ export const Header: React.FC = () => {
                 <Flex justifyContent="center">
                     <Box mt="-10px" zIndex="11">
                         <img
-                            className={utilStyles.title}
+                            className={headerStyles.title}
                             src="/images/udm-title.png"
                             alt="UNDERGROUND DANCE MUSIC"
                         />
