@@ -24,6 +24,22 @@
 				"database": "d7f6nt9t81l1s4",
 				"username": "chdpvugmjbbbnm",
 				"password": "847dafb0425ddd1d4a4e9b31d81785bc4091093d596e3a1d95cfda514b386d75"
+			},
+			{
+				"pgOptions": {
+					"ssl": {
+						"rejectUnauthorized": false,
+						"requestCert": false
+					}
+				},
+				"previewLimit": 50,
+				"server": "195.110.58.50",
+				"port": 5432,
+				"driver": "PostgreSQL",
+				"name": "udmx",
+				"database": "udm",
+				"username": "admin",
+				"password": "Susandogwater4!ho"
 			}
 		]
 	}

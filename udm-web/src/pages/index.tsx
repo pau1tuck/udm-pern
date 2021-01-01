@@ -18,6 +18,7 @@ import {
     InputLeftElement,
     Square,
     Text,
+    ScaleFade,
     Spacer,
     Stack,
     ButtonGroup,
@@ -34,6 +35,7 @@ import { useTracksQuery } from "../graphql/graphql";
 
 const Home = () => {
     const { loading, error, data, fetchMore, variables } = useTracksQuery({
+        fetchPolicy: "cache-first",
         variables: {
             limit: 32,
         },
@@ -42,6 +44,11 @@ const Home = () => {
     const [mode, setMode] = useState("latest");
     const [viewMode, setViewMode] = useState("grid");
     const [nowPlaying, setNowPlaying] = useState("");
+    const [currentTrack, setCurrentTrack] = useState({
+        artist: "",
+        title: "",
+        version: "",
+    });
 
     let listView: any;
     let gridView: any;
@@ -78,6 +85,7 @@ const Home = () => {
                 as="button"
                 onClick={() => {
                     setNowPlaying(track.trackUrl);
+                    setCurrentTrack(track);
                 }}
                 w="210px"
                 h="300px"
@@ -93,8 +101,14 @@ const Home = () => {
                     <br />
                     <span className={trackStyles.artist}>{track.artist}</span>
                     <br />
-                    {track.version ? <span>({track.version})</span> : ""}
-                    <br />
+                    {track.version ? (
+                        <>
+                            <span>({track.version})</span>
+                            <br />
+                        </>
+                    ) : (
+                        ""
+                    )}
                     {track.label ? <span>[{track.label}]</span> : ""}
                 </Text>
             </Box>
@@ -144,13 +158,17 @@ const Home = () => {
                         </Heading>
                     </Box>
 
-                    <Box
-                        overflowY="auto"
-                        flex="1"
-                        w="100%"
-                        mt="-40px"
-                        ml="210px"
-                    >
+                    <Box overflowY="auto" flex="1" w="100%" ml="210px">
+                        <Box pl={3} position="absolute">
+                            {currentTrack.artist && (
+                                <span>
+                                    {currentTrack?.artist} -{" "}
+                                    {currentTrack?.title}{" "}
+                                    {currentTrack.version &&
+                                        `(${currentTrack?.version})`}
+                                </span>
+                            )}
+                        </Box>
                         <Box mt={1} mb={5} mr={2} right="0" textAlign="right">
                             <ButtonGroup>
                                 <Box
@@ -276,4 +294,4 @@ const Home = () => {
     );
 };
 
-export default withApollo({ ssr: true })(Home);
+export default withApollo({ ssr: false })(Home);

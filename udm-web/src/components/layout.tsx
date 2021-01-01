@@ -41,6 +41,7 @@ const Layout = ({
                     <meta name="og:title" content={siteTitle} />
                     <meta name="twitter:card" content="summary_large_image" />
                     <link href="/fonts/font-face.css" rel="stylesheet" />
+                    <link href="/lib/animate.min.css" rel="stylesheet" />
                 </Head>
                 <Container
                     margin="auto"
