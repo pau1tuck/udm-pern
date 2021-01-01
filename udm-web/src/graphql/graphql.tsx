@@ -58,7 +58,7 @@ export type Track = {
   title: Scalars['String'];
   version: Scalars['String'];
   label: Scalars['String'];
-  youTubeId: Scalars['String'];
+  trackUrl: Scalars['String'];
   createdAt: Scalars['String'];
   updatedAt: Scalars['String'];
   votes: Scalars['Int'];
@@ -68,6 +68,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   Register: Scalars['Boolean'];
   Login?: Maybe<User>;
+  Logout: Scalars['Boolean'];
   CreateTrack: Track;
   UpdateTrack?: Maybe<Track>;
   DeleteTrack: Scalars['Boolean'];
@@ -95,7 +96,7 @@ export type MutationCreateTrackArgs = {
 
 
 export type MutationUpdateTrackArgs = {
-  youTubeId: Scalars['String'];
+  trackUrl: Scalars['String'];
   label: Scalars['String'];
   version: Scalars['String'];
   title: Scalars['String'];
@@ -113,7 +114,7 @@ export type TrackInput = {
   title: Scalars['String'];
   version: Scalars['String'];
   label: Scalars['String'];
-  youTubeId: Scalars['String'];
+  trackUrl: Scalars['String'];
 };
 
 export type LoginMutationVariables = Exact<{
@@ -128,6 +129,22 @@ export type LoginMutation = (
     { __typename?: 'User' }
     & Pick<User, 'id' | 'firstName' | 'lastName' | 'country' | 'email' | 'isMember' | 'isAdmin'>
   )> }
+);
+
+export type TracksQueryVariables = Exact<{
+  limit: Scalars['Int'];
+}>;
+
+
+export type TracksQuery = (
+  { __typename?: 'Query' }
+  & { Tracks: (
+    { __typename?: 'PaginatedTracks' }
+    & { tracks: Array<(
+      { __typename?: 'Track' }
+      & Pick<Track, 'id' | 'artist' | 'title' | 'version' | 'label' | 'trackUrl' | 'votes' | 'createdAt' | 'updatedAt'>
+    )> }
+  ) }
 );
 
 export type UserQueryVariables = Exact<{ [key: string]: never; }>;
@@ -194,6 +211,62 @@ export function useLoginMutation(baseOptions?: Apollo.MutationHookOptions<LoginM
 export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
 export type LoginMutationResult = Apollo.MutationResult<LoginMutation>;
 export type LoginMutationOptions = Apollo.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
+export const TracksDocument = gql`
+    query tracks($limit: Int!) {
+  Tracks(limit: $limit) {
+    tracks {
+      id
+      artist
+      title
+      version
+      label
+      trackUrl
+      votes
+      createdAt
+      updatedAt
+    }
+  }
+}
+    `;
+export type TracksProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<TracksQuery, TracksQueryVariables>
+    } & TChildProps;
+export function withTracks<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  TracksQuery,
+  TracksQueryVariables,
+  TracksProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, TracksQuery, TracksQueryVariables, TracksProps<TChildProps, TDataName>>(TracksDocument, {
+      alias: 'tracks',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useTracksQuery__
+ *
+ * To run a query within a React component, call `useTracksQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTracksQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTracksQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *   },
+ * });
+ */
+export function useTracksQuery(baseOptions: Apollo.QueryHookOptions<TracksQuery, TracksQueryVariables>) {
+        return Apollo.useQuery<TracksQuery, TracksQueryVariables>(TracksDocument, baseOptions);
+      }
+export function useTracksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TracksQuery, TracksQueryVariables>) {
+          return Apollo.useLazyQuery<TracksQuery, TracksQueryVariables>(TracksDocument, baseOptions);
+        }
+export type TracksQueryHookResult = ReturnType<typeof useTracksQuery>;
+export type TracksLazyQueryHookResult = ReturnType<typeof useTracksLazyQuery>;
+export type TracksQueryResult = Apollo.QueryResult<TracksQuery, TracksQueryVariables>;
 export const UserDocument = gql`
     query user {
   CurrentUser {

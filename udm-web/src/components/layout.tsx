@@ -5,14 +5,14 @@ import Link from "next/link";
 import { Navbar } from "./navbar";
 import { Header } from "./header";
 import { Subheader } from "./subheader";
-import { DarkMode } from "@chakra-ui/react";
+import { Container, DarkMode, Flex } from "@chakra-ui/react";
 
 const name = "Paul Tuck";
 export const siteTitle = "Underground Dance Music";
 
 const Layout = ({
     children,
-    size,
+    size = "max",
     home,
 }: {
     children: React.ReactNode;
@@ -23,10 +23,9 @@ const Layout = ({
         <>
             <Navbar />
             <Header />
-            <div className={styles.content}>
-                <Subheader />
-            </div>
+
             <div className={styles.container}>
+                {home && <Subheader />}
                 <Head>
                     <link rel="icon" href="/favicon.ico" />
                     <meta
@@ -43,7 +42,12 @@ const Layout = ({
                     <meta name="twitter:card" content="summary_large_image" />
                     <link href="/fonts/font-face.css" rel="stylesheet" />
                 </Head>
-                <main>{children}</main>
+                <Container
+                    margin="auto"
+                    maxW={size === "max" ? "1200px" : "500px"}
+                >
+                    {children}
+                </Container>
             </div>
         </>
     );

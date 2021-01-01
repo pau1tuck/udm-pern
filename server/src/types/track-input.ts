@@ -15,5 +15,5 @@ export class TrackInput {
     label!: string;
 
     @Field()
-    youTubeId!: string;
+    trackUrl!: string;
 }

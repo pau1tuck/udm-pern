@@ -12,7 +12,7 @@ import { buildSchema } from "type-graphql";
 import cors from "cors";
 
 import database from "./config/database";
-import { RedisStore, redisClient } from "./config/redis";
+import { RedisStore, redisClient, redisCache } from "./config/redis";
 
 import { UserResolver } from "./resolvers/user-resolver";
 import { TrackResolver } from "./resolvers/track-resolver";
@@ -66,6 +66,7 @@ const server = async () => {
     const apolloServer = new ApolloServer({
         schema: graphQLSchema,
         context: ({ req, res }) => ({ req, res, redisClient }),
+        cache: redisCache,
     });
 
     apolloServer.applyMiddleware({ app, cors: false });

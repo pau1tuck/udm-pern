@@ -4,14 +4,13 @@ import subheaderStyles from "../styles/subheader.module.css";
 
 import Typed from "react-typed";
 import { Box, ButtonGroup, Flex, Text } from "@chakra-ui/react";
-import { FaListUl } from "react-icons/fa";
-import { FiGrid } from "react-icons/fi";
 
 export const Subheader = () => {
     return (
         <Flex
             display={{ base: "none", sm: "flex" }}
             mt={10}
+            mb={8}
             ml={3}
             as="nav"
             align="center"
@@ -26,14 +25,6 @@ export const Subheader = () => {
                 className={subheaderStyles.typed}
             />
             <Flex align="center" />
-            <ButtonGroup>
-                <Box as="button">
-                    <FaListUl fontSize="1.7rem" color="gray" />
-                </Box>
-                <Box as="button">
-                    <FiGrid fontSize="1.7rem" color="gray" />
-                </Box>
-            </ButtonGroup>
         </Flex>
     );
 };

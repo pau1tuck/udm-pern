@@ -24,7 +24,7 @@ tslib_1.__decorate([
 tslib_1.__decorate([
     type_graphql_1.Field(),
     tslib_1.__metadata("design:type", String)
-], TrackInput.prototype, "youTubeId", void 0);
+], TrackInput.prototype, "trackUrl", void 0);
 TrackInput = tslib_1.__decorate([
     type_graphql_1.InputType()
 ], TrackInput);

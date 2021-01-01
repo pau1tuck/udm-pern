@@ -33,7 +33,7 @@ export class Track extends BaseEntity {
 
     @Field()
     @Column()
-    youTubeId!: string;
+    trackUrl!: string;
 
     @Field(() => String)
     @CreateDateColumn()

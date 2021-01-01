@@ -35,7 +35,7 @@ tslib_1.__decorate([
     type_graphql_1.Field(),
     typeorm_1.Column(),
     tslib_1.__metadata("design:type", String)
-], Track.prototype, "youTubeId", void 0);
+], Track.prototype, "trackUrl", void 0);
 tslib_1.__decorate([
     type_graphql_1.Field(() => String),
     typeorm_1.CreateDateColumn(),

@@ -4,6 +4,7 @@ import { useLoginMutation, UserQuery, UserDocument } from "../graphql/graphql";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Layout from "../components/layout";
 import {
     Button,
     Container,
@@ -14,7 +15,7 @@ import {
     Input,
     Stack,
 } from "@chakra-ui/react";
-import { withApollo } from "../utils/withApollo";
+import { withApollo } from "../utils/with-apollo";
 
 const validationSchema = yup.object().shape({
     ["email"]: yup
@@ -55,51 +56,53 @@ const Login = () => {
     };
 
     return (
-        <Flex justifyContent="center" fontWeight="600">
-            <Container maxW="600px" margin="10px 10px" overflow="hidden">
-                <Heading as="h1" size="lg" textAlign="center" mb={6}>
-                    Sign In
-                </Heading>
-                <form noValidate onSubmit={handleSubmit(onFormSubmit)}>
-                    <Stack spacing={4}>
-                        <FormControl isInvalid={errors.email}>
-                            <Input
-                                id="email"
-                                name="email"
-                                placeholder="Email"
-                                autoComplete="email"
-                                ref={register}
-                            />
-                            <FormErrorMessage>
-                                {errors.email && errors.email.message}
-                            </FormErrorMessage>
-                        </FormControl>
-                        <FormControl isInvalid={errors.password}>
-                            <Input
-                                id="password"
-                                name="password"
-                                type="password"
-                                placeholder="Password"
-                                autoComplete="password"
-                                ref={register}
-                            />
-                            <FormErrorMessage>
-                                {errors.password && errors.password.message}
-                            </FormErrorMessage>
-                        </FormControl>
-                    </Stack>
-                    <Button
-                        width="100%"
-                        mt={8}
-                        colorScheme="blue"
-                        isLoading={formState.isSubmitting}
-                        type="submit"
-                    >
-                        SUBMIT
-                    </Button>
-                </form>
-            </Container>
-        </Flex>
+        <Layout size="sm">
+            <Flex justifyContent="center" fontWeight="600">
+                <Container maxW="600px" margin="10px 10px" overflow="hidden">
+                    <Heading as="h1" size="lg" textAlign="center" mb={6}>
+                        Sign In
+                    </Heading>
+                    <form noValidate onSubmit={handleSubmit(onFormSubmit)}>
+                        <Stack spacing={4}>
+                            <FormControl isInvalid={errors.email}>
+                                <Input
+                                    id="email"
+                                    name="email"
+                                    placeholder="Email"
+                                    autoComplete="email"
+                                    ref={register}
+                                />
+                                <FormErrorMessage>
+                                    {errors.email && errors.email.message}
+                                </FormErrorMessage>
+                            </FormControl>
+                            <FormControl isInvalid={errors.password}>
+                                <Input
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    placeholder="Password"
+                                    autoComplete="password"
+                                    ref={register}
+                                />
+                                <FormErrorMessage>
+                                    {errors.password && errors.password.message}
+                                </FormErrorMessage>
+                            </FormControl>
+                        </Stack>
+                        <Button
+                            width="100%"
+                            mt={8}
+                            colorScheme="blue"
+                            isLoading={formState.isSubmitting}
+                            type="submit"
+                        >
+                            SUBMIT
+                        </Button>
+                    </form>
+                </Container>
+            </Flex>
+        </Layout>
     );
 };
 

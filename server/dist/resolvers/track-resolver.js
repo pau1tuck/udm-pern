@@ -15,9 +15,10 @@ let TrackResolver = class TrackResolver {
                 .getRepository(track_1.Track)
                 .createQueryBuilder("t")
                 .orderBy('t."createdAt"', "DESC")
+                .take(limit + 1)
                 .getMany();
             return {
-                tracks,
+                tracks: tracks.slice(0, limit - 1),
                 hasMore: tracks.length === limit + 1,
             };
         });
@@ -30,12 +31,12 @@ let TrackResolver = class TrackResolver {
             return track_1.Track.create(Object.assign({}, input)).save();
         });
     }
-    UpdateTrack(id, artist, title, version, label, youTubeId) {
+    UpdateTrack(id, artist, title, version, label, trackUrl) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
             const result = yield typeorm_1.getConnection()
                 .createQueryBuilder()
                 .update(track_1.Track)
-                .set({ artist, title, version, label, youTubeId })
+                .set({ artist, title, version, label, trackUrl })
                 .where("id = :id", {
                 id,
             })
@@ -67,7 +68,6 @@ tslib_1.__decorate([
 ], TrackResolver.prototype, "Track", null);
 tslib_1.__decorate([
     type_graphql_1.Mutation(() => track_1.Track),
-    type_graphql_1.UseMiddleware(check_permissions_1.isAdmin),
     tslib_1.__param(0, type_graphql_1.Arg("input")),
     tslib_1.__metadata("design:type", Function),
     tslib_1.__metadata("design:paramtypes", [track_input_1.TrackInput]),
@@ -81,14 +81,13 @@ tslib_1.__decorate([
     tslib_1.__param(2, type_graphql_1.Arg("title")),
     tslib_1.__param(3, type_graphql_1.Arg("version")),
     tslib_1.__param(4, type_graphql_1.Arg("label")),
-    tslib_1.__param(5, type_graphql_1.Arg("youTubeId")),
+    tslib_1.__param(5, type_graphql_1.Arg("trackUrl")),
     tslib_1.__metadata("design:type", Function),
     tslib_1.__metadata("design:paramtypes", [String, String, String, String, String, String]),
     tslib_1.__metadata("design:returntype", Promise)
 ], TrackResolver.prototype, "UpdateTrack", null);
 tslib_1.__decorate([
     type_graphql_1.Mutation(() => Boolean),
-    type_graphql_1.UseMiddleware(check_permissions_1.isAdmin),
     tslib_1.__param(0, type_graphql_1.Arg("id")),
     tslib_1.__metadata("design:type", Function),
     tslib_1.__metadata("design:paramtypes", [String]),

@@ -1,0 +1,15 @@
+query tracks ($limit: Int!) {
+    Tracks(limit: $limit) {
+        tracks {
+            id
+            artist
+            title
+            version
+            label
+            trackUrl
+            votes
+            createdAt
+            updatedAt
+        }
+    }
+}

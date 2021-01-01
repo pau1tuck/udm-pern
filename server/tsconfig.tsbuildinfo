@@ -4082,12 +4082,12 @@
         "affectsGlobalScope": false
       },
       "./src/entities/track.ts": {
-        "version": "aba7ff1e897324f0347f50601d57726a04796196cdd54ac27c6af1324724d4f4",
-        "signature": "ba3a1246b3034f52e39ef327f8fcd8f4f8dc3e917a3293da03841175f6eee794",
+        "version": "b3f11ebbfb390478b47261794ad81de93bdfa067719bf2077b549c1f1f092db7",
+        "signature": "06f43180ca9cabb8d630cb5e6802a8e23f273e9be68be3cc57b0768196f750b8",
         "affectsGlobalScope": false
       },
       "./src/config/database.ts": {
-        "version": "a9447d54901cf3d6e24aa1e0dcf134ccfa26c3dcd4988b2105de387c6b24a996",
+        "version": "f5fc5e2f3c20fa2932c92dc3b4246f1ea2ecd3dc4b3e681d791e72b8f03e29be",
         "signature": "71e5c78081b44a5e7ba6d85ad3cc93b78d09bf7c459a364fcba516461fb2a41d",
         "affectsGlobalScope": false
       },
@@ -4127,13 +4127,13 @@
         "affectsGlobalScope": false
       },
       "./src/resolvers/user-resolver.ts": {
-        "version": "18737c9f731ea2f4cd6a1c0b71d42019414c624da716c5aad02693a5c6a3c40a",
+        "version": "c5d107668e3b6d90faea5eb9307811124b611509a2f1a7b08ab2a1787f94dd49",
         "signature": "e4d225b2de90b418789b1daf60234c973dd8ac4dbdd25b0c77998cf0391bc0ef",
         "affectsGlobalScope": false
       },
       "./src/types/track-input.ts": {
-        "version": "e76173ef0e0bf7367dc3ad07fca9a452a2ba5ff6a2c981a99384a74b39917adc",
-        "signature": "8c4f766f046bf6e88d7ad828eb6d4fd7cf1b4031b139d90e43ae2274884522f3",
+        "version": "ff16c9b26e42b384ee1936b43ac7134d39a4b03c70e2014420143ecfa822f885",
+        "signature": "a24fe4aeaee140c5646f269c24c8b77fcbab1783cdc32b0188b5ef24fb28daf6",
         "affectsGlobalScope": false
       },
       "./src/types/paginated-tracks.ts": {
@@ -4142,8 +4142,8 @@
         "affectsGlobalScope": false
       },
       "./src/resolvers/track-resolver.ts": {
-        "version": "e6db39d2132d17bc3276524cb38c0a8ea9b44b99b361f3524ba03641ab1623a5",
-        "signature": "ec80b5dfcb1fd48ecb966ed3c6f2d761b08a90b9108c93bee69585214882217a",
+        "version": "577a0cb23a74998ab31cda5fc387e5658d14b85731060e79dcb6eb55c166e5b4",
+        "signature": "d83309acb4fdf07961d7e08de25899ddd924c709a27cfd5f57d5d72499a91658",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/nodemailer/lib/dkim/index.d.ts": {
@@ -4221,9 +4221,14 @@
         "signature": "b570b2bdd45aeee0af2eab08c8c7d19c1bd97f00135ed281c66cb9ba4677301c",
         "affectsGlobalScope": false
       },
+      "./node_modules/@types/jsonwebtoken/index.d.ts": {
+        "version": "f67c920eba6ab8e4558cb9ab661d900188f101c5657e19b1e15829a1d491d46e",
+        "signature": "f67c920eba6ab8e4558cb9ab661d900188f101c5657e19b1e15829a1d491d46e",
+        "affectsGlobalScope": false
+      },
       "./src/utils/create-verification-url.ts": {
-        "version": "33cd207783cf068c24f07988f9e293f79ff920d8470cd1105a1c4dfd5cd59eff",
-        "signature": "105f0cfb858d145d4d55965928df7573f5cc41bcb791f4e6356343d3c561d349",
+        "version": "2846adfe96854981af4311c81befad70894b5ab7f4b684641e0025c2f4ed9636",
+        "signature": "16a2a29a4bb76afe44e72a329d3017fb15281aab40f2507966894ddd4b2c4145",
         "affectsGlobalScope": false
       },
       "./src/index.ts": {
@@ -4608,6 +4613,9 @@
         "./node_modules/@types/node/index.d.ts",
         "./node_modules/@types/node/stream.d.ts",
         "./node_modules/@types/node/tls.d.ts"
+      ],
+      "./node_modules/@types/jsonwebtoken/index.d.ts": [
+        "./node_modules/@types/node/index.d.ts"
       ],
       "./node_modules/@types/koa-compose/index.d.ts": [
         "./node_modules/@types/koa/index.d.ts"
@@ -8122,7 +8130,9 @@
         "./src/types/context.d.ts"
       ],
       "./src/utils/create-verification-url.ts": [
-        "./node_modules/tslib/tslib.d.ts"
+        "./node_modules/@types/jsonwebtoken/index.d.ts",
+        "./node_modules/tslib/tslib.d.ts",
+        "./src/config/redis.ts"
       ],
       "./src/utils/send-email.ts": [
         "./node_modules/@types/nodemailer/index.d.ts",
@@ -8231,6 +8241,9 @@
         "./node_modules/@types/node/index.d.ts",
         "./node_modules/@types/node/stream.d.ts",
         "./node_modules/@types/node/tls.d.ts"
+      ],
+      "./node_modules/@types/jsonwebtoken/index.d.ts": [
+        "./node_modules/@types/node/index.d.ts"
       ],
       "./node_modules/@types/koa-compose/index.d.ts": [
         "./node_modules/@types/koa/index.d.ts"
@@ -11735,6 +11748,7 @@
       "./node_modules/@types/ioredis/index.d.ts",
       "./node_modules/@types/json-schema/index.d.ts",
       "./node_modules/@types/json5/index.d.ts",
+      "./node_modules/@types/jsonwebtoken/index.d.ts",
       "./node_modules/@types/keygrip/index.d.ts",
       "./node_modules/@types/koa-compose/index.d.ts",
       "./node_modules/@types/koa/index.d.ts",

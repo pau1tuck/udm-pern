@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import headerStyles from "../styles/header.module.css";
 import {
     Box,
@@ -15,13 +16,15 @@ export const Header: React.FC = () => {
         <Flex justifyContent="center">
             <Container>
                 <Flex justifyContent="center">
-                    <Box mt="-55px" zIndex="10">
-                        <Img
-                            objectFit="cover"
-                            src="/images/udm-logo.png"
-                            alt="UDM"
-                        />
-                    </Box>
+                    <Link href="/">
+                        <Box as="button" mt="-55px" zIndex="10">
+                            <Img
+                                objectFit="cover"
+                                src="/images/udm-logo.png"
+                                alt="UDM"
+                            />
+                        </Box>
+                    </Link>
                 </Flex>
                 <Flex justifyContent="center">
                     <Box mt="-10px" zIndex="11">

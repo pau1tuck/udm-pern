@@ -23,9 +23,10 @@ export class TrackResolver {
             .getRepository(Track)
             .createQueryBuilder("t")
             .orderBy('t."createdAt"', "DESC")
+            .take(limit + 1)
             .getMany();
         return {
-            tracks,
+            tracks: tracks.slice(0, limit - 1),
             hasMore: tracks.length === limit + 1,
         };
         // return await Track.find();
@@ -37,7 +38,7 @@ export class TrackResolver {
     }
 
     @Mutation(() => Track)
-    @UseMiddleware(isAdmin)
+    // @UseMiddleware(isAdmin)
     async CreateTrack(@Arg("input") input: TrackInput): Promise<Track> {
         return Track.create({
             ...input,
@@ -52,12 +53,12 @@ export class TrackResolver {
         @Arg("title") title: string,
         @Arg("version") version: string,
         @Arg("label") label: string,
-        @Arg("youTubeId") youTubeId: string
+        @Arg("trackUrl") trackUrl: string
     ): Promise<Track | null> {
         const result = await getConnection()
             .createQueryBuilder()
             .update(Track)
-            .set({ artist, title, version, label, youTubeId })
+            .set({ artist, title, version, label, trackUrl })
             .where("id = :id", {
                 id,
             })
@@ -68,7 +69,7 @@ export class TrackResolver {
     }
 
     @Mutation(() => Boolean)
-    @UseMiddleware(isAdmin)
+    // @UseMiddleware(isAdmin)
     async DeleteTrack(@Arg("id") id: string): Promise<boolean> {
         await Track.delete({ id });
         return true;

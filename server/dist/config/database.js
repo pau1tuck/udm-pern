@@ -22,5 +22,8 @@ exports.default = {
     entities: [user_1.User, track_1.Track],
     migrations: [path_1.default.join(__dirname, "/migrations/**/*.ts")],
     subscribers: [path_1.default.join(__dirname, "/subscribers/**/*.ts")],
+    cli: {
+        migrationsDir: path_1.default.join(__dirname, "/migrations"),
+    },
 };
 //# sourceMappingURL=database.js.map

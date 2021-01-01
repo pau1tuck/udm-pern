@@ -21,4 +21,7 @@ export default {
     entities: [User, Track],
     migrations: [path.join(__dirname, "/migrations/**/*.ts")],
     subscribers: [path.join(__dirname, "/subscribers/**/*.ts")],
+    cli: {
+        migrationsDir: path.join(__dirname, "/migrations"),
+    },
 } as Parameters<typeof createConnection>[0];
