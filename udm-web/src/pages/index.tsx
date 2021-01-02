@@ -13,6 +13,7 @@ import {
     Container,
     Flex,
     Grid,
+    GridItem,
     Heading,
     Input,
     InputGroup,
@@ -89,7 +90,7 @@ const Home = () => {
                     setCurrentTrack(track);
                 }}
                 w="210px"
-                h="300px"
+                h="350px"
                 ml={4}
                 mb={4}
                 bgColor="gray.900"
@@ -97,31 +98,54 @@ const Home = () => {
                 opacity="0.8"
                 textAlign="center"
             >
-                <Box w="150px" h="150px" m="auto" mt="-10px" mb="10px">
+                <Box
+                    position="static"
+                    w="150px"
+                    h="150px"
+                    mt="-150px"
+                    ml="auto"
+                    mr="auto"
+                >
                     <img
                         src={`http://localhost:5000/media/artwork/${track.image}`}
                     />
                 </Box>
-                <Text
-                    fontFamily="track"
-                    fontSize="lg"
-                    overflowY="hidden"
-                    overflowWrap="break-word"
+
+                <Box
+                    position="absolute"
+                    m="0px"
+                    pl="10px"
+                    pr="10px"
+                    w="210px"
+                    mt="10px"
+                    textAlign="center"
                 >
-                    <span className={trackStyles.title}>{track.title}</span>
-                    <br />
-                    <span className={trackStyles.artist}>{track.artist}</span>
-                    <br />
-                    {track.version ? (
-                        <>
-                            <span>({track.version})</span>
-                            <br />
-                        </>
-                    ) : (
-                        ""
-                    )}
-                    {track.label ? <span>[{track.label}]</span> : ""}
-                </Text>
+                    <Text fontFamily="track" fontSize="md">
+                        <span className={trackStyles.title}>{track.title}</span>
+                        <br />
+                        <span className={trackStyles.artist}>
+                            {track.artist}
+                        </span>
+                        <br />
+                        {track.version ? (
+                            <>
+                                <span className={trackStyles.version}>
+                                    ({track.version})
+                                </span>
+                                <br />
+                            </>
+                        ) : (
+                            ""
+                        )}
+                        {track.label ? (
+                            <span className={trackStyles.label}>
+                                {track.label}
+                            </span>
+                        ) : (
+                            ""
+                        )}
+                    </Text>
+                </Box>
             </Box>
         ));
     }

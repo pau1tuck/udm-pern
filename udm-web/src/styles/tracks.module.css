@@ -1,6 +1,12 @@
-.artist {
-    color: #35a0fd;
-}
 .title {
     color: #ff376f;
+}
+.artist {
+    color: #ffffff;
+}
+.version {
+    color: #35a0fd;
+}
+.label {
+    color: #ffe35b;
 }
