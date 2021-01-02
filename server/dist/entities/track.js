@@ -28,14 +28,29 @@ tslib_1.__decorate([
 ], Track.prototype, "version", void 0);
 tslib_1.__decorate([
     type_graphql_1.Field(),
-    typeorm_1.Column(),
+    typeorm_1.Column({ nullable: true }),
     tslib_1.__metadata("design:type", String)
 ], Track.prototype, "label", void 0);
+tslib_1.__decorate([
+    type_graphql_1.Field((_type) => String),
+    typeorm_1.Column({ nullable: true, default: "" }),
+    tslib_1.__metadata("design:type", String)
+], Track.prototype, "image", void 0);
 tslib_1.__decorate([
     type_graphql_1.Field(),
     typeorm_1.Column(),
     tslib_1.__metadata("design:type", String)
 ], Track.prototype, "trackUrl", void 0);
+tslib_1.__decorate([
+    type_graphql_1.Field(),
+    typeorm_1.Column({ nullable: true }),
+    tslib_1.__metadata("design:type", String)
+], Track.prototype, "buyUrl", void 0);
+tslib_1.__decorate([
+    type_graphql_1.Field(() => type_graphql_1.Int),
+    typeorm_1.Column({ type: "int", default: 0 }),
+    tslib_1.__metadata("design:type", Number)
+], Track.prototype, "votes", void 0);
 tslib_1.__decorate([
     type_graphql_1.Field(() => String),
     typeorm_1.CreateDateColumn(),
@@ -46,11 +61,6 @@ tslib_1.__decorate([
     typeorm_1.UpdateDateColumn(),
     tslib_1.__metadata("design:type", Date)
 ], Track.prototype, "updatedAt", void 0);
-tslib_1.__decorate([
-    type_graphql_1.Field(() => type_graphql_1.Int),
-    typeorm_1.Column({ type: "int", default: 0 }),
-    tslib_1.__metadata("design:type", Number)
-], Track.prototype, "votes", void 0);
 Track = tslib_1.__decorate([
     type_graphql_1.ObjectType(),
     typeorm_1.Entity()

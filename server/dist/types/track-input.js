@@ -24,7 +24,15 @@ tslib_1.__decorate([
 tslib_1.__decorate([
     type_graphql_1.Field(),
     tslib_1.__metadata("design:type", String)
+], TrackInput.prototype, "image", void 0);
+tslib_1.__decorate([
+    type_graphql_1.Field(),
+    tslib_1.__metadata("design:type", String)
 ], TrackInput.prototype, "trackUrl", void 0);
+tslib_1.__decorate([
+    type_graphql_1.Field(),
+    tslib_1.__metadata("design:type", String)
+], TrackInput.prototype, "buyUrl", void 0);
 TrackInput = tslib_1.__decorate([
     type_graphql_1.InputType()
 ], TrackInput);

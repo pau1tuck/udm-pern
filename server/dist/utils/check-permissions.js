@@ -9,7 +9,7 @@ const isAuthenticated = ({ context }, next) => {
 };
 exports.isAuthenticated = isAuthenticated;
 const isAdmin = ({ context }, next) => {
-    if (!context.req.session.isAdmin) {
+    if (!context.req.session.roles.some("ADMIN")) {
         throw new Error("User does not have admin rights");
     }
     return next();

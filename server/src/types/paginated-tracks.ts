@@ -4,7 +4,7 @@ import { Track } from "../entities/track";
 @ObjectType()
 export class PaginatedTracks {
     @Field(() => [Track])
-    tracks!: Track[];
+    tracks?: Track[];
 
     @Field()
     hasMore!: boolean;

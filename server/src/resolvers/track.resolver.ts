@@ -11,6 +11,8 @@ import { Track } from "../entities/track";
 import { TrackInput } from "../types/track-input";
 import { PaginatedTracks } from "../types/paginated-tracks";
 import { isAdmin } from "../utils/check-permissions";
+import { RedisStore, redisClient } from "../config/redis";
+import { TRACKS_CACHE_KEY } from "../config/constants";
 
 @Resolver(Track)
 export class TrackResolver {
@@ -19,12 +21,9 @@ export class TrackResolver {
         @Arg("limit", () => Int)
         limit: number
     ): Promise<PaginatedTracks> {
-        const tracks = await getConnection()
-            .getRepository(Track)
-            .createQueryBuilder("t")
-            .orderBy('t."createdAt"', "DESC")
-            .take(limit + 1)
-            .getMany();
+        const allTracks =
+            (await redisClient.lrange(TRACKS_CACHE_KEY, 0, -1)) || [];
+        const tracks = allTracks.map((track: string) => JSON.parse(track));
         return {
             tracks: tracks.slice(0, limit - 1),
             hasMore: tracks.length === limit + 1,
@@ -40,25 +39,24 @@ export class TrackResolver {
     @Mutation(() => Track)
     // @UseMiddleware(isAdmin)
     async CreateTrack(@Arg("input") input: TrackInput): Promise<Track> {
-        return Track.create({
+        const newTrack = await Track.create({
             ...input,
         }).save();
+        redisClient.lpush(TRACKS_CACHE_KEY, JSON.stringify(newTrack));
+        return newTrack;
     }
 
     @Mutation(() => Track, { nullable: true })
-    @UseMiddleware(isAdmin)
+    // @UseMiddleware(isAdmin)
     async UpdateTrack(
         @Arg("id") id: string,
-        @Arg("artist") artist: string,
-        @Arg("title") title: string,
-        @Arg("version") version: string,
-        @Arg("label") label: string,
-        @Arg("trackUrl") trackUrl: string
+        @Arg("image") image: string,
+        @Arg("buyUrl") buyUrl: string
     ): Promise<Track | null> {
         const result = await getConnection()
             .createQueryBuilder()
             .update(Track)
-            .set({ artist, title, version, label, trackUrl })
+            .set({ image, buyUrl })
             .where("id = :id", {
                 id,
             })

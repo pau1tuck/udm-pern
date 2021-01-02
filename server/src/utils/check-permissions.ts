@@ -1,5 +1,5 @@
 import { MiddlewareFn } from "type-graphql";
-import { IContext } from "../types/context.d";
+import { IContext } from "../types/context.interface";
 
 export const isAuthenticated: MiddlewareFn<IContext> = ({ context }, next) => {
     if (!context.req.session.userId) {
@@ -9,7 +9,7 @@ export const isAuthenticated: MiddlewareFn<IContext> = ({ context }, next) => {
 };
 
 export const isAdmin: MiddlewareFn<IContext> = ({ context }, next) => {
-    if (!context.req.session.isAdmin) {
+    if (!context.req.session.roles.some("ADMIN")) {
         throw new Error("User does not have admin rights");
     }
     return next();

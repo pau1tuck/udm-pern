@@ -6,6 +6,7 @@ import {
     UpdateDateColumn,
     Column,
     BaseEntity,
+    Any,
 } from "typeorm";
 
 @ObjectType()
@@ -14,6 +15,9 @@ export class User extends BaseEntity {
     @Field(() => ID)
     @PrimaryGeneratedColumn("uuid")
     id!: string;
+
+    @Column({ nullable: true })
+    socialId!: string;
 
     @Field()
     @Column({ length: 128, nullable: true })
@@ -28,6 +32,10 @@ export class User extends BaseEntity {
     country!: string;
 
     @Field()
+    @Column({ nullable: true })
+    avatar!: string;
+
+    @Field()
     @Column({ unique: true })
     email!: string;
 
@@ -36,10 +44,6 @@ export class User extends BaseEntity {
 
     @Column({ default: false })
     verified!: boolean;
-
-    @Field()
-    @Column({ default: false })
-    isMember!: boolean;
 
     @Field()
     @Column({ default: false })

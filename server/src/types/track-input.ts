@@ -9,11 +9,17 @@ export class TrackInput {
     title!: string;
 
     @Field()
-    version!: string;
+    version?: string;
 
     @Field()
-    label!: string;
+    label?: string;
+
+    @Field()
+    image?: string;
 
     @Field()
     trackUrl!: string;
+
+    @Field()
+    buyUrl?: string;
 }

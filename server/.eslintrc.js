@@ -14,7 +14,7 @@ module.exports = {
     rules: {
         "no-console": [0],
         "import/prefer-default-export": "off",
-        "max-classes-per-file": [1],
+        "max-classes-per-file": [0],
         "class-methods-use-this": [0],
         "@typescript-eslint/no-unused-vars": [0], 
         "@typescript-eslint/no-explicit-any": [0],

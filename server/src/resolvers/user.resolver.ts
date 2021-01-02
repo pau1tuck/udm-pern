@@ -1,22 +1,27 @@
 import { Errback } from "express";
 import {
-    Resolver,
-    Query,
-    Mutation,
     Arg,
-    UseMiddleware,
+    Authorized,
     Ctx,
+    Field,
+    InputType,
+    Int,
+    Mutation,
+    ObjectType,
+    Query,
+    Resolver,
+    UseMiddleware,
 } from "type-graphql";
 import argon2 from "argon2";
 import { User } from "../entities/user";
-import { IContext } from "../types/context.d";
+import { IContext } from "../types/context.interface";
 import { isAdmin } from "../utils/check-permissions";
 
 @Resolver(User)
 export class UserResolver {
     // ALL USERS
     @Query(() => [User])
-    @UseMiddleware(isAdmin)
+    // @UseMiddleware(isAdmin)
     Users(): Promise<User[]> {
         return User.find();
     }
@@ -100,5 +105,13 @@ export class UserResolver {
                 resolve(true);
             })
         );
+    }
+
+    // DELETE USER
+    @Mutation(() => Boolean)
+    // @UseMiddleware(isAdmin)
+    async DeleteUser(@Arg("id") id: string): Promise<boolean> {
+        await User.delete({ id });
+        return true;
     }
 }

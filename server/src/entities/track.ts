@@ -28,16 +28,20 @@ export class Track extends BaseEntity {
     version?: string;
 
     @Field()
-    @Column()
-    label!: string;
+    @Column({ nullable: true })
+    label?: string;
+
+    @Field((_type) => String)
+    @Column({ nullable: true, default: "" })
+    image?: string;
 
     @Field()
     @Column()
     trackUrl!: string;
 
     @Field()
-    @Column()
-    buyUrl!: string;
+    @Column({ nullable: true })
+    buyUrl?: string;
 
     @Field(() => Int)
     @Column({ type: "int", default: 0 })
