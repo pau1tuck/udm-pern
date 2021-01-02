@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/link";
 import Layout, { siteTitle } from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
 import playerStyles from "../styles/player.module.css";
@@ -96,7 +97,17 @@ const Home = () => {
                 opacity="0.8"
                 textAlign="center"
             >
-                <Text fontFamily="track" fontSize="lg">
+                <Box w="150px" h="150px" m="auto" mt="-10px" mb="10px">
+                    <img
+                        src={`http://localhost:5000/media/artwork/${track.image}`}
+                    />
+                </Box>
+                <Text
+                    fontFamily="track"
+                    fontSize="lg"
+                    overflowY="hidden"
+                    overflowWrap="break-word"
+                >
                     <span className={trackStyles.title}>{track.title}</span>
                     <br />
                     <span className={trackStyles.artist}>{track.artist}</span>

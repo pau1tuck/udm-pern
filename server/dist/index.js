@@ -47,7 +47,6 @@ const server = () => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
         resave: false,
         saveUninitialized: false,
     }));
-    app.use("/media", express_1.default.static(path_1.default.join(`${__dirname}/media`)));
     const graphQLSchema = yield type_graphql_1.buildSchema({
         resolvers: [user_resolver_1.UserResolver, track_resolver_1.TrackResolver],
         validate: false,
@@ -69,6 +68,7 @@ const server = () => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
     if (orm.isConnected) {
         console.log("📙 Connected to PostgreSQL database.");
     }
+    app.use("/media", express_1.default.static(path_1.default.join(__dirname, "media")));
     app.listen(PORT, () => {
         console.log(`🚀 Server running on port ${PORT}.`);
     });

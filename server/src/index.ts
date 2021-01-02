@@ -62,8 +62,6 @@ const server = async () => {
         })
     );
 
-    app.use("/media", express.static(path.join(`${__dirname}/media`))); // optionally one can add some route handler to protect this resource
-
     const graphQLSchema = await buildSchema({
         resolvers: [UserResolver, TrackResolver],
         validate: false,
@@ -82,7 +80,7 @@ const server = async () => {
         res.end();
     });
 
-    /* app.get("*", (req: Request, res: Response) => {
+    /* appadmin/create-track.get("*", (req: Request, res: Response) => {
         res.sendFile(path.join(__dirname + "/web/public/index.html"));
     }); */
 
@@ -100,11 +98,19 @@ const server = async () => {
     if (orm.isConnected) {
         console.log("📙 Connected to PostgreSQL database.");
     }
+
+    /* app.get("/", (req: Request, res: Response) => {
+        res.sendFile(path.join(__dirname, "index.html"));
+    }); */
+
+    // app.set("trust proxy", "127.0.0.1");
+
+    app.use("/media", express.static(path.join(__dirname, "media")));
+
     app.listen(PORT, () => {
         console.log(`🚀 Server running on port ${PORT}.`);
     });
 };
-
 server().catch((err) => {
     console.error(err);
 });

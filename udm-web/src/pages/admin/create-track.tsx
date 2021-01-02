@@ -25,6 +25,16 @@ import {
 } from "@chakra-ui/react";
 import { withApollo } from "../../utils/with-apollo";
 
+interface ITrack {
+    artist: string;
+    title: string;
+    version: string;
+    label: string;
+    image: string;
+    trackUrl: string;
+    buyUrl: string;
+}
+
 const validationSchema = yup.object().shape({
     ["artist"]: yup.string().required().label("Artist"),
     ["title"]: yup.string().required().label("Title"),
@@ -34,15 +44,6 @@ const validationSchema = yup.object().shape({
     ["trackUrl"]: yup.string().required().label("Track Location"),
     ["buyUrl"]: yup.string().label("Buy URL"),
 });
-
-interface ITrack {
-    artist: string;
-    title: string;
-    version: string;
-    label: string;
-    trackUrl: string;
-    buyUrl: string;
-}
 
 const CreateTrack = () => {
     const router = useRouter();
@@ -62,7 +63,8 @@ const CreateTrack = () => {
             },
         });
         if (!errors) {
-            router.push("/admin/tracks");
+            console.log("Success!");
+            router.push("/");
         }
     };
 
@@ -154,4 +156,4 @@ const CreateTrack = () => {
     );
 };
 
-export default withApollo({ ssr: true })(CreateTrack);
+export default withApollo({ ssr: false })(CreateTrack);

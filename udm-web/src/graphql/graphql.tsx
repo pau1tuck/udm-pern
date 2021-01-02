@@ -102,12 +102,7 @@ export type MutationCreateTrackArgs = {
 
 export type MutationUpdateTrackArgs = {
     buyUrl: Scalars["String"];
-    trackUrl: Scalars["String"];
     image: Scalars["String"];
-    label: Scalars["String"];
-    version: Scalars["String"];
-    title: Scalars["String"];
-    artist: Scalars["String"];
     id: Scalars["String"];
 };
 
