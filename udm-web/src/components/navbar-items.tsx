@@ -8,10 +8,16 @@ import {
     Flex,
     Heading,
     LightMode,
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuList,
+    Spinner,
     Text,
 } from "@chakra-ui/react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaRegUserCircle } from "react-icons/fa";
+import navbarStyles from "../styles/navbar.module.css";
 import { useApolloClient } from "@apollo/client";
 import { useUserQuery, useLogoutMutation } from "../graphql/graphql";
 
@@ -26,25 +32,16 @@ export const NavbarItems = () => {
     let items = null;
 
     if (loading) {
-    }
-    if (!loading && data.CurrentUser) {
-        const items = (
-            <Flex mt={3} alignItems="center">
-                <Text
-                    mr="15px"
-                    fontFamily="heading"
-                    fontWeight="600"
-                    fontSize="sm"
-                >
-                    {`${data.CurrentUser.firstName} ${data.CurrentUser.lastName}`}
-                </Text>
-                <Avatar as="button" mr={3}>
-                    <img src="images/avatar2.png" />
-                </Avatar>
-            </Flex>
+        return (
+            <>
+                <Flex align="center" />
+                <Box display={{ base: "block" }}>
+                    <Spinner size="md" color="white" />
+                </Box>
+            </>
         );
-    } else {
-        const items = (
+    } else if (!data?.CurrentUser) {
+        items = (
             <>
                 <ButtonGroup
                     display={{ base: "none", sm: "block" }}
@@ -71,6 +68,43 @@ export const NavbarItems = () => {
                     <FaRegUserCircle fontSize="26px" />
                 </ButtonGroup>
             </>
+        );
+    } else {
+        items = (
+            <Flex mt={3} alignItems="center">
+                <Text
+                    mr="15px"
+                    fontFamily="heading"
+                    fontWeight="600"
+                    fontSize="sm"
+                >
+                    {`${data.CurrentUser.firstName} ${data.CurrentUser.lastName}`}
+                </Text>
+                <Menu size="50px" placement="bottom-end">
+                    <Avatar
+                        as={MenuButton}
+                        src="images/avatar2.png"
+                        mr={3}
+                    ></Avatar>
+
+                    <MenuList bgColor="gray.900" opacity="0.7" color="white">
+                        <MenuItem fontWeight="600" textDecoration="none">
+                            <a className={navbarStyles.menuItem}>Profile</a>
+                        </MenuItem>
+                        <MenuItem fontWeight="600" textDecoration="none">
+                            <a
+                                className={navbarStyles.menuItem}
+                                onClick={async () => {
+                                    await logout();
+                                    await apolloClient.resetStore();
+                                }}
+                            >
+                                Log out
+                            </a>
+                        </MenuItem>
+                    </MenuList>
+                </Menu>
+            </Flex>
         );
     }
 

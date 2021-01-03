@@ -1,0 +1,9 @@
+.menuItem a {
+    text-decoration: "none";
+    font-weight: 600;
+}
+.menuItem a:hover {
+    text-decoration: "none";
+    font-weight: 600;
+    color: black;
+}

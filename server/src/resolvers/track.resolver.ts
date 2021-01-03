@@ -51,12 +51,13 @@ export class TrackResolver {
     async UpdateTrack(
         @Arg("id") id: string,
         @Arg("image") image: string,
+        @Arg("trackUrl") trackUrl: string,
         @Arg("buyUrl") buyUrl: string
     ): Promise<Track | null> {
         const result = await getConnection()
             .createQueryBuilder()
             .update(Track)
-            .set({ image, buyUrl })
+            .set({ image, trackUrl, buyUrl })
             .where("id = :id", {
                 id,
             })

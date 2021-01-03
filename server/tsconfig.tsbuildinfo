@@ -4167,8 +4167,8 @@
         "affectsGlobalScope": false
       },
       "./src/resolvers/track.resolver.ts": {
-        "version": "ece3a18b674c1f5bf8664be2647dddf0c695f2f3d5744b4d59130a1a92cfcff9",
-        "signature": "082b00377de39e650818768a86b825c0702ba3f8264472c4e47ea74a7ba7ea67",
+        "version": "e361a80ddec33373370ae39336c5e4f896c6a180fdb8edd89027d9951d93212c",
+        "signature": "c420760301da1c5760f9e77a99ee1bc733e003b842065f352bd73d46139f348f",
         "affectsGlobalScope": false
       },
       "./src/index.ts": {

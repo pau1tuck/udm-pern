@@ -1587,6 +1587,16 @@
   resolved "https://registry.yarnpkg.com/@iarna/toml/-/toml-2.2.5.tgz#b32366c89b43c6f8cefbdefac778b9c828e3ba8c"
   integrity sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==
 
+"@iconify/icons-mdi@^1.0.46":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@iconify/icons-mdi/-/icons-mdi-1.1.2.tgz#3326f4a56d69280976756c657cb0c80e416956ca"
+  integrity sha512-c9DMqx1iYklhVC3UawEmpYCM1SNoz6BwN0SRoJh7MZau+0hqyDRHsVJBFPteaK6AHohv9h/1KCOvvqFQ1QxI7A==
+
+"@iconify/react@^1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@iconify/react/-/react-1.1.3.tgz#ebe4d3e5f5dea23cd6a9634acd7a0a25c7414a59"
+  integrity sha512-ReZNJyr89AfED6XZIXkhsJiNv2taT3j1cTo1HVPHMsrKOz6gAYdXtD2kDWF6+GVoFUxpmnO0fMcA6yCyTf6Tow==
+
 "@next/env@10.0.4":
   version "10.0.4"
   resolved "https://registry.yarnpkg.com/@next/env/-/env-10.0.4.tgz#ac759094d021853616af56a7bd6720e44a92a303"
@@ -1823,13 +1833,6 @@
   version "15.7.3"
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.3.tgz#2ab0d5da2e5815f94b0b9d4b95d1e5f243ab2ca7"
   integrity sha512-KfRL3PuHmqQLOG+2tGpRO26Ctg+Cq1E01D2DMriKEATHgWLfeNDmq9e29Q9WIky0dQ3NPkd1mzYH8Lm936Z9qw==
-
-"@types/react-audio-player@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@types/react-audio-player/-/react-audio-player-0.11.0.tgz#c7891dce19e23ba4f6f6f6300ac4ad7c5b8099e2"
-  integrity sha512-NMBDuTISrHFWTVLqcix5i3WG49+IFrMqWOgRPHasRfjJAOMrMCz/mNq1l6Qjrx2Cd4A7/hDTuEx1T1bvyRm/DA==
-  dependencies:
-    "@types/react" "*"
 
 "@types/react-dom@^17.0.0":
   version "17.0.0"
@@ -7929,13 +7932,6 @@ rc@^1.2.7, rc@^1.2.8:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-audio-player@^0.14.0:
-  version "0.14.0"
-  resolved "https://registry.yarnpkg.com/react-audio-player/-/react-audio-player-0.14.0.tgz#b57bc2b980b1bb3c8b4f6a2134062160462c5081"
-  integrity sha512-B0kP3KVjbp+TXG8TUh1kl91xnYwYx8c+YLbx3oZS9drcHvgTPWl4sl8inmwyLWPH0bMW5eqGFL5qT1fuHk8Ysw==
-  dependencies:
-    prop-types "^15.7.2"
-
 react-clientside-effect@^1.2.2:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/react-clientside-effect/-/react-clientside-effect-1.2.3.tgz#95c95f520addfb71743608b990bfe01eb002012b"
@@ -7969,6 +7965,15 @@ react-focus-lock@2.4.1:
     react-clientside-effect "^1.2.2"
     use-callback-ref "^1.2.1"
     use-sidecar "^1.0.1"
+
+react-h5-audio-player@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/react-h5-audio-player/-/react-h5-audio-player-3.5.0.tgz#f3703db038b34a68d2e21c4815e3337e2cb51629"
+  integrity sha512-d8UyDZArysAn2aCs/lRwBGat40IylzOOETG0gwQtuTQhvVb5S8DKbxImbG6iSoqN7LFB2D0YxJ6iFwElSww9Mg==
+  dependencies:
+    "@babel/runtime" "^7.10.2"
+    "@iconify/icons-mdi" "^1.0.46"
+    "@iconify/react" "^1.1.3"
 
 react-hook-form@^6.13.1:
   version "6.13.1"

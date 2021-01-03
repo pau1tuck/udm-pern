@@ -29,8 +29,9 @@ import { Search2Icon } from "@chakra-ui/icons";
 import { FaListUl } from "react-icons/fa";
 import { FiGrid } from "react-icons/fi";
 import { SiAudiomack } from "react-icons/si";
-import ReactAudioPlayer from "react-audio-player";
 import { withApollo } from "../utils/with-apollo";
+import AudioPlayer from "react-h5-audio-player";
+import "react-h5-audio-player/lib/styles.css";
 
 // import { tracks } from "../dummy-data";
 import { useTracksQuery } from "../graphql/graphql";
@@ -39,7 +40,7 @@ const Home = () => {
     const { loading, error, data, fetchMore, variables } = useTracksQuery({
         fetchPolicy: "cache-first",
         variables: {
-            limit: 32,
+            limit: 31,
         },
         notifyOnNetworkStatusChange: true,
     });
@@ -86,7 +87,9 @@ const Home = () => {
                 key={key}
                 as="button"
                 onClick={() => {
-                    setNowPlaying(track.trackUrl);
+                    setNowPlaying(
+                        `http://localhost:5000/media/music/${track.trackUrl}`
+                    );
                     setCurrentTrack(track);
                 }}
                 w="210px"
@@ -193,17 +196,13 @@ const Home = () => {
                         </Heading>
                     </Box>
 
-                    <Box overflowY="auto" flex="1" w="100%" ml="210px">
-                        <Box pl={3} position="absolute">
-                            {currentTrack.artist && (
-                                <span>
-                                    {currentTrack?.artist} -{" "}
-                                    {currentTrack?.title}{" "}
-                                    {currentTrack.version &&
-                                        `(${currentTrack?.version})`}
-                                </span>
-                            )}
-                        </Box>
+                    <Box
+                        mt="-40px"
+                        overflowY="auto"
+                        flex="1"
+                        w="100%"
+                        ml="210px"
+                    >
                         <Box mt={1} mb={5} mr={2} right="0" textAlign="right">
                             <ButtonGroup>
                                 <Box
@@ -318,12 +317,20 @@ const Home = () => {
                     </Box>
                 </Flex>
             </Layout>
-            <Box>
-                <audio
-                    src={nowPlaying}
+            <Box position="sticky" bottom="0" width="100%">
+                <AudioPlayer
                     autoPlay
-                    className={playerStyles.player}
-                ></audio>
+                    src={nowPlaying}
+                    onPlay={(e) => console.log("onPlay")}
+                />
+            </Box>
+            <Box pl={3} position="absolute" z-index="100">
+                {currentTrack?.artist && (
+                    <span>
+                        {currentTrack?.artist} - {currentTrack?.title}{" "}
+                        {currentTrack?.version && `(${currentTrack?.version})`}
+                    </span>
+                )}
             </Box>
         </>
     );
