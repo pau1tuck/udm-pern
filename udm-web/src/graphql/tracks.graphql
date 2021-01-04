@@ -8,6 +8,7 @@ query tracks ($limit: Int!) {
             label
             image
             trackUrl
+            buyUrl
             votes
             createdAt
             updatedAt

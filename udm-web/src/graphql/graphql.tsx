@@ -102,6 +102,7 @@ export type MutationCreateTrackArgs = {
 
 export type MutationUpdateTrackArgs = {
     buyUrl: Scalars["String"];
+    trackUrl: Scalars["String"];
     image: Scalars["String"];
     id: Scalars["String"];
 };
@@ -177,6 +178,7 @@ export type TracksQuery = { __typename?: "Query" } & {
                 | "label"
                 | "image"
                 | "trackUrl"
+                | "buyUrl"
                 | "votes"
                 | "createdAt"
                 | "updatedAt"
@@ -455,6 +457,7 @@ export const TracksDocument = gql`
                 label
                 image
                 trackUrl
+                buyUrl
                 votes
                 createdAt
                 updatedAt
