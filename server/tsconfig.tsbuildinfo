@@ -4111,23 +4111,8 @@
         "signature": "e1c42fa4041757eda491a69101c47f7c9c4f0671ff182ccda0030b13ac062632",
         "affectsGlobalScope": false
       },
-      "./node_modules/apollo-server-cache-redis/dist/RedisCache.d.ts": {
-        "version": "9b5db3fad4c9fb53ebf0cf7964428147d4f278cca45c5be0a2e4fa8ef9d3c597",
-        "signature": "9b5db3fad4c9fb53ebf0cf7964428147d4f278cca45c5be0a2e4fa8ef9d3c597",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/apollo-server-cache-redis/dist/RedisClusterCache.d.ts": {
-        "version": "a0bb6fb5eadf21cfd8c0849f51eff5aafbd673c1306e8892ee44f6dc67a78ef5",
-        "signature": "a0bb6fb5eadf21cfd8c0849f51eff5aafbd673c1306e8892ee44f6dc67a78ef5",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/apollo-server-cache-redis/dist/index.d.ts": {
-        "version": "fb42c2a63a36559b72d2cfe94e9abe0390453e904141e4c9d3e53f4b29a3a3d1",
-        "signature": "fb42c2a63a36559b72d2cfe94e9abe0390453e904141e4c9d3e53f4b29a3a3d1",
-        "affectsGlobalScope": false
-      },
       "./src/config/redis.ts": {
-        "version": "c2e49287a6ffff28e55eecf814ce42c8ee0663c9970489058c5be8688d1e32f3",
+        "version": "9b5d94ebeeb28be86738658f186d96210b0b6c1efb99b1028621cafd0bc3f461",
         "signature": "f1fcd7dcddeace57e543fa76d4abedf6fe63a4ea25972c3b21937025cc791037",
         "affectsGlobalScope": false
       },
@@ -5242,18 +5227,6 @@
       "./node_modules/apollo-reporting-protobuf/dist/protobuf.d.ts": [
         "./node_modules/@apollo/protobufjs/index.d.ts",
         "./node_modules/@types/long/index.d.ts"
-      ],
-      "./node_modules/apollo-server-cache-redis/dist/RedisCache.d.ts": [
-        "./node_modules/@types/ioredis/index.d.ts",
-        "./node_modules/apollo-server-caching/dist/index.d.ts"
-      ],
-      "./node_modules/apollo-server-cache-redis/dist/RedisClusterCache.d.ts": [
-        "./node_modules/@types/ioredis/index.d.ts",
-        "./node_modules/apollo-server-caching/dist/index.d.ts"
-      ],
-      "./node_modules/apollo-server-cache-redis/dist/index.d.ts": [
-        "./node_modules/apollo-server-cache-redis/dist/RedisCache.d.ts",
-        "./node_modules/apollo-server-cache-redis/dist/RedisClusterCache.d.ts"
       ],
       "./node_modules/apollo-server-caching/dist/InMemoryLRUCache.d.ts": [
         "./node_modules/apollo-server-caching/dist/KeyValueCache.d.ts"
@@ -8105,7 +8078,6 @@
         "./node_modules/@types/connect-redis/index.d.ts",
         "./node_modules/@types/express-session/index.d.ts",
         "./node_modules/@types/ioredis/index.d.ts",
-        "./node_modules/apollo-server-cache-redis/dist/index.d.ts",
         "./node_modules/tslib/tslib.d.ts"
       ],
       "./src/entities/track.ts": [
@@ -8890,18 +8862,6 @@
       "./node_modules/apollo-reporting-protobuf/dist/protobuf.d.ts": [
         "./node_modules/@apollo/protobufjs/index.d.ts",
         "./node_modules/@types/long/index.d.ts"
-      ],
-      "./node_modules/apollo-server-cache-redis/dist/RedisCache.d.ts": [
-        "./node_modules/@types/ioredis/index.d.ts",
-        "./node_modules/apollo-server-caching/dist/index.d.ts"
-      ],
-      "./node_modules/apollo-server-cache-redis/dist/RedisClusterCache.d.ts": [
-        "./node_modules/@types/ioredis/index.d.ts",
-        "./node_modules/apollo-server-caching/dist/index.d.ts"
-      ],
-      "./node_modules/apollo-server-cache-redis/dist/index.d.ts": [
-        "./node_modules/apollo-server-cache-redis/dist/RedisCache.d.ts",
-        "./node_modules/apollo-server-cache-redis/dist/RedisClusterCache.d.ts"
       ],
       "./node_modules/apollo-server-caching/dist/InMemoryLRUCache.d.ts": [
         "./node_modules/apollo-server-caching/dist/KeyValueCache.d.ts"
@@ -11944,9 +11904,6 @@
       "./node_modules/apollo-link/lib/types.d.ts",
       "./node_modules/apollo-reporting-protobuf/dist/index.d.ts",
       "./node_modules/apollo-reporting-protobuf/dist/protobuf.d.ts",
-      "./node_modules/apollo-server-cache-redis/dist/RedisCache.d.ts",
-      "./node_modules/apollo-server-cache-redis/dist/RedisClusterCache.d.ts",
-      "./node_modules/apollo-server-cache-redis/dist/index.d.ts",
       "./node_modules/apollo-server-caching/dist/InMemoryLRUCache.d.ts",
       "./node_modules/apollo-server-caching/dist/KeyValueCache.d.ts",
       "./node_modules/apollo-server-caching/dist/PrefixingKeyValueCache.d.ts",

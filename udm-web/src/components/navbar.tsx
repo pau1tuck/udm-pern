@@ -14,7 +14,7 @@ import {
     Wrap,
     WrapItem,
 } from "@chakra-ui/react";
-import { NavbarItems } from "./navbar-items";
+import NavbarItems from "./navbar-items";
 
 export const Navbar = ({ user }: any) => {
     return (
@@ -23,6 +23,7 @@ export const Navbar = ({ user }: any) => {
                 <Flex
                     as="nav"
                     height="60px"
+                    margin="0px"
                     align="center"
                     justify="space-between"
                     wrap="wrap"

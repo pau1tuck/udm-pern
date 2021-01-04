@@ -20,16 +20,16 @@ import { FaRegUserCircle } from "react-icons/fa";
 import navbarStyles from "../styles/navbar.module.css";
 import { useApolloClient } from "@apollo/client";
 import { useUserQuery, useLogoutMutation } from "../graphql/graphql";
+import { withApollo } from "../utils/with-apollo";
 
-export const NavbarItems = () => {
+const NavbarItems = () => {
+    const { data, loading } = useUserQuery({ fetchPolicy: "cache-first" });
     const router = useRouter();
     const [logout, { loading: logoutLoading }] = useLogoutMutation();
     const apolloClient = useApolloClient();
-    const { data, loading } = useUserQuery({
-        fetchPolicy: "cache-first",
-    });
 
     let items = null;
+    let user = { firstName: "Dog", lastName: "Shit" };
 
     if (loading) {
         return (
@@ -78,7 +78,7 @@ export const NavbarItems = () => {
                     fontWeight="600"
                     fontSize="sm"
                 >
-                    {`${data.CurrentUser.firstName} ${data.CurrentUser.lastName}`}
+                    {`${user?.firstName} ${user.lastName}`}
                 </Text>
                 <Menu size="50px" placement="bottom-end">
                     <Avatar
@@ -92,7 +92,7 @@ export const NavbarItems = () => {
                             <a className={navbarStyles.menuItem}>Profile</a>
                         </MenuItem>
                         <MenuItem fontWeight="600" textDecoration="none">
-                            <a
+                            <Box
                                 className={navbarStyles.menuItem}
                                 onClick={async () => {
                                     await logout();
@@ -100,7 +100,7 @@ export const NavbarItems = () => {
                                 }}
                             >
                                 Log out
-                            </a>
+                            </Box>
                         </MenuItem>
                     </MenuList>
                 </Menu>
@@ -121,3 +121,5 @@ export const NavbarItems = () => {
         </>
     );
 };
+
+export default withApollo({ ssr: false })(NavbarItems);

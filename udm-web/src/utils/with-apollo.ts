@@ -1,4 +1,4 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient, InMemoryCache, makeVar } from "@apollo/client";
 import { withApollo as nextWithApollo } from "next-apollo";
 import { PaginatedTracks } from "../graphql/graphql";
 import { NextPageContext } from "next";
@@ -17,7 +17,7 @@ const createClient = (ctx: NextPageContext) =>
             typePolicies: {
                 Query: {
                     fields: {
-                        posts: {
+                        tracks: {
                             keyArgs: [],
                             merge(
                                 existing: PaginatedTracks | undefined,

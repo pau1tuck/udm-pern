@@ -31,6 +31,7 @@ const validationSchema = yup.object().shape({
 const Login = () => {
     const router = useRouter();
     const [Login] = useLoginMutation();
+    let user: any;
 
     const { register, handleSubmit, errors, formState } = useForm({
         resolver: yupResolver(validationSchema),
@@ -48,9 +49,14 @@ const Login = () => {
                         CurrentUser: data?.Login,
                     },
                 });
+                user = {
+                    firstName: data?.Login.firstName,
+                    lastName: data?.Login.lastName,
+                };
             },
         });
         if (response.data?.Login) {
+            localStorage.setItem("user", JSON.stringify(user));
             router.push("/");
         } else console.log(errors);
     };
@@ -70,6 +76,7 @@ const Login = () => {
                                     name="email"
                                     placeholder="Email"
                                     autoComplete="email"
+                                    autoFocus
                                     ref={register}
                                 />
                                 <FormErrorMessage>

@@ -32,18 +32,23 @@ import { SiAudiomack } from "react-icons/si";
 import { withApollo } from "../utils/with-apollo";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
-
-// import { tracks } from "../dummy-data";
 import { useTracksQuery } from "../graphql/graphql";
 
 const Home = () => {
-    const { loading, error, data, fetchMore, variables } = useTracksQuery({
+    const {
+        loading: tracksLoading,
+        error,
+        data: tracksData,
+        fetchMore,
+        variables,
+    } = useTracksQuery({
         fetchPolicy: "cache-first",
         variables: {
             limit: 31,
         },
         notifyOnNetworkStatusChange: true,
     });
+
     const [mode, setMode] = useState("latest");
     const [viewMode, setViewMode] = useState("grid");
     const [nowPlaying, setNowPlaying] = useState("");
@@ -53,11 +58,12 @@ const Home = () => {
         version: "",
     });
 
+    let user: any;
     let listView: any;
     let gridView: any;
 
-    if (!loading && data) {
-        const tracks = data.Tracks.tracks;
+    if (!tracksLoading && tracksData) {
+        const tracks = tracksData.Tracks.tracks;
         listView = tracks.map((track, key) => (
             <Box
                 key={key}
@@ -153,7 +159,7 @@ const Home = () => {
         ));
     }
 
-    return !data && loading ? (
+    return !tracksData && tracksLoading ? (
         <div>Loading...</div>
     ) : (
         <>

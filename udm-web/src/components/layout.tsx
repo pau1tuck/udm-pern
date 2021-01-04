@@ -23,7 +23,6 @@ const Layout = ({
         <>
             <Navbar />
             <Header />
-
             <div className={styles.container}>
                 {home && <Subheader />}
                 <Head>
