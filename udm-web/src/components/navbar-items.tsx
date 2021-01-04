@@ -82,20 +82,29 @@ const NavbarItems = () => {
                     ></Avatar>
 
                     <MenuList bgColor="gray.900" opacity="0.7" color="white">
-                        <MenuItem fontWeight="600" textDecoration="none">
-                            <a className={navbarStyles.menuItem}>Profile</a>
+                        <MenuItem
+                            fontWeight="600"
+                            textDecoration="none"
+                            _hover={{ bgColor: "#0886F7" }}
+                            _focus={{ bgColor: "#0886F7" }}
+                            _active={{ bgColor: "#0886F7" }}
+                        >
+                            Profile
                         </MenuItem>
-                        <MenuItem fontWeight="600" textDecoration="none">
-                            <Box
-                                className={navbarStyles.menuItem}
-                                onClick={async () => {
-                                    Cookies.remove("user");
-                                    await logout();
-                                    await apolloClient.resetStore();
-                                }}
-                            >
-                                Log out
-                            </Box>
+                        <MenuItem
+                            fontWeight="600"
+                            textDecoration="none"
+                            as="button"
+                            _hover={{ bgColor: "#0886F7" }}
+                            _focus={{ bgColor: "#0886F7" }}
+                            _active={{ bgColor: "#0886F7" }}
+                            onClick={async () => {
+                                Cookies.remove("user");
+                                await logout();
+                                await apolloClient.resetStore();
+                            }}
+                        >
+                            Log out
                         </MenuItem>
                     </MenuList>
                 </Menu>

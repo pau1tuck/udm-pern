@@ -19,6 +19,7 @@ import {
     Input,
     InputGroup,
     InputLeftElement,
+    LightMode,
     Square,
     Text,
     ScaleFade,
@@ -35,11 +36,12 @@ import { MdPauseCircleFilled } from "react-icons/md";
 
 import { IoPlayBackSharp } from "react-icons/io5";
 import { IoPlayForwardSharp } from "react-icons/io5";
-
+import { HiOutlineThumbUp } from "react-icons/hi";
 import { withApollo } from "../utils/with-apollo";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import { useTracksQuery } from "../graphql/graphql";
+import { GridBox } from "../components/grid-block";
 
 const Home = () => {
     const {
@@ -84,12 +86,17 @@ const Home = () => {
 
     if (!tracksLoading && tracksData) {
         const tracks = tracksData.Tracks.tracks;
+        console.log(tracks);
         listView = tracks.map((track, key) => (
             <Box
                 key={key}
                 as="button"
                 onClick={() => {
-                    setCurrentTrack(track.trackUrl);
+                    setCurrentTrack(
+                        `http://localhost:5000/media/tracks/${track.trackUrl}`
+                    );
+                    setNowPlaying(track);
+                    setIsPlaying(true);
                 }}
                 w="98%"
                 h="60px"
@@ -107,172 +114,197 @@ const Home = () => {
                 </Text>
             </Box>
         ));
-
         gridView = tracks.map((track, key) => (
-            <Box
-                key={key}
-                as="button"
-                onClick={() => {
-                    setCurrentTrack(
-                        `http://localhost:5000/media/music/${track.trackUrl}`
-                    );
-                    setNowPlaying(track);
-                    setIsPlaying(true);
-                }}
-                w="210px"
-                h="350px"
-                ml={4}
-                mb={4}
-                bgColor="gray.900"
-                borderRadius={5}
-                opacity="0.8"
-                textAlign="center"
-            >
+            <Box w="210px" ml={4}>
                 <Box
-                    position="static"
-                    w="150px"
-                    h="150px"
-                    mt="-150px"
-                    ml="auto"
-                    mr="auto"
-                >
-                    <img
-                        src={`http://localhost:5000/media/artwork/${track.image}`}
-                        className={playerStyles.image}
-                    />
-                </Box>
-
-                <Box
-                    position="absolute"
-                    m="0px"
-                    pl="10px"
-                    pr="10px"
+                    key={key}
+                    as="button"
+                    onClick={() => {
+                        setCurrentTrack(
+                            `http://localhost:5000/media/tracks/${track.trackUrl}`
+                        );
+                        setNowPlaying(track);
+                        setIsPlaying(true);
+                    }}
+                    display="block"
                     w="210px"
-                    mt="10px"
+                    h="350px"
+                    mb={4}
+                    bgColor="gray.900"
+                    borderRadius={5}
+                    opacity="0.8"
                     textAlign="center"
                 >
-                    <Text fontFamily="track" fontSize="md">
-                        <span className={trackStyles.title}>{track.title}</span>
-                        <br />
-                        <span className={trackStyles.artist}>
-                            {track.artist}
-                        </span>
-                        <br />
-                        {track.version ? (
-                            <>
-                                <span className={trackStyles.version}>
-                                    ({track.version})
-                                </span>
-                                <br />
-                            </>
-                        ) : (
-                            ""
-                        )}
-                        {track.label ? (
-                            <span className={trackStyles.label}>
-                                {track.label}
+                    <Box
+                        position="static"
+                        w="150px"
+                        h="150px"
+                        mt="-150px"
+                        ml="auto"
+                        mr="auto"
+                    >
+                        <img
+                            src={`http://localhost:5000/media/artwork/${track.image}`}
+                            className={playerStyles.image}
+                        />
+                    </Box>
+
+                    <Box
+                        position="absolute"
+                        m="0px"
+                        pl="10px"
+                        pr="10px"
+                        w="210px"
+                        mt="10px"
+                        textAlign="center"
+                    >
+                        <Text fontFamily="track" fontSize="md">
+                            <span className={trackStyles.title}>
+                                {track.title}
                             </span>
-                        ) : (
-                            ""
-                        )}
-                    </Text>
+                            <br />
+                            <span className={trackStyles.artist}>
+                                {track.artist}
+                            </span>
+                            <br />
+                            {track.version ? (
+                                <>
+                                    <span className={trackStyles.version}>
+                                        ({track.version})
+                                    </span>
+                                    <br />
+                                </>
+                            ) : (
+                                ""
+                            )}
+                            {track.label ? (
+                                <span className={trackStyles.label}>
+                                    {track.label}
+                                </span>
+                            ) : (
+                                ""
+                            )}
+                        </Text>
+                    </Box>
+                </Box>
+                <Box zIndex="1000" position="absolute" width="210px">
+                    <Flex mt="-60px" justifyContent="center">
+                        <HiOutlineThumbUp />
+                        <Box display="block" opacity="0.8">
+                            <img src="images/buy.png" />
+                        </Box>
+                    </Flex>
                 </Box>
             </Box>
         ));
-    }
-
-    return !tracksData && tracksLoading ? (
-        <div>Loading...</div>
-    ) : (
-        <>
-            <Layout home>
-                <Head>
-                    <title>{siteTitle}</title>
-                </Head>
-                <ColorModeScript initialColorMode="light" />
-                <Flex color="white">
-                    <Box
-                        position="fixed"
-                        w="200px"
-                        height="300px"
-                        ml="10px"
-                        p="10px"
-                    >
-                        <Heading
-                            as="button"
-                            size="md"
-                            mb={5}
-                            fontWeight="600"
-                            color="blue.400"
+        return !tracksData && tracksLoading ? (
+            <div>Loading...</div>
+        ) : (
+            <>
+                <Layout home>
+                    <Head>
+                        <title>{siteTitle}</title>
+                    </Head>
+                    <ColorModeScript initialColorMode="light" />
+                    <Flex color="white">
+                        <Box
+                            position="fixed"
+                            w="200px"
+                            height="300px"
+                            ml="10px"
+                            p="10px"
                         >
-                            Latest Tunes
-                        </Heading>
-                        <Heading
-                            as="button"
-                            onClick={() => setMode("chart")}
-                            size="md"
-                            mb={5}
-                            fontWeight="600"
-                        >
-                            UDM Chart
-                        </Heading>
-                        <Heading as="button" size="md" mb={5} fontWeight="600">
-                            Top Tracks
-                        </Heading>
-                        <Heading as="button" size="md" mb={5} fontWeight="600">
-                            Playlists
-                        </Heading>
-                    </Box>
+                            <Heading
+                                as="button"
+                                size="md"
+                                mb={5}
+                                fontWeight="600"
+                                color="blue.400"
+                            >
+                                Latest Tunes
+                            </Heading>
+                            <Heading
+                                as="button"
+                                onClick={() => setMode("chart")}
+                                size="md"
+                                mb={5}
+                                fontWeight="600"
+                            >
+                                UDM Chart
+                            </Heading>
+                            <Heading
+                                as="button"
+                                size="md"
+                                mb={5}
+                                fontWeight="600"
+                            >
+                                Top Tracks
+                            </Heading>
+                            <Heading
+                                as="button"
+                                size="md"
+                                mb={5}
+                                fontWeight="600"
+                            >
+                                Playlists
+                            </Heading>
+                        </Box>
 
-                    <Box mt="0px" overflowY="auto" flex="1" w="100%" ml="210px">
-                        <Flex mb={8} as="nav" justify="space-between">
-                            <Flex zIndex="100" ml={2} alignItems="center">
-                                {/*<Box as="button">
+                        <Box
+                            mt="0px"
+                            overflowY="auto"
+                            flex="1"
+                            w="100%"
+                            ml="210px"
+                        >
+                            <Flex mb={8} as="nav" justify="space-between">
+                                <Flex zIndex="100" ml={2} alignItems="center">
+                                    {/*<Box as="button">
                                     <IoPlayBackSharp
                                         display="inline-block"
                                         fontSize="1.5rem"
                                         color="#474747"
                                     />
                                     </Box>*/}
-                                {isPlaying ? (
-                                    <IconButton
-                                        variant="no-border"
-                                        ml={2}
-                                        onClick={handlePlayPause}
-                                        aria-label="Pause button"
-                                        _focus={{
-                                            borderWidth: "0px",
-                                            boxShadow: "none",
-                                        }}
-                                        icon={
-                                            <MdPauseCircleFilled
-                                                display="inline-block"
-                                                fontSize="2.8rem"
-                                                color="#ff195a"
-                                            />
-                                        }
-                                    />
-                                ) : (
-                                    <IconButton
-                                        variant="no-border"
-                                        ml={2}
-                                        onClick={handlePlayPause}
-                                        aria-label="Play button"
-                                        _focus={{
-                                            borderWidth: "0px",
-                                            boxShadow: "none",
-                                        }}
-                                        icon={
-                                            <AiFillPlayCircle
-                                                display="inline-block"
-                                                fontSize="2.8rem"
-                                                color="#1DD05D"
-                                            />
-                                        }
-                                    />
-                                )}
+                                    {isPlaying ? (
+                                        <IconButton
+                                            variant="no-border"
+                                            ml={2}
+                                            onClick={handlePlayPause}
+                                            aria-label="Pause button"
+                                            _focus={{
+                                                borderWidth: "0px",
+                                                boxShadow: "none",
+                                            }}
+                                            icon={
+                                                <MdPauseCircleFilled
+                                                    display="inline-block"
+                                                    fontSize="2.8rem"
+                                                    color="#ff195a"
+                                                />
+                                            }
+                                        />
+                                    ) : (
+                                        <IconButton
+                                            variant="no-border"
+                                            ml={2}
+                                            onClick={handlePlayPause}
+                                            aria-label="Play button"
+                                            _focus={{
+                                                borderWidth: "0px",
+                                                boxShadow: "none",
+                                            }}
+                                            icon={
+                                                <AiFillPlayCircle
+                                                    display="inline-block"
+                                                    fontSize="2.8rem"
+                                                    color="#1DD05D"
+                                                />
+                                            }
+                                        />
+                                    )}
 
-                                {/* <Box as="button" ml={2}>
+                                    {/* <Box as="button" ml={2}>
                                     <IoPlayForwardSharp
                                         display="inline-block"
                                         fontSize="1.5rem"
@@ -280,62 +312,91 @@ const Home = () => {
                                     />
                                     </Box>*/}
 
-                                {nowPlaying.artist && (
-                                    <Box mt="-2px" ml={4} overflow="hidden">
-                                        <Text fontFamily="track" fontSize="lg">
-                                            {nowPlaying.artist} -{" "}
-                                            {nowPlaying.title}{" "}
-                                            {nowPlaying.version
-                                                ? nowPlaying.version
-                                                : ""}
-                                        </Text>
-                                    </Box>
-                                )}
-                            </Flex>
-                            <Flex align="center" />
+                                    {nowPlaying.artist && (
+                                        <Box mt="-2px" ml={4} overflow="hidden">
+                                            <Text
+                                                fontFamily="track"
+                                                fontSize="lg"
+                                            >
+                                                {nowPlaying.artist} -{" "}
+                                                {nowPlaying.title}{" "}
+                                                {nowPlaying.version
+                                                    ? nowPlaying.version
+                                                    : ""}
+                                            </Text>
+                                        </Box>
+                                    )}
+                                </Flex>
+                                <Flex align="center" />
 
-                            <Box mr={2} mb="-5px" right="0" textAlign="right">
-                                <ButtonGroup>
-                                    <Box
-                                        as="button"
+                                <Box
+                                    mr={2}
+                                    mb="-5px"
+                                    right="0"
+                                    textAlign="right"
+                                >
+                                    <IconButton
+                                        aria-label="List mode"
+                                        background="none"
+                                        _hover={{
+                                            background: "none",
+                                        }}
+                                        _active={{
+                                            background: "none",
+                                        }}
+                                        _focus={{
+                                            boxShadow: "none",
+                                        }}
                                         onClick={() => setViewMode("list")}
-                                    >
-                                        <FaListUl
-                                            fontSize="1.7rem"
-                                            color="gray"
-                                        />
-                                    </Box>
-                                    <Box
-                                        as="button"
+                                        icon={
+                                            <FaListUl
+                                                fontSize="1.7rem"
+                                                color="gray"
+                                            />
+                                        }
+                                    />
+                                    <IconButton
+                                        aria-label="Grid mode"
+                                        ml="2px"
+                                        background="none"
+                                        _hover={{
+                                            background: "none",
+                                        }}
+                                        _active={{
+                                            background: "none",
+                                        }}
+                                        _focus={{
+                                            boxShadow: "none",
+                                        }}
                                         onClick={() => setViewMode("grid")}
-                                    >
-                                        <FiGrid
-                                            fontSize="1.7rem"
-                                            color="gray"
-                                        />
-                                    </Box>
-                                </ButtonGroup>
-                            </Box>
-                        </Flex>
-                        <InputGroup>
-                            <InputLeftElement
-                                ml={2}
-                                pointerEvents="none"
-                                children={<Search2Icon color="gray.400" />}
-                            />
-                            <Input w="97%" ml={2} mb={5} borderWidth={2} />
-                        </InputGroup>
+                                        icon={
+                                            <FiGrid
+                                                fontSize="1.7rem"
+                                                color="gray"
+                                            />
+                                        }
+                                    />
+                                </Box>
+                            </Flex>
+                            <InputGroup>
+                                <InputLeftElement
+                                    ml={2}
+                                    pointerEvents="none"
+                                    children={<Search2Icon color="gray.400" />}
+                                />
+                                <Input w="97%" ml={2} mb={5} borderWidth={2} />
+                            </InputGroup>
 
-                        <Flex wrap="wrap">
-                            {viewMode === "grid" ? gridView : listView}
-                        </Flex>
-                        <Flex
-                            as="nav"
-                            align="center"
-                            justify="space-between"
-                            wrap="nowrap"
-                        >
-                            {/* <Flex
+                            <Flex wrap="wrap">
+                                {viewMode === "grid" ? gridView : listView}
+                            </Flex>
+                            <Flex
+                                as="nav"
+                                align="center"
+                                justify="space-between"
+                                wrap="nowrap"
+                            >
+                                {/* <Flex
                                 w="80%"
                                 h="60px"
                                 mt={5}
@@ -358,66 +419,67 @@ const Home = () => {
                                     <SiAudiomack />
                                 </Text>
                             </Flex> */}
-                            <Flex align="center" />
-                            <Box display={{ base: "block" }}>
-                                <ButtonGroup>
-                                    <Flex
-                                        as="button"
-                                        w="60px"
-                                        h="60px"
-                                        mt={5}
-                                        mb="10px"
-                                        ml="5px"
-                                        mr={2}
-                                        borderRadius={5}
-                                        bgColor="gray.800"
-                                        textAlign="center"
-                                        justifyContent="center"
-                                        align="center"
-                                        opacity="0.6"
-                                        color="white"
-                                    >
-                                        <Text
-                                            fontFamily="title"
-                                            fontSize="2rem"
+                                <Flex align="center" />
+                                <Box display={{ base: "block" }}>
+                                    <ButtonGroup>
+                                        <Flex
+                                            as="button"
+                                            w="60px"
+                                            h="60px"
+                                            mt={5}
+                                            mb="10px"
+                                            ml="5px"
+                                            mr={2}
+                                            borderRadius={5}
+                                            bgColor="gray.800"
+                                            textAlign="center"
+                                            justifyContent="center"
+                                            align="center"
+                                            opacity="0.6"
                                             color="white"
                                         >
-                                            {`<`}
-                                        </Text>
-                                    </Flex>
-                                    <Flex
-                                        as="button"
-                                        w="60px"
-                                        h="60px"
-                                        mt={5}
-                                        mb="10px"
-                                        ml="5px"
-                                        mr={4}
-                                        borderRadius={5}
-                                        bgColor="gray.800"
-                                        textAlign="center"
-                                        justifyContent="center"
-                                        align="center"
-                                        opacity="0.6"
-                                        color="white"
-                                    >
-                                        <Text
-                                            fontFamily="title"
-                                            fontSize="2rem"
+                                            <Text
+                                                fontFamily="title"
+                                                fontSize="2rem"
+                                                color="white"
+                                            >
+                                                {`<`}
+                                            </Text>
+                                        </Flex>
+                                        <Flex
+                                            as="button"
+                                            w="60px"
+                                            h="60px"
+                                            mt={5}
+                                            mb="10px"
+                                            ml="5px"
+                                            mr={4}
+                                            borderRadius={5}
+                                            bgColor="gray.800"
+                                            textAlign="center"
+                                            justifyContent="center"
+                                            align="center"
+                                            opacity="0.6"
                                             color="white"
                                         >
-                                            {`>`}
-                                        </Text>
-                                    </Flex>
-                                </ButtonGroup>
-                            </Box>
-                        </Flex>
-                    </Box>
-                </Flex>
-            </Layout>
-            <audio ref={player} src={currentTrack} autoPlay></audio>;
-        </>
-    );
+                                            <Text
+                                                fontFamily="title"
+                                                fontSize="2rem"
+                                                color="white"
+                                            >
+                                                {`>`}
+                                            </Text>
+                                        </Flex>
+                                    </ButtonGroup>
+                                </Box>
+                            </Flex>
+                        </Box>
+                    </Flex>
+                </Layout>
+                <audio ref={player} src={currentTrack} autoPlay></audio>;
+            </>
+        );
+    } else return null;
 };
 
 export default withApollo({ ssr: false })(Home);

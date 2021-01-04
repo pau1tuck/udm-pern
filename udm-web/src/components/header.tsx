@@ -13,7 +13,7 @@ import {
 
 export const Header: React.FC = () => {
     return (
-        <Flex justifyContent="center">
+        <Flex mb={7} justifyContent="center">
             <Container>
                 <Flex justifyContent="center">
                     <Link href="/">
