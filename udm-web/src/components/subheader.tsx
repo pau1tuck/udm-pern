@@ -10,7 +10,7 @@ export const Subheader = () => {
         <Flex
             display={{ base: "none", sm: "flex" }}
             mt={4}
-            mb={8}
+            mb={6}
             ml={3}
             as="nav"
             align="center"

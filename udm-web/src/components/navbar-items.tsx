@@ -20,27 +20,18 @@ import { FaRegUserCircle } from "react-icons/fa";
 import navbarStyles from "../styles/navbar.module.css";
 import { useApolloClient } from "@apollo/client";
 import { useUserQuery, useLogoutMutation } from "../graphql/graphql";
+import Cookies from "js-cookie";
 import { withApollo } from "../utils/with-apollo";
 
 const NavbarItems = () => {
-    const { data, loading } = useUserQuery({ fetchPolicy: "cache-first" });
+    // const { data, loading } = useUserQuery({ fetchPolicy: "cache-first" });
     const router = useRouter();
     const [logout, { loading: logoutLoading }] = useLogoutMutation();
     const apolloClient = useApolloClient();
 
     let items = null;
-    let user = { firstName: "Dog", lastName: "Shit" };
 
-    if (loading) {
-        return (
-            <>
-                <Flex align="center" />
-                <Box display={{ base: "block" }}>
-                    <Spinner size="md" color="white" />
-                </Box>
-            </>
-        );
-    } else if (!data?.CurrentUser) {
+    if (!Cookies.get("user")) {
         items = (
             <>
                 <ButtonGroup
@@ -70,15 +61,18 @@ const NavbarItems = () => {
             </>
         );
     } else {
+        const userCookie = Cookies.get("user");
+        const user = userCookie ? JSON.parse(userCookie) : null;
+        console.log(user);
         items = (
-            <Flex mt={3} alignItems="center">
+            <Flex mt={4} alignItems="center">
                 <Text
                     mr="15px"
                     fontFamily="heading"
                     fontWeight="600"
                     fontSize="sm"
                 >
-                    {`${user?.firstName} ${user.lastName}`}
+                    {user.firstName} {user.lastName}
                 </Text>
                 <Menu size="50px" placement="bottom-end">
                     <Avatar
@@ -95,6 +89,7 @@ const NavbarItems = () => {
                             <Box
                                 className={navbarStyles.menuItem}
                                 onClick={async () => {
+                                    Cookies.remove("user");
                                     await logout();
                                     await apolloClient.resetStore();
                                 }}
@@ -107,7 +102,6 @@ const NavbarItems = () => {
             </Flex>
         );
     }
-
     return (
         <>
             {/*<Heading pt={1} pl={1} fontFamily="title" color="gray.700">

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/link";
@@ -15,6 +15,7 @@ import {
     Grid,
     GridItem,
     Heading,
+    IconButton,
     Input,
     InputGroup,
     InputLeftElement,
@@ -29,6 +30,12 @@ import { Search2Icon } from "@chakra-ui/icons";
 import { FaListUl } from "react-icons/fa";
 import { FiGrid } from "react-icons/fi";
 import { SiAudiomack } from "react-icons/si";
+import { AiFillPlayCircle } from "react-icons/ai";
+import { MdPauseCircleFilled } from "react-icons/md";
+
+import { IoPlayBackSharp } from "react-icons/io5";
+import { IoPlayForwardSharp } from "react-icons/io5";
+
 import { withApollo } from "../utils/with-apollo";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
@@ -51,16 +58,29 @@ const Home = () => {
 
     const [mode, setMode] = useState("latest");
     const [viewMode, setViewMode] = useState("grid");
-    const [nowPlaying, setNowPlaying] = useState("");
-    const [currentTrack, setCurrentTrack] = useState({
+    const [currentTrack, setCurrentTrack] = useState("");
+    const [nowPlaying, setNowPlaying] = useState({
         artist: "",
         title: "",
         version: "",
     });
+    const [isPlaying, setIsPlaying] = useState(false);
 
     let user: any;
     let listView: any;
     let gridView: any;
+
+    const player = useRef(null);
+
+    const handlePlayPause = () => {
+        if (isPlaying === true) {
+            player.current.pause();
+            setIsPlaying(false);
+        } else {
+            player.current.play();
+            setIsPlaying(true);
+        }
+    };
 
     if (!tracksLoading && tracksData) {
         const tracks = tracksData.Tracks.tracks;
@@ -69,7 +89,7 @@ const Home = () => {
                 key={key}
                 as="button"
                 onClick={() => {
-                    setNowPlaying(track.trackUrl);
+                    setCurrentTrack(track.trackUrl);
                 }}
                 w="98%"
                 h="60px"
@@ -93,10 +113,11 @@ const Home = () => {
                 key={key}
                 as="button"
                 onClick={() => {
-                    setNowPlaying(
+                    setCurrentTrack(
                         `http://localhost:5000/media/music/${track.trackUrl}`
                     );
-                    setCurrentTrack(track);
+                    setNowPlaying(track);
+                    setIsPlaying(true);
                 }}
                 w="210px"
                 h="350px"
@@ -117,6 +138,7 @@ const Home = () => {
                 >
                     <img
                         src={`http://localhost:5000/media/artwork/${track.image}`}
+                        className={playerStyles.image}
                     />
                 </Box>
 
@@ -202,29 +224,99 @@ const Home = () => {
                         </Heading>
                     </Box>
 
-                    <Box
-                        mt="-40px"
-                        overflowY="auto"
-                        flex="1"
-                        w="100%"
-                        ml="210px"
-                    >
-                        <Box mt={1} mb={5} mr={2} right="0" textAlign="right">
-                            <ButtonGroup>
-                                <Box
-                                    as="button"
-                                    onClick={() => setViewMode("list")}
-                                >
-                                    <FaListUl fontSize="1.7rem" color="gray" />
-                                </Box>
-                                <Box
-                                    as="button"
-                                    onClick={() => setViewMode("grid")}
-                                >
-                                    <FiGrid fontSize="1.7rem" color="gray" />
-                                </Box>
-                            </ButtonGroup>
-                        </Box>
+                    <Box mt="0px" overflowY="auto" flex="1" w="100%" ml="210px">
+                        <Flex mb={8} as="nav" justify="space-between">
+                            <Flex zIndex="100" ml={2} alignItems="center">
+                                {/*<Box as="button">
+                                    <IoPlayBackSharp
+                                        display="inline-block"
+                                        fontSize="1.5rem"
+                                        color="#474747"
+                                    />
+                                    </Box>*/}
+                                {isPlaying ? (
+                                    <IconButton
+                                        variant="no-border"
+                                        ml={2}
+                                        onClick={handlePlayPause}
+                                        aria-label="Pause button"
+                                        _focus={{
+                                            borderWidth: "0px",
+                                            boxShadow: "none",
+                                        }}
+                                        icon={
+                                            <MdPauseCircleFilled
+                                                display="inline-block"
+                                                fontSize="2.8rem"
+                                                color="#ff195a"
+                                            />
+                                        }
+                                    />
+                                ) : (
+                                    <IconButton
+                                        variant="no-border"
+                                        ml={2}
+                                        onClick={handlePlayPause}
+                                        aria-label="Play button"
+                                        _focus={{
+                                            borderWidth: "0px",
+                                            boxShadow: "none",
+                                        }}
+                                        icon={
+                                            <AiFillPlayCircle
+                                                display="inline-block"
+                                                fontSize="2.8rem"
+                                                color="#1DD05D"
+                                            />
+                                        }
+                                    />
+                                )}
+
+                                {/* <Box as="button" ml={2}>
+                                    <IoPlayForwardSharp
+                                        display="inline-block"
+                                        fontSize="1.5rem"
+                                        color="#1DD05D"
+                                    />
+                                    </Box>*/}
+
+                                {nowPlaying.artist && (
+                                    <Box mt="-2px" ml={4} overflow="hidden">
+                                        <Text fontFamily="track" fontSize="lg">
+                                            {nowPlaying.artist} -{" "}
+                                            {nowPlaying.title}{" "}
+                                            {nowPlaying.version
+                                                ? nowPlaying.version
+                                                : ""}
+                                        </Text>
+                                    </Box>
+                                )}
+                            </Flex>
+                            <Flex align="center" />
+
+                            <Box mr={2} mb="-5px" right="0" textAlign="right">
+                                <ButtonGroup>
+                                    <Box
+                                        as="button"
+                                        onClick={() => setViewMode("list")}
+                                    >
+                                        <FaListUl
+                                            fontSize="1.7rem"
+                                            color="gray"
+                                        />
+                                    </Box>
+                                    <Box
+                                        as="button"
+                                        onClick={() => setViewMode("grid")}
+                                    >
+                                        <FiGrid
+                                            fontSize="1.7rem"
+                                            color="gray"
+                                        />
+                                    </Box>
+                                </ButtonGroup>
+                            </Box>
+                        </Flex>
                         <InputGroup>
                             <InputLeftElement
                                 ml={2}
@@ -323,21 +415,7 @@ const Home = () => {
                     </Box>
                 </Flex>
             </Layout>
-            <Box position="sticky" bottom="0" width="100%">
-                <AudioPlayer
-                    autoPlay
-                    src={nowPlaying}
-                    onPlay={(e) => console.log("onPlay")}
-                />
-            </Box>
-            <Box pl={3} position="absolute" z-index="100">
-                {currentTrack?.artist && (
-                    <span>
-                        {currentTrack?.artist} - {currentTrack?.title}{" "}
-                        {currentTrack?.version && `(${currentTrack?.version})`}
-                    </span>
-                )}
-            </Box>
+            <audio ref={player} src={currentTrack} autoPlay></audio>;
         </>
     );
 };

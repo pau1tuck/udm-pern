@@ -15,6 +15,7 @@ import {
     Input,
     Stack,
 } from "@chakra-ui/react";
+import Cookies from "js-cookie";
 import { withApollo } from "../utils/with-apollo";
 
 const validationSchema = yup.object().shape({
@@ -49,14 +50,13 @@ const Login = () => {
                         CurrentUser: data?.Login,
                     },
                 });
-                user = {
-                    firstName: data?.Login.firstName,
-                    lastName: data?.Login.lastName,
-                };
+                user = data?.Login;
             },
         });
         if (response.data?.Login) {
-            localStorage.setItem("user", JSON.stringify(user));
+            Cookies.set("user", JSON.stringify(user), {
+                expires: 1000 * 60 * 60 * 24 * 365,
+            });
             router.push("/");
         } else console.log(errors);
     };

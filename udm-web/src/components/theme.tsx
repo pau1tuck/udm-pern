@@ -33,6 +33,17 @@ const theme = extendTheme({
             },
         },
     },
+    components: {
+        Box: {
+            variants: {
+                "no-border": {
+                    _active: {
+                        borderWidth: 0,
+                    },
+                },
+            },
+        },
+    },
 });
 
 export default theme;
