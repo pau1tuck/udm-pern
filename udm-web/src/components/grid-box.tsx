@@ -10,6 +10,7 @@ import {
     GridItem,
     Heading,
     IconButton,
+    Icon,
     Input,
     InputGroup,
     InputLeftElement,
@@ -21,8 +22,7 @@ import {
     Stack,
     ButtonGroup,
 } from "@chakra-ui/react";
-import { AiFillPlayCircle } from "react-icons/ai";
-import { MdPauseCircleFilled } from "react-icons/md";
+import { RiThumbUpFill } from "react-icons/ri";
 import { BsFillStarFill } from "react-icons/bs";
 import { BiPlusMedical } from "react-icons/bi";
 
@@ -43,7 +43,7 @@ export const GridBox = ({ track }: any) => {
                     position="static"
                     w="150px"
                     h="150px"
-                    mt="-150px"
+                    pt="20px"
                     ml="auto"
                     mr="auto"
                 >
@@ -55,12 +55,13 @@ export const GridBox = ({ track }: any) => {
 
                 <Box
                     position="absolute"
-                    m="0px"
-                    pl="10px"
-                    pr="10px"
                     w="210px"
-                    mt="10px"
+                    h="200px"
+                    pt="30px"
+                    pr="10px"
+                    pl="10px"
                     textAlign="center"
+                    overflow="auto"
                 >
                     <Text fontFamily="track" fontSize="md">
                         <span className={trackStyles.title}>{track.title}</span>
@@ -91,7 +92,7 @@ export const GridBox = ({ track }: any) => {
             </Box>
             <Box zIndex="1000" position="absolute" width="210px">
                 <Flex mt="-60px" justifyContent="center">
-                    <IconButton
+                    <Icon
                         aria-label="Like button"
                         background="none"
                         _hover={{
@@ -105,8 +106,8 @@ export const GridBox = ({ track }: any) => {
                         }}
                     >
                         <RiThumbUpFill fontSize="1.1rem" color="#5b5b5b" />
-                    </IconButton>
-                    <IconButton
+                    </Icon>
+                    <Icon
                         aria-label="Favorite button"
                         ml={2}
                         background="none"
@@ -121,8 +122,8 @@ export const GridBox = ({ track }: any) => {
                         }}
                     >
                         <BsFillStarFill fontSize="1.1rem" color="#5b5b5b" />
-                    </IconButton>
-                    <IconButton
+                    </Icon>
+                    <Icon
                         aria-label="Add track button"
                         ml={2}
                         pt="1px"
@@ -138,8 +139,8 @@ export const GridBox = ({ track }: any) => {
                         }}
                     >
                         <BiPlusMedical fontSize="1.3rem" color="#5b5b5b" />
-                    </IconButton>
-                    <IconButton
+                    </Icon>
+                    <Icon
                         aria-label="Buy track"
                         display="block"
                         ml={4}
@@ -158,7 +159,7 @@ export const GridBox = ({ track }: any) => {
                         <a href={track.buyUrl} target="_blank">
                             <img src="images/bp.png" />
                         </a>
-                    </IconButton>
+                    </Icon>
                 </Flex>
             </Box>
         </>
