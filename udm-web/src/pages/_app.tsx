@@ -3,8 +3,6 @@ import { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "../components/theme";
 import "../styles/global.css";
-import { Navbar } from "../components/navbar";
-import { withApollo } from "../utils/with-apollo";
 
 const App = ({ Component, pageProps }: AppProps) => {
     return (

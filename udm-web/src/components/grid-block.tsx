@@ -25,9 +25,8 @@ import { HiOutlineThumbUp } from "react-icons/hi";
 
 export const GridBox = ({ track }: any) => {
     return (
-        <Box w="210px" ml={4}>
+        <>
             <Box
-                as="button"
                 display="block"
                 w="210px"
                 h="350px"
@@ -89,12 +88,76 @@ export const GridBox = ({ track }: any) => {
             </Box>
             <Box zIndex="1000" position="absolute" width="210px">
                 <Flex mt="-60px" justifyContent="center">
-                    <HiOutlineThumbUp />
-                    <Box display="block" opacity="0.8">
-                        <img src="images/buy.png" />
-                    </Box>
+                    <IconButton
+                        aria-label="Like button"
+                        background="none"
+                        _hover={{
+                            background: "none",
+                        }}
+                        _active={{
+                            background: "none",
+                        }}
+                        _focus={{
+                            boxShadow: "none",
+                        }}
+                    >
+                        <RiThumbUpFill fontSize="1.1rem" color="#5b5b5b" />
+                    </IconButton>
+                    <IconButton
+                        aria-label="Favorite button"
+                        ml={2}
+                        background="none"
+                        _hover={{
+                            background: "none",
+                        }}
+                        _active={{
+                            background: "none",
+                        }}
+                        _focus={{
+                            boxShadow: "none",
+                        }}
+                    >
+                        <BsFillStarFill fontSize="1.1rem" color="#5b5b5b" />
+                    </IconButton>
+                    <IconButton
+                        aria-label="Add track button"
+                        ml={2}
+                        pt="1px"
+                        background="none"
+                        _hover={{
+                            background: "none",
+                        }}
+                        _active={{
+                            background: "none",
+                        }}
+                        _focus={{
+                            boxShadow: "none",
+                        }}
+                    >
+                        <BiPlusMedical fontSize="1.3rem" color="#5b5b5b" />
+                    </IconButton>
+                    <IconButton
+                        aria-label="Buy track"
+                        display="block"
+                        ml={4}
+                        background="none"
+                        opacity="0.9"
+                        _hover={{
+                            background: "none",
+                        }}
+                        _active={{
+                            background: "none",
+                        }}
+                        _focus={{
+                            boxShadow: "none",
+                        }}
+                    >
+                        <a href={track.buyUrl} target="_blank">
+                            <img src="images/bp.png" />
+                        </a>
+                    </IconButton>
                 </Flex>
             </Box>
-        </Box>
+        </>
     );
 };

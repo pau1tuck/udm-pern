@@ -123,149 +123,159 @@ const Home = () => {
         /* GRID VIEW */
 
         gridView = tracks.map((track, key) => (
-            <Box w="210px" ml={4}>
-                <Box
-                    key={key}
-                    as="button"
-                    onClick={() => {
-                        setCurrentTrack(
-                            `http://localhost:5000/media/tracks/${track.trackUrl}`
-                        );
-                        setNowPlaying(track);
-                        setIsPlaying(true);
-                    }}
-                    display="block"
-                    w="210px"
-                    h="350px"
-                    mb={4}
-                    bgColor="gray.900"
-                    borderRadius={5}
-                    opacity="0.8"
-                    textAlign="center"
-                >
+            <Box key={key} as="button" w="210px" height="350px" ml={4}>
+                <Box>
                     <Box
-                        position="static"
-                        w="150px"
-                        h="150px"
-                        mt="-150px"
-                        ml="auto"
-                        mr="auto"
-                    >
-                        <img
-                            src={`http://localhost:5000/media/artwork/${track.image}`}
-                            className={playerStyles.image}
-                        />
-                    </Box>
-
-                    <Box
-                        position="absolute"
-                        m="0px"
-                        pl="10px"
-                        pr="10px"
+                        as="button"
+                        onClick={() => {
+                            setCurrentTrack(
+                                `http://localhost:5000/media/tracks/${track.trackUrl}`
+                            );
+                            setNowPlaying(track);
+                            setIsPlaying(true);
+                        }}
+                        display="block"
                         w="210px"
-                        mt="10px"
+                        h="350px"
+                        mb={4}
+                        bgColor="gray.900"
+                        borderRadius={5}
+                        opacity="0.8"
                         textAlign="center"
                     >
-                        <Text fontFamily="track" fontSize="md">
-                            <span className={trackStyles.title}>
-                                {track.title}
-                            </span>
-                            <br />
-                            <span className={trackStyles.artist}>
-                                {track.artist}
-                            </span>
-                            <br />
-                            {track.version ? (
-                                <>
-                                    <span className={trackStyles.version}>
-                                        ({track.version})
-                                    </span>
-                                    <br />
-                                </>
-                            ) : (
-                                ""
-                            )}
-                            {track.label ? (
-                                <span className={trackStyles.label}>
-                                    {track.label}
+                        <Box
+                            position="static"
+                            w="150px"
+                            h="150px"
+                            mt="-150px"
+                            ml="auto"
+                            mr="auto"
+                        >
+                            <img
+                                src={`http://localhost:5000/media/artwork/${track.image}`}
+                                className={playerStyles.image}
+                            />
+                        </Box>
+
+                        <Box
+                            position="absolute"
+                            m="0px"
+                            pl="10px"
+                            pr="10px"
+                            w="210px"
+                            mt="10px"
+                            textAlign="center"
+                        >
+                            <Text fontFamily="track" fontSize="md">
+                                <span className={trackStyles.title}>
+                                    {track.title}
                                 </span>
-                            ) : (
-                                ""
-                            )}
-                        </Text>
+                                <br />
+                                <span className={trackStyles.artist}>
+                                    {track.artist}
+                                </span>
+                                <br />
+                                {track.version ? (
+                                    <>
+                                        <span className={trackStyles.version}>
+                                            ({track.version})
+                                        </span>
+                                        <br />
+                                    </>
+                                ) : (
+                                    ""
+                                )}
+                                {track.label ? (
+                                    <span className={trackStyles.label}>
+                                        {track.label}
+                                    </span>
+                                ) : (
+                                    ""
+                                )}
+                            </Text>
+                        </Box>
                     </Box>
-                </Box>
-                <Box zIndex="1000" position="absolute" width="210px">
-                    <Flex mt="-60px" justifyContent="center">
-                        <IconButton
-                            aria-label="Like button"
-                            background="none"
-                            _hover={{
-                                background: "none",
-                            }}
-                            _active={{
-                                background: "none",
-                            }}
-                            _focus={{
-                                boxShadow: "none",
-                            }}
-                        >
-                            <RiThumbUpFill fontSize="1.1rem" color="#5b5b5b" />
-                        </IconButton>
-                        <IconButton
-                            aria-label="Favorite button"
-                            ml={2}
-                            background="none"
-                            _hover={{
-                                background: "none",
-                            }}
-                            _active={{
-                                background: "none",
-                            }}
-                            _focus={{
-                                boxShadow: "none",
-                            }}
-                        >
-                            <BsFillStarFill fontSize="1.1rem" color="#5b5b5b" />
-                        </IconButton>
-                        <IconButton
-                            aria-label="Add track button"
-                            ml={2}
-                            pt="1px"
-                            background="none"
-                            _hover={{
-                                background: "none",
-                            }}
-                            _active={{
-                                background: "none",
-                            }}
-                            _focus={{
-                                boxShadow: "none",
-                            }}
-                        >
-                            <BiPlusMedical fontSize="1.3rem" color="#5b5b5b" />
-                        </IconButton>
-                        <IconButton
-                            aria-label="Buy track"
-                            display="block"
-                            ml={4}
-                            background="none"
-                            opacity="0.9"
-                            _hover={{
-                                background: "none",
-                            }}
-                            _active={{
-                                background: "none",
-                            }}
-                            _focus={{
-                                boxShadow: "none",
-                            }}
-                        >
-                            <a href={track.buyUrl} target="_blank">
-                                <img src="images/bp.png" />
-                            </a>
-                        </IconButton>
-                    </Flex>
+                    <Box zIndex="1000" position="absolute" width="210px">
+                        <Flex mt="-60px" justifyContent="center">
+                            <IconButton
+                                aria-label="Like button"
+                                background="none"
+                                _hover={{
+                                    background: "none",
+                                }}
+                                _active={{
+                                    background: "none",
+                                }}
+                                _focus={{
+                                    boxShadow: "none",
+                                }}
+                            >
+                                <RiThumbUpFill
+                                    fontSize="1.1rem"
+                                    color="#5b5b5b"
+                                />
+                            </IconButton>
+                            <IconButton
+                                aria-label="Favorite button"
+                                ml={2}
+                                background="none"
+                                _hover={{
+                                    background: "none",
+                                }}
+                                _active={{
+                                    background: "none",
+                                }}
+                                _focus={{
+                                    boxShadow: "none",
+                                }}
+                            >
+                                <BsFillStarFill
+                                    fontSize="1.1rem"
+                                    color="#5b5b5b"
+                                />
+                            </IconButton>
+                            <IconButton
+                                aria-label="Add track button"
+                                ml={2}
+                                pt="1px"
+                                background="none"
+                                _hover={{
+                                    background: "none",
+                                }}
+                                _active={{
+                                    background: "none",
+                                }}
+                                _focus={{
+                                    boxShadow: "none",
+                                }}
+                            >
+                                <BiPlusMedical
+                                    fontSize="1.3rem"
+                                    color="#5b5b5b"
+                                />
+                            </IconButton>
+                            <IconButton
+                                aria-label="Buy track"
+                                display="block"
+                                ml={4}
+                                background="none"
+                                opacity="0.9"
+                                _hover={{
+                                    background: "none",
+                                }}
+                                _active={{
+                                    background: "none",
+                                }}
+                                _focus={{
+                                    boxShadow: "none",
+                                }}
+                            >
+                                <a href={track.buyUrl} target="_blank">
+                                    <img src="images/bp.png" />
+                                </a>
+                            </IconButton>
+                        </Flex>
+                    </Box>
                 </Box>
             </Box>
         ));
