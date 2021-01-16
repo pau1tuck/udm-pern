@@ -21,7 +21,10 @@ import {
     Stack,
     ButtonGroup,
 } from "@chakra-ui/react";
-import { HiOutlineThumbUp } from "react-icons/hi";
+import { AiFillPlayCircle } from "react-icons/ai";
+import { MdPauseCircleFilled } from "react-icons/md";
+import { BsFillStarFill } from "react-icons/bs";
+import { BiPlusMedical } from "react-icons/bi";
 
 export const GridBox = ({ track }: any) => {
     return (
