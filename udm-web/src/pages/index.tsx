@@ -15,6 +15,7 @@ import {
     Grid,
     GridItem,
     Heading,
+    Icon,
     IconButton,
     Input,
     InputGroup,
@@ -123,22 +124,101 @@ const Home = () => {
         /* GRID VIEW */
 
         gridView = tracks.map((track, key) => (
-            <Box
-                key={key}
-                as="button"
-                onClick={() => {
-                    setCurrentTrack(
-                        `http://localhost:5000/media/tracks/${track.trackUrl}`
-                    );
-                    setNowPlaying(track);
-                    setIsPlaying(true);
-                }}
-                w="210px"
-                height="350px"
-                mt={4}
-                ml={4}
-            >
-                <GridBox track={track} />
+            <Box w="210px" ml={4}>
+                <Box
+                    key={key}
+                    as="button"
+                    onClick={() => {
+                        setCurrentTrack(
+                            `http://localhost:5000/media/tracks/${track.trackUrl}`
+                        );
+                        setNowPlaying(track);
+                        setIsPlaying(true);
+                    }}
+                    zIndex="1"
+                    w="210px"
+                    height="305px"
+                    mt={4}
+                >
+                    <GridBox track={track} />
+                </Box>
+                <Box
+                    zIndex="1000"
+                    width="210px"
+                    height="35px"
+                    pt="2px"
+                    bgColor="gray.900"
+                    borderBottomRadius={5}
+                    opacity="0.8"
+                >
+                    <Flex justifyContent="center">
+                        <Icon
+                            aria-label="Like button"
+                            background="none"
+                            _hover={{
+                                background: "none",
+                            }}
+                            _active={{
+                                background: "none",
+                            }}
+                            _focus={{
+                                boxShadow: "none",
+                            }}
+                            color="gray.900"
+                        ></Icon>
+                        <Icon
+                            aria-label="Favorite button"
+                            ml={2}
+                            background="none"
+                            _hover={{
+                                background: "none",
+                            }}
+                            _active={{
+                                background: "none",
+                            }}
+                            _focus={{
+                                boxShadow: "none",
+                            }}
+                            color="gray.900"
+                        ></Icon>
+                        <Icon
+                            aria-label="Add track button"
+                            ml={2}
+                            pt="1px"
+                            background="none"
+                            _hover={{
+                                background: "none",
+                            }}
+                            _active={{
+                                background: "none",
+                            }}
+                            _focus={{
+                                boxShadow: "none",
+                            }}
+                            color="gray.900"
+                        ></Icon>
+                        <Box
+                            aria-label="Buy track"
+                            display="block"
+                            ml={4}
+                            background="none"
+                            opacity="0.9"
+                            _hover={{
+                                background: "none",
+                            }}
+                            _active={{
+                                background: "none",
+                            }}
+                            _focus={{
+                                boxShadow: "none",
+                            }}
+                        >
+                            <a href={track.buyUrl} target="_blank">
+                                <img src="/images/bp.png" />
+                            </a>
+                        </Box>
+                    </Flex>
+                </Box>
             </Box>
         ));
 
@@ -152,13 +232,7 @@ const Home = () => {
                     </Head>
                     <ColorModeScript initialColorMode="light" />
                     <Flex color="white">
-                        <Box
-                            position="fixed"
-                            w="200px"
-                            height="300px"
-                            ml="10px"
-                            p="10px"
-                        >
+                        <Box w="200px" height="300px" ml="10px" p="10px">
                             <Heading
                                 as="button"
                                 size="md"
@@ -177,30 +251,8 @@ const Home = () => {
                             >
                                 UDM Chart
                             </Heading>
-                            <Heading
-                                as="button"
-                                size="md"
-                                mb={5}
-                                fontWeight="600"
-                            >
-                                Top Tracks
-                            </Heading>
-                            <Heading
-                                as="button"
-                                size="md"
-                                mb={5}
-                                fontWeight="600"
-                            >
-                                Playlists
-                            </Heading>
                         </Box>
-                        <Box
-                            mt="0px"
-                            overflowY="auto"
-                            flex="1"
-                            w="100%"
-                            ml="210px"
-                        >
+                        <Box mt="0px" overflowY="auto" flex="1" w="100%">
                             <Flex mb={8} as="nav" justify="space-between">
                                 <Flex
                                     zIndex="100"

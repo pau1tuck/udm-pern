@@ -32,21 +32,13 @@ export const GridBox = ({ track }: any) => {
             <Box
                 display="block"
                 w="210px"
-                h="350px"
-                mb={4}
+                h="305px"
                 bgColor="gray.900"
-                borderRadius={5}
+                borderTopRadius={5}
                 opacity="0.8"
                 textAlign="center"
             >
-                <Box
-                    position="static"
-                    w="150px"
-                    h="150px"
-                    pt="20px"
-                    ml="auto"
-                    mr="auto"
-                >
+                <Box w="150px" h="150px" pt="20px" ml="auto" mr="auto">
                     <img
                         src={`http://localhost:5000/media/artwork/${track.image}`}
                         className={playerStyles.image}
@@ -54,9 +46,8 @@ export const GridBox = ({ track }: any) => {
                 </Box>
 
                 <Box
-                    position="absolute"
                     w="210px"
-                    h="200px"
+                    h="190px"
                     pt="30px"
                     pr="10px"
                     pl="10px"
@@ -89,78 +80,6 @@ export const GridBox = ({ track }: any) => {
                         )}
                     </Text>
                 </Box>
-            </Box>
-            <Box zIndex="1000" position="absolute" width="210px">
-                <Flex mt="-60px" justifyContent="center">
-                    <Icon
-                        aria-label="Like button"
-                        background="none"
-                        _hover={{
-                            background: "none",
-                        }}
-                        _active={{
-                            background: "none",
-                        }}
-                        _focus={{
-                            boxShadow: "none",
-                        }}
-                    >
-                        <RiThumbUpFill fontSize="1.1rem" color="#5b5b5b" />
-                    </Icon>
-                    <Icon
-                        aria-label="Favorite button"
-                        ml={2}
-                        background="none"
-                        _hover={{
-                            background: "none",
-                        }}
-                        _active={{
-                            background: "none",
-                        }}
-                        _focus={{
-                            boxShadow: "none",
-                        }}
-                    >
-                        <BsFillStarFill fontSize="1.1rem" color="#5b5b5b" />
-                    </Icon>
-                    <Icon
-                        aria-label="Add track button"
-                        ml={2}
-                        pt="1px"
-                        background="none"
-                        _hover={{
-                            background: "none",
-                        }}
-                        _active={{
-                            background: "none",
-                        }}
-                        _focus={{
-                            boxShadow: "none",
-                        }}
-                    >
-                        <BiPlusMedical fontSize="1.3rem" color="#5b5b5b" />
-                    </Icon>
-                    <Icon
-                        aria-label="Buy track"
-                        display="block"
-                        ml={4}
-                        background="none"
-                        opacity="0.9"
-                        _hover={{
-                            background: "none",
-                        }}
-                        _active={{
-                            background: "none",
-                        }}
-                        _focus={{
-                            boxShadow: "none",
-                        }}
-                    >
-                        <a href={track.buyUrl} target="_blank">
-                            <img src="images/bp.png" />
-                        </a>
-                    </Icon>
-                </Flex>
             </Box>
         </>
     );

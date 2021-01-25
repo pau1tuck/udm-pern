@@ -29,9 +29,7 @@ export const Navbar = ({ user }: any) => {
                     wrap="wrap"
                     color="white"
                     opacity="0.9"
-                >
-                    <NavbarItems />
-                </Flex>
+                ></Flex>
             </Container>
         </div>
     );
