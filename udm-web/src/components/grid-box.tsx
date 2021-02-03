@@ -33,9 +33,9 @@ export const GridBox = ({ track }: any) => {
                 display="block"
                 w="210px"
                 h="305px"
-                bgColor="gray.900"
+                bgColor="#0d0d0d"
                 borderTopRadius={5}
-                opacity="0.8"
+                opacity="0.9"
                 textAlign="center"
             >
                 <Box w="150px" h="150px" pt="20px" ml="auto" mr="auto">

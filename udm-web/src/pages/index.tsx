@@ -77,6 +77,12 @@ const Home = () => {
 
     const player = useRef(null);
 
+    const handleTrack = (track: any) => {
+        setCurrentTrack(`http://localhost:5000/media/tracks/${track.trackUrl}`);
+        setNowPlaying(track);
+        setIsPlaying(true);
+    };
+
     const handlePlayPause = () => {
         if (isPlaying === true) {
             player.current.pause();
@@ -98,17 +104,21 @@ const Home = () => {
                 key={key}
                 as="button"
                 onClick={() => {
-                    setCurrentTrack(
-                        `http://localhost:5000/media/tracks/${track.trackUrl}`
-                    );
-                    setNowPlaying(track);
-                    setIsPlaying(true);
+                    if (nowPlaying === track) {
+                        setIsPlaying(false);
+                    } else {
+                        setCurrentTrack(
+                            `http://localhost:5000/media/tracks/${track.trackUrl}`
+                        );
+                        setNowPlaying(track);
+                        setIsPlaying(true);
+                    }
                 }}
                 w="98%"
                 h="60px"
                 mb="10px"
                 ml="5px"
-                bgColor="gray.900"
+                bgColor="#0d0d0d"
                 borderRadius={5}
                 opacity="0.8"
                 textAlign="left"
@@ -147,60 +157,14 @@ const Home = () => {
                     width="210px"
                     height="35px"
                     pt="2px"
-                    bgColor="gray.900"
+                    bgColor="#0d0d0d"
                     borderBottomRadius={5}
-                    opacity="0.8"
+                    opacity="0.9"
                 >
                     <Flex justifyContent="center">
-                        <Icon
-                            aria-label="Like button"
-                            background="none"
-                            _hover={{
-                                background: "none",
-                            }}
-                            _active={{
-                                background: "none",
-                            }}
-                            _focus={{
-                                boxShadow: "none",
-                            }}
-                            color="gray.900"
-                        ></Icon>
-                        <Icon
-                            aria-label="Favorite button"
-                            ml={2}
-                            background="none"
-                            _hover={{
-                                background: "none",
-                            }}
-                            _active={{
-                                background: "none",
-                            }}
-                            _focus={{
-                                boxShadow: "none",
-                            }}
-                            color="gray.900"
-                        ></Icon>
-                        <Icon
-                            aria-label="Add track button"
-                            ml={2}
-                            pt="1px"
-                            background="none"
-                            _hover={{
-                                background: "none",
-                            }}
-                            _active={{
-                                background: "none",
-                            }}
-                            _focus={{
-                                boxShadow: "none",
-                            }}
-                            color="gray.900"
-                        ></Icon>
                         <Box
                             aria-label="Buy track"
                             display="block"
-                            ml={4}
                             background="none"
                             opacity="0.9"
                             _hover={{
@@ -241,15 +205,6 @@ const Home = () => {
                                 color="blue.400"
                             >
                                 Latest Tunes
-                            </Heading>
-                            <Heading
-                                as="button"
-                                onClick={() => setMode("chart")}
-                                size="md"
-                                mb={5}
-                                fontWeight="600"
-                            >
-                                UDM Chart
                             </Heading>
                         </Box>
                         <Box mt="0px" overflowY="auto" flex="1" w="100%">
@@ -432,7 +387,7 @@ const Home = () => {
                                             ml="5px"
                                             mr={2}
                                             borderRadius={5}
-                                            bgColor="gray.800"
+                                            bgColor="#0d0d0d"
                                             textAlign="center"
                                             justifyContent="center"
                                             align="center"
@@ -456,7 +411,7 @@ const Home = () => {
                                             ml="5px"
                                             mr={4}
                                             borderRadius={5}
-                                            bgColor="gray.800"
+                                            bgColor="#0d0d0d"
                                             textAlign="center"
                                             justifyContent="center"
                                             align="center"

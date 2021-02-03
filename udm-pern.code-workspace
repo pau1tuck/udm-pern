@@ -7,6 +7,9 @@
 		{
 			"name": "udm-web",
 			"path": "udm-web"
+		},
+		{
+			"path": ".vscode"
 		}
 	],
 	"settings": {
