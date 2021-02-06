@@ -3,7 +3,8 @@ module.exports = {
     parserOptions: {
         ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features
         sourceType: "module", // Allows for the use of imports
-        project: "./tsconfig.json",
+        project: "tsconfig.json",
+        tsconfigRootDir: __dirname,
     },
     extends: [
         "airbnb-typescript-prettier",
@@ -16,8 +17,8 @@ module.exports = {
         "import/prefer-default-export": "off",
         "max-classes-per-file": [0],
         "class-methods-use-this": [0],
-        "@typescript-eslint/no-unused-vars": [0], 
+        "@typescript-eslint/no-unused-vars": [0],
         "@typescript-eslint/no-explicit-any": [0],
-        "@typescript-eslint/explicit-module-boundary-types": [0]
+        "@typescript-eslint/explicit-module-boundary-types": [0],
     },
 };

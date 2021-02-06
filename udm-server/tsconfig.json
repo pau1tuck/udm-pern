@@ -1,20 +1,31 @@
-{ 
+{
     "extends": "./tsconfig_base.json",
     "compilerOptions": {
         "incremental": true,
         "target": "es6",
         "module": "commonjs",
-        "lib": ["ES5", "ES6", "DOM", "esnext.asynciterable"],
+        "lib": [
+            "ES5",
+            "ES6",
+            "DOM",
+            "esnext.asynciterable"
+        ],
         "skipLibCheck": true,
         "sourceMap": true,
         "baseUrl": ".",
-        "rootDir": "src",
-        "outDir": "dist",
+        "rootDir": "./src",
+        "outDir": "./dist",
         "paths": {
-            "~/*": ["src/*"]
+            "~/*": [
+                "src/*"
+            ]
         },
         "moduleResolution": "node",
     },
-    "include": ["src/**/*"],
-    "exclude": ["node_modules/"]
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules/"
+    ]
 }
